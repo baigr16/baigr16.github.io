@@ -28,7 +28,7 @@ show_author_profile: true
 # 晶格结构
 首先来分析石墨烯的晶体结构
 
-![png](../assets/images/research/lattice.png)
+![png](/assets/images/research/lattice.png)
 
 每个原胞中包含两个不等价的C原子，晶格基矢选择为
 
@@ -175,7 +175,6 @@ $$
 到此就推导完了石墨烯的紧束缚哈密顿量模型以及求解其对应的能量本征值。
 
 # 参考
-
 
 
 
