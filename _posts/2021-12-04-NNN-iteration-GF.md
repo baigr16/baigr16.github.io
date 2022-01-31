@@ -347,7 +347,8 @@ main()
 ```
 
 ## 绘图
-```gnuplot
+
+```shell
 set encoding iso_8859_1
 #set terminal  postscript enhanced color
 #set output 'arc_r.eps'
@@ -382,5 +383,6 @@ splot 'test-1.dat' u 1:2:3 w pm3d
 splot 'test-1.dat' u 1:2:4 w pm3d
 splot 'test-1.dat' u 1:2:5 w pm3d
 ```
+
 ## 结果
 ![png](/assets/images/topology/Chern-13.png)
