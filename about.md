@@ -31,6 +31,7 @@ show_author_profile: true
 # 联系方式
 
 邮箱：**e-mail:yxli406@gmail.com**
+{:.info}
 
 # 感兴趣的研究方向
 ```chart
