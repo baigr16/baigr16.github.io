@@ -27,7 +27,7 @@ show_author_profile: true
 
 # 个人介绍
 ![Image](/assets/images/20180419/huizhou6.png){:.circle.border.shadow,:width="330px",:height="495px"}
-凝聚态物理在读小硕士一枚，学的是物理，偏爱计算机，却也不偏科数学。平时能用电脑解决的绝不会自己动手，导致手算能力有所下降。
+凝聚态物理在读，方向主要是拓扑，偏爱计算机，却也不偏科数学。平时能用电脑解决的绝不会自己动手，导致手算能力有所下降。
 # 联系方式
 
 邮箱：**e-mail:yxli406@gmail.com**
@@ -124,3 +124,7 @@ show_author_profile: true
 提取码:n0bw
 
 ![png](/assets/images/ref.png)
+
+# 文章发表
+1.[Rotational symmetry breaking and partial Majorana corner states in a heterostructure based on high-
+$T_c$ superconductors](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.103.024517)

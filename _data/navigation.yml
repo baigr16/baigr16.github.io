@@ -28,12 +28,13 @@ header:
     url: /about.html
     key: about-page
 #------------------------------------------------------
-  - title:   发表文章
+  - title:   更多
     url:   /samples.html
     key:   samples-page
 
   - title: GitHub
     url:   https://github.com/yxli8023
+    key:   github
 
   - title: 网站收藏
     url:   /webCollect.html
