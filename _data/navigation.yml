@@ -28,6 +28,10 @@ header:
     url: /about.html
     key: about-page
 #------------------------------------------------------
+  - title:   文献阅读
+    url:   /paper.html
+    key:   paper
+
   - title:   更多
     url:   /samples.html
     key:   samples-page
