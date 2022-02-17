@@ -43,7 +43,3 @@ header:
   - title: 网站收藏
     url:   /webCollect.html
     key: webCollect-page
-
-  - title: Sample
-    url:   /samples.html
-    key: sample
