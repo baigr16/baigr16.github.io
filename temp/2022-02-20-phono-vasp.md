@@ -1,6 +1,6 @@
 ---
-title: 
-tags: Topology 
+title: phonopy声子谱计算
+tags: Topology vasp 
 layout: article
 license: true
 toc: true
