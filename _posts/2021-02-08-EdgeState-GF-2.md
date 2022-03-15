@@ -203,15 +203,17 @@ end
 # ==========================================================
 function main()
     hn::Int64 = 4
-    dk::Float64 = 0.01
-    domg::Float64 = 0.01
+    kn::Int64 = 600
+    omgN::Int64 = kn
     ky::Float64 = 0.0
     omg::Float64 = 0.0
     GLL = zeros(ComplexF64,hn,hn)
     GBulk = zeros(ComplexF64,hn,hn)
-    f1 = open("test.dat","w")
-    for ky in -pi:dk:pi
-        for omg in -3:domg:3
+    f1 = open("bhz.dat","w")
+    for i0 in -kn:kn
+        ky = pi*i0/kn
+        for i1 in -omgN:omgN
+            omg = i1*3.0/omgN
             GLL,GBulk = gf2(omg,ky)
             re1 = log(-imag(sum(GLL))/pi)
             re2 = log(-imag(sum(GBulk))/pi)
@@ -429,6 +431,19 @@ end
 ```shell
 julia -p 16 filename.jl
 ```
+
+## 速度比较
+这里对`julia`两种版本进行速度比较，将格点密度同样取为`600 * 600`串行执行的结果
+```shell
+3067.176742 seconds (6.12 G allocations: 4.046 TiB, 8.50% gc time)
+```
+并行后开了16个线程
+```shell
+403.137411 seconds (34.37 M allocations: 4.617 GiB, 0.13% gc time, 0.28% compilation time)
+```
+
+
+
 
 ## Fortran
 ```fortran
