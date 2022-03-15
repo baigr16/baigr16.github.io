@@ -226,6 +226,210 @@ end
 main()
 ```
 
+## 并行版
+
+对于较大体系的迭代格林函数，其实计算量还是比较大的，这里给一个并行版。
+{:.success}
+
+```julia
+using DelimitedFiles
+using ProgressMeter
+@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles
+#---------------------------------------------------
+@everywhere function Pauli()
+    hn = 4
+    g1 = zeros(ComplexF64,hn,hn)
+    g2 = zeros(ComplexF64,hn,hn)
+    g3 = zeros(ComplexF64,hn,hn)
+    #------ Kinetic energy
+    g1[1,1] = 1
+    g1[2,2] = -1
+    g1[3,3] = 1
+    g1[4,4] = -1
+    #-------- SOC-x
+    g2[1,2] = 1
+    g2[2,1] = 1
+    g2[3,4] = -1
+    g2[4,3] = -1
+    #---------- SOC-y
+    g3[1,2] = -1im
+    g3[2,1] = 1im
+    g3[3,4] = -1im
+    g3[4,3] = 1im
+    return g1,g2,g3
+end 
+# ========================================================
+@everywhere function matset(ky::Float64)
+    hn::Int64 = 4
+    H00 = zeros(ComplexF64,4,4)
+    H01 = zeros(ComplexF64,4,4)
+    g1 = zeros(ComplexF64,4,4)
+    g2 = zeros(ComplexF64,4,4)
+    g3 = zeros(ComplexF64,4,4)
+    #--------------------
+    m0::Float64 = 1.5
+    tx::Float64 = 1.0
+    ty::Float64 = 1.0
+    ax::Float64 = 1.0
+    ay::Float64 = 1.0
+    g1,g2,g3 = Pauli()
+    #--------------------
+    for m in 1:hn
+        for l in 1:hn
+            H00[m,l] = (m0-ty*cos(ky))*g1[m,l] + ay*sin(ky)*g3[m,l] 
+
+            H01[m,l] = (-tx*g1[m,l] - 1im*ax*g2[m,l])/2
+        end 
+    end 
+    #------
+    return H00,H01
+end
+# ====================================================================================
+@everywhere function gf(omg::Float64,ky::Float64)
+    hn::Int64 = 4
+    iter::Int64 = 0
+    itermax::Int64 = 100
+    eta::Float64 = 0.01
+    omegac::ComplexF64 = 0.0
+    accuarrcy::Float64 = 1E-7
+    erracc::Float64 = 0.0
+    epsilon0 = zeros(ComplexF64,hn,hn)
+    epsilon0s = zeros(ComplexF64,hn,hn)
+    epsiloni = zeros(ComplexF64,hn,hn)
+    epsilonis = zeros(ComplexF64,hn,hn)
+    alpha0 = zeros(ComplexF64,hn,hn)
+    alphai = zeros(ComplexF64,hn,hn)
+    beta0 = zeros(ComplexF64,hn,hn)
+    betai = zeros(ComplexF64,hn,hn)
+    H00 = zeros(ComplexF64,hn,hn)
+    H01 = zeros(ComplexF64,hn,hn)
+    unit = zeros(ComplexF64,hn,hn)
+    GLL = zeros(ComplexF64,hn,hn)
+    GRR = zeros(ComplexF64,hn,hn)
+    GBulk = zeros(ComplexF64,hn,hn)
+    #------------------------------------------
+    omegac = omg + 1im*eta
+    H00,H01 = matset(ky)
+    epsilon0s = H00
+    epsilon0 = H00
+    alpha0 = H01
+    beta0 = conj(transpose(H01))
+    #-------------------------------------
+    for i in 1:hn
+        unit[i,i] = 1
+    end
+    #--------------------------------------------
+    for iter in 1:itermax
+        epsilonis = epsilon0s + alpha0*inv(omegac*unit - epsilon0)*beta0
+        epsiloni = epsilon0 + beta0*inv(omegac*unit - epsilon0)*alpha0+alpha0*inv(omegac*unit - epsilon0)*beta0
+        alphai = alpha0*inv(omegac*unit - epsilon0)*alpha0
+        betai = beta0*inv(omegac*unit - epsilon0)*beta0
+
+        epsilon0s = epsilonis
+        epsilon0 = epsiloni
+        alpha0 = alphai
+        beta0 = betai
+        erracc = abs(sum(alphai))
+        # if erracc < accuarrcy
+        #     break
+        # end
+    end
+    # GLL = inv(omegac*unit - epsilon0s)
+    # GBulk = inv(omegac*unit - epsilon0)
+    GLL = epsilon0s
+    GBulk = epsilon0
+    return GLL,GBulk
+end
+# ====================================================================================
+@everywhere function gf2(omg::Float64,ky::Float64)
+    hn::Int64 = 4
+    iter::Int64 = 0
+    itermax::Int64 = 100
+    eta::Float64 = 0.01
+    omegac::ComplexF64 = 0.0
+    epsilon0 = zeros(ComplexF64,hn,hn)
+    epsilon0s = zeros(ComplexF64,hn,hn)
+    epsiloni = zeros(ComplexF64,hn,hn)
+    epsilonis = zeros(ComplexF64,hn,hn)
+    alpha0 = zeros(ComplexF64,hn,hn)
+    alphai = zeros(ComplexF64,hn,hn)
+    beta0 = zeros(ComplexF64,hn,hn)
+    betai = zeros(ComplexF64,hn,hn)
+    H00 = zeros(ComplexF64,hn,hn)
+    H01 = zeros(ComplexF64,hn,hn)
+    unit = zeros(ComplexF64,hn,hn)
+    GLL = zeros(ComplexF64,hn,hn)
+    GRR = zeros(ComplexF64,hn,hn)
+    GBulk = zeros(ComplexF64,hn,hn)
+    #------------------------------------------
+    omegac = omg + 1im*eta
+    H00,H01 = matset(ky)
+    epsilon0s = H00
+    epsilon0 = H00
+    alpha0 = H01
+    beta0 = conj(transpose(H01))
+    #-------------------------------------
+    for i in 1:hn
+        unit[i,i] = 1
+    end
+    #--------------------------------------------
+    for iter in 1:itermax
+        epsilonis = epsilon0s + alpha0*inv(omegac*unit - epsilon0)*beta0
+        epsiloni = epsilon0 + alpha0*inv(omegac*unit - epsilon0)*beta0 + beta0*inv(omegac*unit - epsilon0)*alpha0
+        alphai = alpha0*inv(omegac*unit - epsilon0)*alpha0
+        betai = beta0*inv(omegac*unit - epsilon0)*beta0
+
+        epsilon0s = epsilonis
+        epsilon0 = epsiloni
+        alpha0 = alphai
+        beta0 = betai
+        erracc = abs(sum(alphai))
+    end
+    # GLL = inv(omegac*unit - epsilon0s)
+    # GBulk = inv(omegac*unit - epsilon0)
+    GLL = epsilon0s
+    GBulk = epsilon0
+    return GLL,GBulk
+end
+# ==========================================================
+@everywhere function main()
+    hn::Int64 = 4
+    kn::Int64 = 600
+    omgN::Int64 = kn
+    ky::Float64 = 0.0
+    omg::Float64 = 0.0
+    GLL = SharedArray(zeros(ComplexF64,hn,hn))
+    GBulk = SharedArray(zeros(ComplexF64,hn,hn))
+    re1 = SharedArray(zeros(Float64,2*kn + 1,2*omgN + 1))
+    re2 = SharedArray(zeros(Float64,2*kn + 1,2*omgN + 1))
+    @sync @distributed for i0 in -kn:kn
+        ky = i0*pi/kn
+        for i1 in -omgN:omgN
+            omg = i1*3.0/omgN
+            GLL,GBulk = gf2(omg,ky)
+            re1[i0 + kn + 1,i1 + omgN + 1] = log(-imag(sum(GLL))/pi)
+            re2[i0 + kn + 1,i1 + omgN + 1] = log(-imag(sum(GBulk))/pi)
+        end
+    end
+    f1 = open("bhz-parallel.dat","w")
+    for i0 in -kn:kn
+        kx = i0*pi/kn
+        for i1 in -omgN:omgN
+            omg = i1*3.0/omgN
+            writedlm(f1,[kx/pi omg re1[i0 + kn + 1,i1 + omgN + 1] re2[i0 + kn + 1,i1 + omgN + 1] re1[i0 + kn + 1,i1 + omgN + 1] + re2[i0 + kn + 1,i1 + omgN + 1]],"\t")
+         end
+        writedlm(f1,"\n")
+    end
+    close(f1)
+end
+# =========================================================
+@time main()
+```
+通过下面的命令来给出指定的线程数量来进行并行
+```shell
+julia -p 16 filename.jl
+```
+
 ## Fortran
 ```fortran
     module pub
