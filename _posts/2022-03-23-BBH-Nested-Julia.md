@@ -27,7 +27,7 @@ show_author_profile: true
 <!--more-->
 # Wilson loop
 这个计算没有什么好说的,在其他模型里面也已经做过很多次了,比如[BHZ模型Wilson loop计算](https://yxli8023.github.io/2021/06/28/BHZ-Wilson.html)这篇博客,废话不多说直接上代码
-```Julia
+```julia
 using LinearAlgebra,DelimitedFiles
 #--------------------------------------------------------------
 function hamset(kx::Float64,ky::Float64)
@@ -169,7 +169,7 @@ $$H_\text{Wann}\rvert v_\mathbf{k}\rangle=E\rvert v_\mathbf{k}\rangle$$
 构建的那个Wilson loop的哈密顿量就可以。
 
 至于$\rvert u^n_\mathbf{k}\rangle$就很简单了，它表示的就是你的哈密顿量的本征态，当然了在计算的时候，还是要选择正确的占据态才可以。下面直接上代码，在其中同样做了注释
-```Julia
+```julia
 using LinearAlgebra,DelimitedFiles
 #--------------------------------------------------------------
 function hamset(kx::Float64,ky::Float64)
