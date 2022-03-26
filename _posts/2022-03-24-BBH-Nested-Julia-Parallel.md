@@ -331,7 +331,21 @@ julia -p 16 file.jl
 ```
 这里就选择了16个线程进行并行计算。
 
-通过与[BBH Nested Wilson loop计算(Julia Version)](https://yxli8023.github.io/2022/03/23/BBH-Nested-Julia.html)中的串行执行的程序进行比较，并行确实速度快了很多。
+通过与[BBH Nested Wilson loop计算(Julia Version)](https://yxli8023.github.io/2022/03/23/BBH-Nested-Julia.html)中的串行执行的程序进行比较，结果如下
+```shell
+======== Job starts at 2022-03-26 11:04:58 on c07 ======== 
+Nested-BBH 串行检测
+203.983876 seconds (419.58 M allocations: 107.249 GiB, 2.55% gc time, 0.09% compilation time)
+======== Job ends   at 2022-03-26 11:08:28 on c07 ======== 
+
+
+
+
+======== Job starts at 2022-03-26 11:05:39 on c05 ======== 
+Nested-BBH 并行检测
+ 23.892738 seconds (1.88 M allocations: 104.246 MiB, 0.20% gc time, 3.89% compilation time)
+======== Job ends   at 2022-03-26 11:06:35 on c05 ======== 
+```
 
 # 参考
 - 1.[Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators
