@@ -347,6 +347,74 @@ Nested-BBH 并行检测
  23.892738 seconds (1.88 M allocations: 104.246 MiB, 0.20% gc time, 3.89% compilation time)
 ======== Job ends   at 2022-03-26 11:06:35 on c05 ======== 
 ```
+# 绘图程序
+因为`julia`绘图不是很好看，所以这里就用`python`画图了，给一个绘图脚本
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+import os
+config = {
+"font.size": 30,
+"mathtext.fontset":'stix',
+"font.serif": ['SimSun'],
+}
+rcParams.update(config) # Latex 字体设置
+#---------------------------------------------------------
+def scatterplot1(cont):
+    da1 = "Nested-kx-" + str(cont) + ".dat"
+    da2 = "Nested-ky-" + str(cont) + ".dat"
+    picname = "Nested-" + str(cont) + ".png"
+    os.chdir(os.getcwd())# 确定用户执行路径
+    x0 = []
+    y0 = []
+    with open(da1) as file:
+        da = file.readlines()
+        for f1 in da:
+            if len(f1) > 3:
+                ldos = [float(x) for x in f1.strip().split()]
+                x0.append(ldos[0])
+                y0.append(ldos[1])
+    y0 = np.array(y0)
+    plt.scatter(x0, y0, s = 20, color = 'lightskyblue', label = "$p_y^{v_x^\pm}(k_x)$")
+    x1 = []
+    y1 = []
+    with open(da2) as file:
+        da = file.readlines()
+        for f1 in da:
+            if len(f1) > 3:
+                ldos = [float(x) for x in f1.strip().split()]
+                x1.append(ldos[0])
+                y1.append(ldos[1])
+    y1 = np.array(y1)
+    # print(y0)
+    # sc = plt.scatter(x0, y0, c = z1, s = 2,vmin = 0, vmax = 1, cmap="magma")
+    plt.scatter(x1, y1, s = 20, color = 'deeppink', label = "$p_x^{v_y^\pm}(k_y)$")
+    font2 = {'family': 'Times New Roman',
+             'weight': 'normal',
+             'size': 25,
+             }
+    plt.xlim(0,1)
+    plt.ylim(-1,1)
+    plt.xlabel("$k_x(k_y)/\pi$",font2)
+    # plt.ylabel("",font2)
+    plt.yticks([-1,-0.5,0.,0.5,1],fontproperties='Times New Roman', size = 25)
+    plt.xticks([-1,0,1],fontproperties='Times New Roman', size = 25)
+    plt.legend(loc = 'upper left', bbox_to_anchor=(0.5,0.5), shadow = True, prop = font2, markerscale = 4)
+    # plt.text(x = 0.6,y = 0.7,s = 'MCM', fontdict=dict(fontsize=20, color='black',family='Times New Roman'))
+    # plt.text(x = 0.1,y = 0.7,s = 'NSC', fontdict=dict(fontsize=20, color='black',family='Times New Roman'))
+    # plt.vlines(x = 0.4, ymin = -1, ymax = 1,lw = 3.0, colors = 'black', linestyles = '--')
+    plt.savefig(picname, dpi = 600, bbox_inches = 'tight')
+#---------------------------------------------------------
+def main():
+    for i0 in range(1,2):
+        scatterplot1(i0) 
+#---------------------------------------------------------
+if __name__=="__main__":
+    main()
+```
+
+![png](/assets/images/python/Nested-1.png)
 
 # 参考
 - 1.[Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators
