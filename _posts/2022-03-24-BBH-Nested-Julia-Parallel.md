@@ -176,13 +176,14 @@ end
              F0 = wmu[:, iy]' * wmu[:, iy + 1] # 在新的Wannier basis下面构建Wilson loop，也就是计算Nested Wilson loop
              wan = F0 * wan
         end
-        pmu = log(wan)/(2 * im * pi)
-        if real(pmu) < 0
+        #pmu = log(wan)/(2 * im * pi)
+        pmu = map(angle,wan)/(2*pi)
+        if pmu < 0
             pmu += 1
         end
         pmulist[ix] = pmu
     end
-    return kxlist,pmulist
+    return kylist,pmulist
 end
 #-----------------------------------------------------------------------
 @everywhere function Nseted_Wilson_loop_ky(nkx::Int64)
@@ -216,8 +217,9 @@ end
              F0 = wmu[:,ix]' * wmu[:,ix + 1] # 在新的Wannier basis下面构建Wilson loop，也就是计算Nested Wilson loop
              wan = F0 * wan
         end
-        pmu = log(wan)/(2*im*pi)
-        if real(pmu) < 0
+        #pmu = log(wan)/(2*im*pi)
+        pmu = map(angle,wan)/(2*pi)
+        if pmu < 0
             pmu += 1
         end
         pmulist[iy] = pmu
@@ -226,7 +228,7 @@ end
 end
 #----------------------------------------------------------------------------------------------
 function  Nested(num)
-    nkx = 10
+    nkx = 100
     x1,x2 = Nseted_Wilson_loop_ky(nkx)
     fx1 = "Nested-ky-" * string(num) * ".dat"
     f1 = open(fx1,"w")
@@ -243,7 +245,6 @@ end
 # @time test()
 @time Nested(1)
 ```
-
 # Julia并行
 其实对于`julia`来说，并行还是还是非常方便的，首先加入几个函数库
 ```julia
