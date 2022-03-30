@@ -416,6 +416,264 @@ if __name__=="__main__":
 
 ![png](/assets/images/python/Nested-1.png)
 
+# 通用版
+上面写的程序其实只能用于`BBH`这一个模型，有点局限。因为要计算**Nested Wilson loop**其实最终是要对`Wannier sector`中的每一个Wannier 
+能带都要计算的，而对于BBH模型来说正好`Wannier sector`中只有一个能带，所以在构建新的Wannier basis的时候它其实也是一个数，如果一个
+`Wannier sector`中有多条Wannier 能带，那么此时就会有多个Wannier basis，在利用新的Wannier basis构建Wilson loop的时候其实就会是一个矩阵，这里就
+general的考虑这种情况。
+```julia
+using DelimitedFiles
+using ProgressMeter
+@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles
+#----------------------------------------------------------------------------------------
+@everywhere function hamset(kx::Float64,ky::Float64,m0::Float64,matnum::Int64)::Matrix{ComplexF64}
+    hn::Int64 = 4
+    gamx::Float64 = 0.5  
+    lamx::Float64 = 1.0  
+    gamy::Float64 = gamx
+    lamy::Float64 = lamx
+    xsyb1::Float64 = 0.000000000000    
+    xsyb2::Float64 = 1.1
+    ysyb1::Float64 = 0.000000000000    
+    ysyb2::Float64 = 1.0
+    ham = zeros(ComplexF64, hn, hn)
+    ham[1, 1] = xsyb1
+    ham[2, 2] = ysyb1
+    ham[3, 3] = ysyb1
+    ham[4, 4] = xsyb1
+    ham[1, 3] = (gamx + lamx * exp(im * kx)) * ysyb2
+    ham[2, 4] = gamx + lamx * exp(-im * kx)
+    ham[1, 4] = gamy + lamy * exp(im * ky)
+    ham[2, 3] = (-gamy - lamy * exp(-im * ky)) * xsyb2
+    ham[3, 1] = conj(ham[1, 3])
+    ham[4, 2] = conj(ham[2, 4])
+    ham[4, 1] = conj(ham[1, 4])
+    ham[3, 2] = conj(ham[2, 3])
+    return ham
+end
+#--------------------------------------------------------------------------------------
+@everywhere function Wilson_kx(kx::Float64,m0::Float64,nk::Int64,matnum::Int64)
+    # nk::Int64 = 100
+    hn::Int64 = size(hamset(0.0,0.0,m0,matnum))[1] # 获取哈密顿量矩阵的维度
+    Nocc::Int64 = Int(hn/2) # 确定占据态的数量
+    wave = zeros(ComplexF64,hn,hn,nk) # 存储哈密顿量对应的波函数
+    wan = zeros(ComplexF64,Nocc,Nocc) # 存储哈密顿量波函数的交叠积分
+    F = zeros(ComplexF64,Nocc,Nocc) # 计算Wilson loop中的交叠矩阵
+    vec2 = zeros(ComplexF64,Nocc,Nocc)  # 重新排列顺序后Wannier Hamiltonian的本征矢量
+    klist = range(0, 2 * pi, length = nk)
+    for iy in 1:nk # 固定kx，沿着ky方向计算Wilson loop
+        ky = klist[iy]
+        val,vec = eigen(hamset(kx,ky,m0,matnum))
+        wave[:,:,iy] = vec[:,:] # 存储波函数
+    end
+    wave[:,:,nk] = wave[:,:,1] # 在边界上波函数首尾相接
+    for i1 in 1:Nocc
+        F[i1,i1] = 1 # 构建单位矩阵
+    end
+    for i1 in 1:nk - 1 # index ki lattice
+        for i2 in 1:Nocc
+            for i3 in 1:Nocc
+                wan[i2,i3] = wave[:,i2,i1]' * wave[:,i3,i1 + 1]   # 计算Berry联络
+            end
+        end
+        # sv1 = svd(wan)
+        # wan = sv1.U * sv1.Vt #奇异值分解计算交叠矩阵积分
+        F = wan * F # 沿着ky方向构造Wannier哈密顿量
+    end
+    val,vec = eigen(F) # 对求解得到的本征矢量按照本征值大小排列
+    for i0 in 1:Nocc
+        vec2[:,i0] = vec[:,sortperm(map(angle,val))[i0]] # 按照顺序对本征态进行排列
+    end
+    return vec2 # 给出所有Wannier 本征值对应的本征态(排序后的结果)
+    # return vec # 给出所有Wannier 本征值对应的本征态
+end
+#-------------------------------------------------------------------------------------
+@everywhere function Wilson_ky(ky::Float64,m0::Float64,nk::Int64,matnum::Int64)
+    # nk::Int64 = 100
+    hn::Int64 = size(hamset(0.0,0.0,m0,matnum))[1]
+    Nocc::Int64 = Int(hn/2)
+    wave = zeros(ComplexF64,hn,hn,nk)
+    wan = zeros(ComplexF64,Nocc,Nocc)
+    F = zeros(ComplexF64,Nocc,Nocc)
+    vec2 = zeros(ComplexF64,Nocc,Nocc)  # 重新排列顺序后Wannier Hamiltonian的本征矢量
+    klist = range(0, 2*pi, length = nk)
+    for ix in 1:nk # 固定ky，沿着kx方向计算Wilson loop
+        kx = klist[ix]
+        val,vec = eigen(hamset(kx,ky,m0,matnum))
+        wave[:,:,ix] = vec[:,:]
+    end
+    wave[:,:,nk] = wave[:,:,1] # 波函数首尾相接
+    for i1 in 1:Nocc
+        F[i1,i1] = 1
+    end
+    for i1 in 1:nk - 1
+        for i2 in 1:Nocc
+            for i3 in 1:Nocc
+                wan[i2,i3] = wave[:,i2,i1]' * wave[:,i3,i1 + 1]   # 计算Berry联络
+            end
+        end
+        # sv1 = svd(wan)
+        # wan = sv1.U * sv1.Vt
+        F = wan * F # 构造Wannier 哈密顿量
+    end
+    val,vec = eigen(F) # 对求解得到的本征矢量按照本征值大小排列
+    for i0 in 1:Nocc
+        vec2[:,i0] = vec[:,sortperm(map(angle,val))[i0]] # 按照顺序对本征态进行排列
+    end
+    return vec2  # 给出所有Wannier 本征值对应的本征态
+end
+#------------------------------------------------------------------------------------
+@everywhere function Nseted_Wilson_loop_kx(m0::Float64,nk::Int64,matnum::Int64)
+    # nk::Int64 = 100
+    nk::Int64 = nk
+    hn::Int64 = size(hamset(0.0,0.0,m0,matnum))[1] # 直接通过哈密顿量来获取其维度，程序具有通用性
+    Nocc::Int64 = Int(hn/2) # 获取占据态的数量
+    klist = range(-pi, pi, length = nk)
+    wave = zeros(ComplexF64,hn,hn,nk)
+    pmulist = SharedArray(zeros(Float64,nk,Int(Nocc/2)))
+    @sync @distributed for ix in 1:nk # 计算沿着kx方向的Wilson loop
+        kx = klist[ix]
+        for iy in 1:nk   # 首先在固定kx时，沿着ky方向计算哈密顿量的本征波函数
+            ky = klist[iy]
+            val,vec = eigen(hamset(kx,ky,m0,matnum)) # 计算哈密顿量对应的本征矢量
+            wave[:,:,iy] = vec[:,:]
+        end
+        wave[:,:,nk] = wave[:,:,1] # 波函数首尾相接
+
+        wmu = zeros(ComplexF64,Int(Nocc/2),hn,nk)  # 用来构建新的Wannier basis
+        for i3 in 1:Int(Nocc/2) # 遍历Wannier sector中的每一个Wannier 能带
+            for iy in 1:nk # 遍历k点
+                ky = klist[iy]
+                wann_vec = Wilson_ky(ky,m0,nk,matnum) # 在固定ky的情况下，计算沿着kx方向的Wilson loop并得到对应的本征矢量
+                for i4 in 1:Nocc
+                    wmu[i3,:,iy] += wave[:,i4,iy]*wann_vec[i4,i3]
+                    # wmu[i3,:,iy] = wave[:,1,iy] * wann_vec[1,i3] + wave[:,2,iy] * wann_vec[2,i3] + wave[:,3,iy] * wann_vec[3,i3] + wave[:,4,iy] * wann_vec[4,i3] # 构建新的Wannier basis
+                end
+            end
+            wmu[i3,:,nk] = wmu[i3,:,1] # 首尾相接
+        end
+        # 在新的形式下构建Wilson loop
+        wan = zeros(ComplexF64,Int(Nocc/2),Int(Nocc/2))  # 对确定的Wannier sector中的每一个Wannier 能带计算Wilson loop
+        F0 = zeros(ComplexF64,Int(Nocc/2),Int(Nocc/2))
+        for i4 in 1:Int(Nocc/2)
+            wan[i4,i4] = 1
+        end
+        for iy in 1:nk - 1
+            for i3 in 1:Int(Nocc/2)
+                for i2 in 1:Int(Nocc/2)
+                    F0[i3,i2] = wmu[i3,:,iy]' * wmu[i2,:,iy + 1] # 在新的Wannier basis下面构建Wilson loop，也就是计算Nested Wilson loop
+                end
+            end
+            # sv1 = svd(F0)
+            # F0 = sv1.U * sv1.Vt
+            wan = F0 * wan
+        end
+        val,vec = eigen(wan)   # 利用新基矢构建出来的Wilson loop
+        pmu = map(angle,val)/(2 * pi)
+        for i0 in 1:length(pmu)
+            if pmu[i0] < 0
+                pmu[i0] += 1
+            end
+        end
+        pmulist[ix,:] = pmu
+    end
+    return klist,pmulist
+end
+#-----------------------------------------------------------------------
+@everywhere function Nseted_Wilson_loop_ky(m0::Float64,nk::Int64,matnum::Int64)
+    # nk = 100
+    hn::Int64 = size(hamset(0.0,0.0,m0,matnum))[1]
+    Nocc::Int64 = Int(hn/2)
+    klist = range(-pi,pi,length = nk)
+    wave = zeros(ComplexF64,hn,hn,nk) # 哈密顿量波函数
+    pmulist = SharedArray(zeros(Float64,nk,Int(Nocc/2)))
+    @sync @distributed for iy in 1:nk
+        ky = klist[iy]
+        for ix in 1:nk
+            kx = klist[ix]
+            val,vec = eigen(hamset(kx,ky,m0,matnum)) # 计算哈密顿量对应的本征矢量
+            wave[:,:,ix] = vec[:,:]
+        end
+        wave[:,:,nk] = wave[:,:,1]
+
+        wmu = zeros(ComplexF64,Int(Nocc/2),hn,nk)  # 用来构建新的Wannier basis
+        for i3 in 1:Int(Nocc/2) # 遍历Wannier sector中的每一个Wannier 能带
+            for ix in 1:nk   # 遍历k点
+                kx = klist[ix]
+                wann_vec = Wilson_kx(kx,m0,nk,matnum) # 在固定ky的情况下，计算沿着kx方向的Wilson loop并得到对应的本征矢量
+                for i4 in 1:Nocc
+                    wmu[i3,:,ix] += wave[:,i4,ix]*wann_vec[i4,i3]
+                end
+            end
+            wmu[i3,:,nk] = wmu[i3,:,1] # 首尾相接
+        end
+        # 在新的形式下构建Wilson loop
+        wan = zeros(ComplexF64,Int(Nocc/2),Int(Nocc/2))  # 对确定的Wannier sector中的每一个Wannier 能带计算Wilson loop
+        F0 = zeros(ComplexF64,Int(Nocc/2),Int(Nocc/2))
+        for i4 in 1:Int(Nocc/2)
+            wan[i4,i4] = 1
+        end
+        for ix in 1:nk - 1
+            for i3 in 1:Int(Nocc/2)
+                for i2 in 1:Int(Nocc/2)
+                    F0[i3,i2] = wmu[i3,:,ix]' * wmu[i2,:,ix + 1] # 在新的Wannier basis下面构建Wilson loop，也就是计算Nested Wilson loop
+                end
+            end
+            # sv1 = svd(F0)
+            # F0 = sv1.U * sv1.Vt
+            wan = F0 * wan
+        end
+        val,vec = eigen(wan)
+        pmu = map(angle,val)/(2 * pi)
+        for i0 in 1:length(pmu)
+            if pmu[i0] < 0
+                pmu[i0] += 1
+            end
+        end
+        pmulist[iy,:] = pmu
+    end
+    return klist,pmulist
+end
+#----------------------------------------------------------------------------------------------
+@everywhere function Nested(m0::Float64,nk::Int64,matnum::Int64)
+    x1,x2 = Nseted_Wilson_loop_ky(m0,nk,matnum)
+    x3,x4 = Nseted_Wilson_loop_kx(m0,nk,matnum)
+    re1 = 0
+    re2 = 0
+    for i0 in 1:length(x1)
+        re1 += mod(sum(x2[i0,:]),1)# 对同一个Wannier sector中的两个Wannier band求和 
+        re2 += mod(sum(x4[i0,:]),1)# 对同一个Wannier sector中的两个Wannier band求和 
+    end
+
+    re1 = re1/length(x1)
+    re2 = re2/length(x1)
+
+    return re1,re2,2*re1*re2
+end
+#---------------------------------------------------------------------
+function main()
+    # 测试增加k点结果是否收敛(主要是以BBH模型为测试基准)
+    i0::Int64 = 1
+    nklist = 20:10:100
+    relist = zeros(Float64,length(nklist),3)
+    m0::Float64 = 1.0
+    matnum::Int64 = 1
+    for nk in nklist
+        re1,re2,re3 = Nested(m0,nk,matnum)
+        relist[i0,:] = [re1 re2 re3]
+        i0 += 1
+    end
+    # fx1 = "-polar-" * string(num) * ".dat"
+    fx1 ="polar-all.dat"
+    f1 = open(fx1,"w")
+    writedlm(f1,[nklist relist],"\t")
+    close(f1)
+end
+#--------------------------------------------------------------------------
+@time main()
+```
+这里是执行了一个收敛性测试，看看随着$k$点数目的增加，结果是否是稳定不变的。
+
 # 参考
 - 1.[Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators
 ](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115)
