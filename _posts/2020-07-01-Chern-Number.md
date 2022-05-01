@@ -306,6 +306,93 @@ function main()
 end
 @time main()
 ```
+
+# Julia 并行版
+```julia
+using DelimitedFiles
+using ProgressMeter
+@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles
+# -----------------------------------------------------------------------
+@everywhere function matSet(kx::Float64,ky::Float64,m0::Float64)::Matrix{ComplexF64}
+    #m0::Float64 = 0.5
+    tx::Float64 = 1.0
+    ty::Float64 = 1.0
+    lamx::Float64 = 1.0
+    lamy::Float64 = 1.0
+    ham = zeros(ComplexF64,2,2)
+    ham[1,1] = (m0 - tx*cos(kx) - ty*cos(ky))
+    ham[2,2] = -ham[1,1]
+    ham[1,2] = lamx*sin(kx) - im*lamy*sin(ky)
+    ham[2,1] = conj(ham[1,2])
+    return ham
+end
+#--------------------------------------------------------------------------
+@everywhere function ux(kx::Float64,ky::Float64,ne::Int64,m0::Float64)::ComplexF64
+    del::Float64 = pi/ne
+    #----
+    w0 = eigvecs(matSet(kx,ky,m0))[:,1]
+    #-----
+    wx = eigvecs(matSet(kx + del,ky,m0))[:,1]
+    #------
+    return  w0'*wx/abs(w0'*wx)
+end
+#---------------------------------------------------------------------------
+@everywhere function uy(kx::Float64,ky::Float64,ne::Int64,m0::Float64)::ComplexF64
+    del::Float64 = pi/ne
+    #----
+    w0 = eigvecs(matSet(kx,ky,m0))[:,1]
+    #-----
+    wy = eigvecs(matSet(kx,ky + del,m0))[:,1]
+    #------
+    return  w0'*wy/abs(w0'*wy)
+end
+#----------------------------------------------------------------------------
+@everywhere function ChernNumber(m0::Float64)
+    ne::Int64 = 200
+    del::Float64 = pi/ne
+    kx::Float64 = 0.0
+    ky::Float64 = 0.0
+    flux::ComplexF64 = 0.0 + 0.0im
+    chern_num::ComplexF64 = 0.0 + 0.0im
+    kxlist = Float64[]
+    kylist = Float64[]
+    flist = ComplexF64[]
+    for m1 = 0:2*ne
+        kx = m1*pi/ne
+        for m2 = 0:2*ne
+            append!(kxlist,kx)
+            ky = m2*pi/ne
+            append!(kylist,ky)
+            flux = log((ux(kx,ky,ne,m0)*uy(kx + del,ky,ne,m0))/(ux(kx,ky + del,ne,m0)*uy(kx,ky,ne,m0)))
+            append!(flist,flux)
+            chern_num = chern_num + flux
+        end
+    end
+    return -round(real(chern_num/(2.0*pi*1im)))
+end
+#--------------------------------------------
+@everywhere function main1()
+    ch::Float64 = 0.0
+    m0len = 200
+    m0list = range(-4,4,length = m0len)
+    relist = SharedArray(zeros(Float64,m0len,2))
+    @sync @distributed for i0 in 1:m0len
+        m0 = m0list[i0]
+        ch = ChernNumber(m0)
+        relist[i0,1] = m0
+        relist[i0,2] = ch
+        i0 += 1
+    end
+    f1 = open("chern-3.dat","w")
+    writedlm(f1,relist)
+    close(f1)
+end
+# =================================================
+@time main1()
+
+```
+
+
 # 参考文献
 - [Chern Numbers in Discretized Brillouin Zone](https://journals.jps.jp/doi/abs/10.1143/JPSJ.74.1674)
 - [Numerical determination of Chern numbers and critical exponents for Anderson localization in tight-binding and related models](https://www.semanticscholar.org/paper/%E2%80%9CNumerical-determination-of-Chern-numbers-and-for-Talkington/77f87a883c13e6047559f9a1132ff7f3dcfab84b)
