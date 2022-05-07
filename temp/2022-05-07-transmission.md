@@ -174,7 +174,7 @@ function conGF()
     trans = []
     eye = Diagonal(repeat([1],outer  = hn)) # 构造单位矩阵
     for i0 in 1:num
-        eng = englist[i0] + 0.01*1im
+        eng = englist[i0] + 0.00001*1im
         selfR = self(H00,H01,eng) #左端自能
         selfL = self(H00,H10,eng) #右端自能
         #--------------------------------------
