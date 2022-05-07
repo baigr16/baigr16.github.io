@@ -1,10 +1,10 @@
 ---
-title: 的带方法自能计算
+title: 迭代方法自能计算
 tags: Julia transport 
 layout: article
 license: true
 toc: true
-key: a20220505
+key: a20220507a
 pageview: true
 # cover: /assets/images/GroupTheory/cube_symmetry.jpg
 header:
@@ -57,6 +57,7 @@ end
 function SurfGF()
     err::Float64 = 1.0 # 控制误差
     ha,a0 = matset()
+    H00,H01 = ha,a0
     hb,b0 = ha,a0
     hn = size(ha)[1] # 获取矩阵维度
     eye = zeros(ComplexF64,hn,hn)
@@ -79,7 +80,7 @@ function SurfGF()
         err = abs(sum(g0 - h0))
     end
     g1 = inv(eng * eye - ha) #计算得到的就是表面格林函数
-    g2 = a0 * g1 * b0 # 自能
+    g2 = H01 * g1 * H01' # 自能
     g3 = im * (g2 - conj(g2)) # 展宽函数
     println(g2)
     return g1,g2,g3
@@ -87,6 +88,5 @@ end
 #-------------------------------------------------
 @time g1,g2,g3 = SurfGF()
 ```
-
 # 参考
 - 1.[输运问题总结与练习(一):二端体系](https://zhuanlan.zhihu.com/p/269595149)
