@@ -79,10 +79,10 @@ end
 ```julia
 using LinearAlgebra,PyPlot
 #-------------------------------------------
-function matset()
+function matset1()
     hn::Int64 = 10 # 格点数目
     w::Float64 = 1.0
-    v::Float64 = 4.0
+    v::Float64 = 1.0
     hnn::Int64 = 4 #晶格内部自由度
     eye = Diagonal(repeat([1],outer  = hn)) # 构造单位矩阵
     d1 = Bidiagonal(repeat([0],outer  = hn),repeat([1],outer  = hn - 1),:U) # 负对角线
@@ -93,8 +93,8 @@ function matset()
     #------------------------------
     h00[1,2] = w
     h00[1,3] = w
-    h00[2,4] = w
     h00[2,1] = w
+    h00[2,4] = w
     h00[3,1] = w
     h00[3,4] = w
     h00[4,2] = w
@@ -104,6 +104,35 @@ function matset()
     tx[2,4] = v
     ty[1,2] = v
     ty[3,4] = v
+    #--------------------
+    H00 = kron(eye,h00) + kron(d1,tx) + kron(d2,tx')
+    H01 = kron(eye,ty)
+    return H00,H01
+end
+#-------------------------------------------
+function matset()
+    hn::Int64 = 10 # 格点数目
+    u::Float64 = -1.5
+    hnn::Int64 = 2 #晶格内部自由度
+    eye = Diagonal(repeat([1],outer  = hn)) # 构造单位矩阵
+    d1 = Bidiagonal(repeat([0],outer  = hn),repeat([1],outer  = hn - 1),:U) # 负对角线
+    d2 = Bidiagonal(repeat([0],outer  = hn),repeat([1],outer  = hn - 1),:L) # 负对角线
+    h00 = zeros(ComplexF64,hnn,hnn)
+    tx = zeros(ComplexF64,hnn,hnn)
+    ty = zeros(ComplexF64,hnn,hnn)
+    #------------------------------
+    h00[1,1] = u
+    h00[2,2] = -u
+    #--------------------
+    tx[1,1] = 1/2
+    tx[2,2] = -1/2
+    tx[1,2] = 1im/2
+    tx[2,1] = 1im/2
+
+    ty[1,1] = 1/2
+    ty[2,2] = -1/2
+    ty[1,2] = 1/2
+    ty[2,1] = -1/2
     #--------------------
     H00 = kron(eye,h00) + kron(d1,tx) + kron(d2,tx')
     H01 = kron(eye,ty)
@@ -119,7 +148,7 @@ function self(H00,H01,ef)
     ha,a0 = H00,H01 # 得到hopping矩阵
     hb,b0 = ha,a0'
     cont = 1
-    while err > 10^(-9)
+    while err > 10^(-6)
     # while cont < 20
         h0 = g0
         g0 = inv(ef * eye - hb)
@@ -132,7 +161,7 @@ function self(H00,H01,ef)
     end
     g1 = inv(ef * eye - ha) #计算得到的就是表面格林函数
     g2 = H01 * g1 * H01' # 自能
-    return g2
+    return g2  # 最后返回的就是自能函数
 end
 #-------------------------------------------------------------------
 function conGF()
@@ -140,12 +169,12 @@ function conGF()
     H00,H01 = matset()
     H10 = H01'
     hn::Int64 = size(H00)[1] #矩阵维度
-    num = hn
-    englist = range(-10,10,length = num)
+    num = 100
+    englist = range(-2,2,length = num)
     trans = []
     eye = Diagonal(repeat([1],outer  = hn)) # 构造单位矩阵
     for i0 in 1:num
-        eng = englist[i0] + 10^(-6)*1im
+        eng = englist[i0] + 0.01*1im
         selfR = self(H00,H01,eng) #左端自能
         selfL = self(H00,H10,eng) #右端自能
         #--------------------------------------
@@ -173,7 +202,6 @@ end
 #-------------------------------------------------------------------
 function main()
     a1,a2 = conGF()
-    println(a1)
 end
 #--------------------------------------------------------------------
 @time main()
