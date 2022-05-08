@@ -77,8 +77,8 @@ function main()
     nx::Int64 = 100
     ny::Int64 = 800
     Noccu::Int64 = 2  # 占据态数目
-    Kx = range(0,2,length = nx)
-    Ky = range(-1,0.9999,length = ny)
+    Kx = range(0.0,2,length = nx)
+    Ky = range(0.01,2,length = ny)
     klist = []
     Wave = zeros(ComplexF64,4,4,nx)
     Wan = zeros(ComplexF64,Noccu,Noccu)
@@ -107,12 +107,12 @@ function main()
         ang[iy,:] = map(angle,val)/(2*pi)
         writedlm(f1,[ky/pi ang[iy,1] ang[iy,2]])
     end
+    plot(klist,ang)
     close(f1)
+    savefig("a.png",bbox_inches="tight",dpi=300)  # 保存作图文件
     return klist,ang
 end
 # =================================================================
-# k,ang = main()
-# plot(k,ang)
 @time main()
 ```
 - 计算结束后,利用`fortran``来将数据进行格式化
