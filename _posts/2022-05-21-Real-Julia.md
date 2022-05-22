@@ -30,7 +30,7 @@ show_author_profile: true
 ```julia
 using DelimitedFiles
 using ProgressMeter
-@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles
+@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles,Printf
 # --------------------------------------
 @everywhere function boundary(xn::Int64,yn::Int64)
     len2::Int64 = xn*yn
@@ -169,7 +169,10 @@ end
     end
     fx1 = "juliaval-" * string(h0) * ".dat"
     f1 = open(fx1,"w")
-    writedlm(f1,map(real,val),"\t")
+    # writedlm(f1,map(real,val),"\t")
+    ind = (a->(@sprintf "%15.8f" a)).(range(1,length(val),length = length(val))) # 本征值格式化输出
+    val2 = (a->(@sprintf "%15.8f" a)).(map(real,val))
+    writedlm(f1,[ind val2],"\t")
     close(f1)
     return map(real,val),vec
 end
@@ -203,7 +206,8 @@ end
                     re2 += abs(vec[i0 + len2*i1,ie])^2
                 end
             end
-            writedlm(f1,[ix iy re1 re2],"\t")
+            @printf(f1,"%15.8f\t%15.8f\t%15.8f\t%15.8f\n",ix,iy,re1,re2)
+            # writedlm(f1,[ix iy re1 re2],"\t")
         end
     end
     close(f1)
@@ -233,7 +237,8 @@ end
                     re2 += abs(vec[i0 + len2*i1,ie])^2
                 end
             end
-            writedlm(f1,[ix iy re1 re2],"\t")
+            @printf(f1,"%15.8f\t%15.8f\t%15.8f\t%15.8f\n",ix,iy,re1,re2)
+            # writedlm(f1,[ix iy re1 re2],"\t")
         end
     end
     close(f1)
@@ -258,7 +263,7 @@ end
 ```julia
 using DelimitedFiles
 using ProgressMeter
-@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles
+@everywhere using SharedArrays, LinearAlgebra,Distributed,DelimitedFiles,Printf
 # --------------------------------------
 @everywhere function boundary(xn::Int64,yn::Int64)
     len2::Int64 = xn*yn
@@ -432,7 +437,8 @@ end
                     re2 += abs(vec[i0 + len2*i1,ie])^2
                 end
             end
-            writedlm(f1,[ix iy re1 re2],"\t")
+            @printf(f1,"%15.8f\t%15.8f\t%15.8f\t%15.8f\n",ix,iy,re1,re2)
+            # writedlm(f1,[ix iy re1 re2],"\t")
         end
     end
     close(f1)
@@ -462,7 +468,8 @@ end
                     re2 += abs(vec[i0 + len2*i1,ie])^2
                 end
             end
-            writedlm(f1,[ix iy re1 re2],"\t")
+            @printf(f1,"%15.8f\t%15.8f\t%15.8f\t%15.8f\n",ix,iy,re1,re2)
+            # writedlm(f1,[ix iy re1 re2],"\t")
         end
     end
     close(f1)
