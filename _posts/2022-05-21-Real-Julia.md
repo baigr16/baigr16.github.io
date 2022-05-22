@@ -1,6 +1,6 @@
 ---
 title: 整理个自用的代码
-tags: Julia 
+tags: Julia Fortran
 layout: article
 license: true
 toc: true
@@ -1039,3 +1039,280 @@ function test3()
 end
 ```
 这样即可以实现文件的格式化输出的，自己暂时也算是解决的在`julia`环境下数据的格式化操作。
+
+# Fortran 版本
+在有些计算上还是`Fortran`更快一些，所以这里也把这个方法用`Fotran`重写了一下，因为自己之前的好多计算也都是用`Fortran`写的
+```fortran
+    ! Author:YuXuanLi
+    ! E-Mail:yxli406@gmail.com
+    ! 随空间位置变化的微分电导谱
+    module pub
+    implicit none
+    integer xn,yn,N,len2,hn,omgN!(计算ldos时撒点数量)
+    parameter(xn = 30,yn = xn,hn = 8,N = xn*yn*hn,len2 = xn*yn, omgN = 100)
+    complex,parameter::im = (0.0,1.0) 
+    real,parameter::pi = 3.14159265359
+    complex Ham(N,N) 
+    integer bry(8,len2)
+    real m0,omega,mu
+    real tx,ty,del 
+    real d0,dx,dy,dp  
+    real ax,ay,h0
+    complex g1(hn,hn),g2(hn,hn),g3(hn,hn),g4(hn,hn)
+    complex g5(hn,hn),g6(hn,hn),g7(hn,hn),g8(hn,hn)
+    !-------------------lapack parameter----------------------------------------
+    integer::lda = N
+    integer,parameter::lwmax=2*N+N**2
+    real,allocatable::w(:)
+    complex*8,allocatable::work(:)
+    real,allocatable::rwork(:)
+    integer,allocatable::iwork(:)
+    integer lwork   
+    integer lrwork    
+    integer liwork   
+    integer info
+    end module pub
+!========== PROGRAM START ==========================
+    program sol
+    use pub
+    allocate(w(N))
+    allocate(work(lwmax))
+    allocate(rwork(1 + 5*N + 2*N**2))
+    allocate(iwork(3 + 5*N))
+    !-------------------
+    m0 = 1.
+    tx = 2.0   
+    ty = 2.0  
+    ! mu = -0.3 
+    ax = 2.0
+    ay = 2.0 
+    d0 = 0.0
+    dx = 0.5
+    dy = -dx
+    mu = 0.
+    h0 = 1.0 ! 这个参数下面有corner态
+    dp = 0.3
+    call matset(1)
+    call ldos(1)
+    stop
+    end program sol
+!===========================Local Density of State=============================
+    subroutine ldos(m2)
+    ! 计算确定能量omg下面所有位置的ldos
+    use pub
+    integer m,l1,k,l2,m2
+    real omg,re1,re2,re3
+    character*20::str1,str2,str3,str4
+    real,external::delta
+    omg = 0.0
+    str1 = "ldos-"
+    write(str2,"(I4.4)")m2
+    str3 = ".dat"
+    str4 = trim(str1)//trim(str2)//trim(str3)
+    open(12,file=str4) 
+    do l1 = 1,yn
+        do l2 = 1,xn
+            k = l2 + (l1-1)*xn
+            re1 = 0
+            do m=1,N
+                do i1 = 0,hn - 1
+                   re1 = re1 + delta(w(m) - omg)*abs(Ham(k + len2 * i1, m))**2 ! ldos
+                end do
+            end do
+            re2 = 0
+            do m = N/2 - 2,N/2 + 1
+                do i1 = 0,hn - 1
+                    re2 = re2 + abs(Ham(k + len2 * i1, m))**2 ! 零能波函数分布
+                end do
+            end do
+            re3 = 0
+            do m = 1,N/2
+                do i1 = 0,hn - 1
+                    re3 = re3 + abs(Ham(k + len2 * i1, m))**2 ! 占据态求和
+                end do
+            end do
+            write(12,999)1.*l1,1.*l2,re1,re2,re3
+        end do
+    end do
+    close(12)
+    999 format(10f11.6)
+    return
+    end subroutine ldos
+!======================================================================
+    real function delta(x)
+    real x
+    real::gamma = 0.01
+    delta = 1.0/3.1415926535*gamma/(x*x + gamma*gamma)
+    end function delta
+!=======================================================
+    subroutine matset(input)
+    use pub
+    integer input
+    integer i1,i2,ix,iy,i0
+    call pauli()
+    call boundary()
+    do iy = 1,yn
+        do ix = 1,xn
+            i0 = (iy - 1)*xn + ix
+            do i1 = 0,hn -1 
+                do i2 = 0,hn - 1
+                    ham(i0 + len2 * i1,i0 + len2 * i2) = m0*g1(i1 + 1,i2 + 1) + d0*g4(i1 + 1,i2 + 1) - mu*g7(i1 + 1,i2 + 1) + h0*g5(i1 + 1,i2 + 1)
+                    if(ix.ne.xn)ham(i0 + len2 * i1,bry(1,i0) + len2 * i2) = -tx/2.0*g1(i1 + 1,i2 + 1) + ax/(2*im)*g2(i1 + 1,i2 + 1) + dx/2.0*g4(i1 + 1,i2 + 1)
+                    if(ix.ne.1)ham(i0 + len2 * i1,bry(2,i0) + len2 * i2) = -tx/2.0*g1(i1 + 1,i2 + 1) - ax/(2*im)*g2(i1 + 1,i2 + 1) + dx/2.0*g4(i1 + 1,i2 + 1)
+                    if(iy.ne.yn)ham(i0 + len2 * i1,bry(3,i0) + len2 * i2) = -ty/2.0*g1(i1 + 1,i2 + 1) + ay/(2*im)*g3(i1 + 1,i2 + 1) + dy/2.0*g4(i1 + 1,i2 + 1)
+                    if(iy.ne.1)ham(i0 + len2 * i1,bry(4,i0) + len2 * i2) = -ty/2.0*g1(i1 + 1,i2 + 1) - ay/(2*im)*g3(i1 + 1,i2 + 1) + dy/2.0*g4(i1 + 1,i2 + 1)
+                end do
+            end do
+        end do
+    end do
+    call isHermitian()
+    call eigsol(input)
+    return
+    end subroutine matset
+!==========================================================
+    subroutine pauli()
+    use pub
+    !---------Kinetic energy
+    g1(1,1) = 1
+    g1(2,2) = -1
+    g1(3,3) = 1
+    g1(4,4) = -1
+    g1(5,5) = -1
+    g1(6,6) = 1
+    g1(7,7) = -1
+    g1(8,8) = 1
+    !----------SOC-x
+    g2(1,2) = 1
+    g2(2,1) = 1
+    g2(3,4) = -1
+    g2(4,3) = -1
+    g2(5,6) = 1
+    g2(6,5) = 1
+    g2(7,8) = -1
+    g2(8,7) = -1
+    !---------SOC-y
+    g3(1,2) = -im
+    g3(2,1) = im
+    g3(3,4) = -im
+    g3(4,3) = im
+    g3(5,6) = im 
+    g3(6,5) = -im
+    g3(7,8) = im
+    g3(8,7) = -im
+    !------------------- dx^2-y^2
+    g4(1,7) = -1
+    g4(2,8) = -1
+    g4(3,5) = 1
+    g4(4,6) = 1
+    g4(7,1) = -1
+    g4(8,2) = -1
+    g4(5,3) = 1
+    g4(6,4) = 1
+    !-------------------- layer couple
+    g5(1,3) = 1
+    g5(2,4) = 1
+    g5(3,1) = 1
+    g5(4,2) = 1
+    g5(5,7) = -1
+    g5(6,8) = -1
+    g5(7,5) = -1
+    g5(8,6) = -1
+    !-------------------- dxy pairing
+    g6(1,7) = -im
+    g6(2,8) = -im
+    g6(3,5) = im
+    g6(4,6) = im
+    g6(5,3) = -im
+    g6(6,4) = -im
+    g6(7,1) = im
+    g6(8,2) = im
+    !-------------------- dxy pairing
+    g7(1,1) = 1
+    g7(2,2) = 1
+    g7(3,3) = 1
+    g7(4,4) = 1
+    g7(5,5) = -1
+    g7(6,6) = -1
+    g7(7,7) = -1
+    g7(8,8) = -1
+    return
+    end subroutine pauli
+!===========================================================
+    subroutine boundary()
+    use pub
+    integer i,ix,iy
+    bry = 0
+    do iy = 1,yn  
+        do ix = 1,xn 
+            i = (iy-1)*xn + ix
+            bry(1,i) = i + 1    
+            if(ix.eq.xn)bry(1,i) = bry(1,i) - xn    
+            bry(2,i) = i - 1    
+            if(ix.eq.1)bry(2,i) = bry(2,i) + xn     
+            bry(3,i) = i + xn   
+            if(iy.eq.yn)bry(3,i) = bry(3,i) - len2  
+            bry(4,i)= i - xn    
+            if(iy.eq.1)bry(4,i) = bry(4,i) + len2   
+            !--------NNN-----------------------------
+            bry(5,i) = bry(1,i) + xn    ! right-above
+            if(iy.eq.yn)bry(5,i) = bry(5,i) -len2
+            bry(6,i) = bry(2,i) + xn    ! left-above
+            if(iy.eq.yn)bry(6,i) = bry(6,i) -len2
+            bry(7,i) = bry(1,i) - xn    ! right-below
+            if(iy.eq.1)bry(7,i) = bry(7,i) + len2
+            bry(8,i) = bry(2,i) - xn    ! left-below
+            if(iy.eq.1)bry(8,i) = bry(8,i) + len2
+        enddo
+    enddo
+    return
+    end subroutine boundary
+!============================================================
+    subroutine isHermitian()
+    use pub
+    integer i,j
+    do i = 1,N
+        do j = 1,N
+            if (Ham(i,j) .ne. conjg(Ham(j,i)))then
+                open(16,file = 'hermitian.dat')
+                write(16,*)i,j
+                write(16,*)Ham(i,j)
+                write(16,*)Ham(j,i)
+                write(*,*)"Hamiltonian is not Hermitian"
+                stop
+            end if
+        end do
+    end do
+    close(16)
+    return
+    end subroutine isHermitian
+!================= Hermita= Matrices solve ==============
+    subroutine eigsol(input)
+    use pub
+    integer m,input
+    character*20::str1,str2,str3,str4
+    str1 = "eigval-"
+    str3 = ".dat"
+    write(str2,"(I4.4)")input
+    str4 = trim(str1)//trim(str2)//trim(str3)
+    lwork = -1
+    liwork = -1
+    lrwork = -1
+    call cheevd('V','U',N,Ham,lda,w,work,lwork,rwork,lrwork,iwork,liwork,info)
+    lwork = min(2*N+N**2, int( work( 1 ) ) )
+    lrwork = min(1+5*N+2*N**2, int( rwork( 1 ) ) )
+    liwork = min(3+5*N, iwork( 1 ) )
+    call cheevd('V','U',N,Ham,lda,w,work,lwork,rwork,lrwork,iwork,liwork,info)
+    if( info .GT. 0 ) then
+        open(110,file="mes.dat",status="unknown")
+        write(110,*)'The algorithm failed to compute eigenvalues.'
+        close(110)
+    end if
+    open(120,file = str4) 
+    do m = 1,N
+        write(120,998)1.0 * m,w(m)
+    end do
+    close(120)
+998 format(10f11.6)
+    return
+    end subroutine eigsol
+```
