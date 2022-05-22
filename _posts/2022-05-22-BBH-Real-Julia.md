@@ -343,6 +343,6 @@ if __name__=="__main__":
     main1()
 ```
 
-![eigval](/assets/images/Julia/bbh-1.png){:height="100px" width="100px"}
-![ldos](/assets/images/Julia/bbh-2.png){:height="100px" width="100px"}
-![charge](/assets/images/Julia/bbh-3.png){:height="100px" width="100px"}
+![eigval](/assets/images/Julia/bbh-1.png){:height="50%" width="50%"}
+![ldos](/assets/images/Julia/bbh-2.png){:height="50%" width="50%"}
+![charge](/assets/images/Julia/bbh-3.png){:height="50%" width="50%"}
