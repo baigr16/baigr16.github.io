@@ -1045,7 +1045,6 @@ end
 ```fortran
     ! Author:YuXuanLi
     ! E-Mail:yxli406@gmail.com
-    ! 随空间位置变化的微分电导谱
     module pub
     implicit none
     integer xn,yn,N,len2,hn,omgN!(计算ldos时撒点数量)
