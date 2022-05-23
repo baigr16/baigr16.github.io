@@ -27,9 +27,11 @@ show_author_profile: true
 <!--more-->
 # 模型
 还是用我最熟悉的模型`BHZ+Superconductor`
+
 $$
 H(\mathbf{k})=(m_0-t_x\cos k_x-t_y\cos k_y)\sigma_z\tau_+\lambda_x\sin k_x\sigma_xs_z+\lambda_y\sin k_y\sigma_y\tau_z+\Delta(\mathbf{k})s_y\tau_y
 $$
+
 具体怎么实现可以查阅我其他的博客，我这里直接就上代码了
 
 # 代码
@@ -272,6 +274,8 @@ def scatterplot1(cont):
     plt.ylim(-3,3)
     plt.xlabel(r'$k_y/\pi$',font2)
     plt.ylabel("E",font2)
+    tit = "$h_0$=" + str(cont)
+    plt.title(tit,font2)
     #plt.yticks(fontproperties='Times New Roman', size = 15)
     #plt.xticks(fontproperties='Times New Roman', size = 15)
     plt.xticks([-1,0,1],fontproperties='Times New Roman', size = 30)
@@ -310,6 +314,8 @@ def scatterplot2(cont):
     plt.ylim(-3,3)
     plt.xlabel("$k_x/\pi$",font2)
     plt.ylabel("E",font2)
+    tit = "$h_0$=" + str(cont)
+    plt.title(tit,font2)
     #plt.yticks(fontproperties='Times New Roman', size = 15)
     #plt.xticks(fontproperties='Times New Roman', size = 15)
     plt.xticks([-1,0,1],fontproperties='Times New Roman', size = 30)
