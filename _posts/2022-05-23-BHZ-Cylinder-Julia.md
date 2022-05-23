@@ -199,7 +199,7 @@ end
     klist = []
     for i1 in -kn:kn
         kx = i1*pi/kn
-        append!(klist,kx)
+        append!(klist,kx/pi)
         ham1 = openx(h0,yn,kx)
         ham2 = openy(h0,yn,kx)
         val1 = eigvals(ham1)
@@ -274,7 +274,7 @@ def scatterplot1(cont):
     plt.ylim(-3,3)
     plt.xlabel(r'$k_y/\pi$',font2)
     plt.ylabel("E",font2)
-    tit = "$h_0$=" + str(cont)
+    tit = "$h_0$ = " + "$" + str(cont) + "$"
     plt.title(tit,font2)
     #plt.yticks(fontproperties='Times New Roman', size = 15)
     #plt.xticks(fontproperties='Times New Roman', size = 15)
@@ -314,7 +314,7 @@ def scatterplot2(cont):
     plt.ylim(-3,3)
     plt.xlabel("$k_x/\pi$",font2)
     plt.ylabel("E",font2)
-    tit = "$h_0$=" + str(cont)
+    tit = "$h_0$ = " + "$" + str(cont) + "$"
     plt.title(tit,font2)
     #plt.yticks(fontproperties='Times New Roman', size = 15)
     #plt.xticks(fontproperties='Times New Roman', size = 15)
