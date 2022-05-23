@@ -1,5 +1,5 @@
 ---
-title: 整理个自用的代码
+title: Julia矩阵对角化实例
 tags: Julia Fortran
 layout: article
 license: true
@@ -22,7 +22,7 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-最近稍微有点时间，把自己之前经常使用的一个代码做了一下精简，这里整理一下方便自己平时查阅使用。
+最近稍微有点时间，把自己之前经常使用的一个代码做了一下精简，这里整理一下方便自己平时查阅使用。主要就是利用`Julia`在对角化矩阵的时候的一些内容以及实空间哈密顿量计算的代码。
 {:.info}
 <!--more-->
 # 直接对角化
