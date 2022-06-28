@@ -1,6 +1,6 @@
 ---
-title: Fortran系数矩阵并行化求解
-tags: Study 
+title: Fortran稀疏矩阵并行化求解
+tags: Study Fortran
 layout: article
 license: true
 toc: true
@@ -22,7 +22,7 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-最近学了一下如何利用Fortran来对系数矩阵进行并行化计算，并且得到指定数目了一些本征态和本征值。
+最近学了一下如何利用Fortran来对稀疏矩阵进行并行化计算，并且得到指定数目了一些本征态和本征值。
 {:.info}
 <!--more-->
 # 矩阵产生
