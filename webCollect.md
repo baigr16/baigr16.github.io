@@ -15,9 +15,11 @@ author: YuXuan
 show_author_profile: true
 ---
 # Mathematica 群论相关
-[MagneticTB](https://github.com/zhangzeyingvv/MagneticTB)通过磁群构建紧束缚模型
-[MagneticKP](https://github.com/zhangzeyingvv/MagneticKP) 通过磁群构建$\mathbf{k}\cdot\mathbf{p}$模型
-[SpaceGroupIrep](https://github.com/goodluck1982/SpaceGroupIrep) 空间群不可约表示
+[MagneticTB](https://github.com/zhangzeyingvv/MagneticTB)：通过磁群构建紧束缚模型
+
+[MagneticKP](https://github.com/zhangzeyingvv/MagneticKP)： 通过磁群构建$\mathbf{k}\cdot\mathbf{p}$模型
+
+[SpaceGroupIrep](https://github.com/goodluck1982/SpaceGroupIrep)： 空间群不可约表示
 
 # 晶体结构
 [Materials Project](https://materialsproject.org/)
@@ -122,6 +124,7 @@ show_author_profile: true
 - [plotly教程]( https://www.cnblogs.com/traditional/p/12505154.html ):一份中文的plotly教程，入门级足够了
 - [配色网站]( http://www.peise.net/tools/web/ ):可以自己在线进行配色
 - [渐变色推荐]( https://uigradients.com/#Passion ):你可以在这里找到非常柔和的渐变色
+- [Matplotlib](https://matplotlib.org/stable/index.html):Matplotlib官网，上面有很多例子可以进行参考
 
 
 
