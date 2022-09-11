@@ -14,6 +14,10 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
+# Mathematica 群论相关
+[MagneticTB](https://github.com/zhangzeyingvv/MagneticTB)通过磁群构建紧束缚模型
+[MagneticKP](https://github.com/zhangzeyingvv/MagneticKP) 通过磁群构建$\mathbf{k}\cdot\mathbf{p}$模型
+[SpaceGroupIrep](https://github.com/goodluck1982/SpaceGroupIrep) 空间群不可约表示
 
 # 晶体结构
 [Materials Project](https://materialsproject.org/)

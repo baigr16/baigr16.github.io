@@ -1,6 +1,6 @@
 ---
-title: 空间群学习工具
-tags: Group-Theory
+title: 空间群学习工具SpaceGroupIrep
+tags: Group-Theory Mathematica
 layout: article
 license: true
 toc: true
