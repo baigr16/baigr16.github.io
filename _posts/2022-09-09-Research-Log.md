@@ -32,7 +32,7 @@ show_author_profile: true
 我这里的模版是基于[project-logbook](https://github.com/apalha/project-logbook)进行了一些改造。它是一个英文版本，就是用来写科研日志的，我在这里进行了中文化，并对其中的一些环境进行了修改，对高亮色块的颜色配置进行了修改。
 
 # Meeting
-首先是***Meeting*环境
+首先是**Meeting**环境
 ```latex
 \begin{Meeting}{会议日期}{main}%最后一个参数是作者id，用来标记这次会议是谁的想法
 这里是一次会议讨论内容的记录，主导者第一个作者，用mian来作为他的id。在这次讨论中有一个重要任务先要完成
