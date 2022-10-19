@@ -176,15 +176,15 @@ $$p=\sum_jv^j$$
 
 将其用Wilson loop表示出来即
 
-	$$P=-\frac{i}{2\pi}\log\det[\mathcal{W}_{k+2\pi\leftarrow k}]$$
+$$P=-\frac{i}{2\pi}\log\det[\mathcal{W}_{k+2\pi\leftarrow k}]$$
 
-	此时来考虑前面提到的矩阵$[G_k]^{mn}=\langle u^m_{k+\Delta_k}\rvert u^n_k\rangle$，这里$\Delta_k=(k_f-k_i)/N$，在热力学极限下$N\rightarrow\infty$，可以将本征态进行展开
+此时来考虑前面提到的矩阵$[G_k]^{mn}=\langle u^m_{k+\Delta_k}\rvert u^n_k\rangle$，这里$\Delta_k=(k_f-k_i)/N$，在热力学极限下$N\rightarrow\infty$，可以将本征态进行展开
 
-	$$\langle u^m_{k+\Delta_k}\rvert=\langle u^m_k\rvert+\Delta_k\partial_k\langle u^m_k\rvert+\cdots$$
+$$\langle u^m_{k+\Delta_k}\rvert=\langle u^m_k\rvert+\Delta_k\partial_k\langle u^m_k\rvert+\cdots$$
 
-	此时可以将矩阵中元素表示为
+此时可以将矩阵中元素表示为
 
-	$$[G_k]^{mn}=\langle u_k^m\rvert u_k^n\rangle+\Delta_k\langle \partial_k u_k^m\rvert u_k^n\rangle+\cdots$$
+$$[G_k]^{mn}=\langle u_k^m\rvert u_k^n\rangle+\Delta_k\langle \partial_k u_k^m\rvert u_k^n\rangle+\cdots$$
 
 利用本征态之间的正交关系
 
