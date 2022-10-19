@@ -46,7 +46,7 @@ show_author_profile: true
 
 ![png](/assets/images/latex/note-2.png)
 
-除此之外，还可以考虑给自己的笔记增加水印，可以在导言区加入下面的命令，这是用来加入一个图片水印，可以自己设计一个专属图片
+除此之外，还可以考虑给自己的笔记增加水印，可以在导言区加入下面的命令，这是用来加入一个图片水印，可以自己设计一个专属图片(我这里的图片由办公室段师姐提供，在此致谢)
 ```latex
 \makeatletter
 \@namedef{ver@everypage.sty}{9999/99/99}
