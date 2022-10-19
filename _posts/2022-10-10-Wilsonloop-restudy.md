@@ -71,6 +71,7 @@ $$P^{\text {occ }}=\sum_{n=1}^{N_{\text {occ }}} \sum_{k} \gamma_{n, k}^{\dagger
 这里$N_{\rm occ}$就是占据态的数量。接下来就是要将位置算符投影到占据态空间中
 
 $$P^{\mathrm{occ}} \hat{x}P^{\mathrm{occ}}= \sum_{n, k} \sum_{n^{\prime}, k^{\prime}} \gamma_{n, k}^{\dagger}|0\rangle\langle 0| \gamma_{n^{\prime}, k^{\prime}}\left(\sum_{q, \alpha}\left\langle 0\left|\gamma_{n, k} c_{q+\Delta_{k}, \alpha}^{\dagger}\right| 0\right\rangle\left\langle 0\left|c_{q, \alpha} \gamma_{n^{\prime}, k^{\prime}}^{\dagger}\right| 0\right\rangle\right)$$
+
 现在就需要利用准粒子算符和电子算符之间的变换关系了$\gamma_{n, k}=\sum_{\alpha}\left[u_{k}^{* n}\right]^{\alpha} c_{k, \alpha}$，利用这个关系可以得到
 
 $$\langle 0\rvert \gamma_{n,k}c^\dagger_{q,\alpha}\rvert 0\rangle=[u_k^{*n}]^{\alpha}\delta_{k,q}$$
@@ -122,6 +123,7 @@ v_{k_{3}} \\
 v_{k_{N}}
 \end{array}\right)^{j},
 \end{equation}$$
+
 这里离散的$k$点取值为$k_1=0,k_2=\Delta_k,\cdots,k_N=\Delta_k(N-1)$，指标$j\in 1,\cdots N_{\rm occ}$表示占据态。这里先将上面的方程重新写一下
 
 $$
@@ -138,43 +140,73 @@ F_{k_{1}} & 0 & 0 & \ldots & 0 \\
 0 & 0 & 0 & \ldots & 0
 \end{array}\right)
 $$
+
 可以将$F$重复的作用在方程左侧可以得到
 
 $$
 F^{N}\mathbf{v}=E\mathbf{v}
 $$
+
 这里$N$其实就是这个矩阵的维数，其实自己可以验证一下，对于$F$这种具有特殊形式的矩阵，将其多次作用在一个列向量上之后有
+
 $$
 \mathcal{W}_{k_f\leftarrow k_i}\rvert v^j_{k_i}\rangle=(E^j)^{(k_f-k_i)/\Delta_k}\rvert v^j_{k_f}\rangle
 $$
+
 这里还是使用了Dirac符号表示了$[v_{k_l}^j]^n$这个列矢量，这里$n\in 1\cdots N_{\rm occ}$，此时可以定义处离散的Wilson line
+
 $$\mathcal{W}_{k_f\leftarrow k_i}=F_{k_f-\Delta_k}F_{k_f-2\Delta_k}\cdots F_{k_f+\Delta_k}F_{k_i}$$
+
 对于足够大的Wilson loop，总是可以将其穿过整个BZ的，此时就可以上面的公式重新表示，令其能覆盖整个BZ
+
 $$\mathcal{W}_{k+2\pi\leftarrow k}\rvert v_k^j\rangle=(E^j)^N\rvert v_k^j\rangle$$
+
 这里的$k$就是计算Wilson loop的起点(base point)，虽然选择不同的$k$可能使得Wilson loop的本征态会有些不同，但是其本征值并不会随着$k$的选择不同而发生变化。而且此时因为Wilson loop是幺正的，那么其本征值可以简单的表示为位相
+
 $$(E^j)^N=e^{i2\pi v^j}$$
+
 即Wilson loop对应的本征方程为
+
 $$\mathcal{W}_{k+2\pi\leftarrow k}\rvert v_k^j\rangle=e^{i2\pi v^j}\rvert v_k^j\rangle$$
+
 这里$j=1\cdots N_{\rm occ}$还是遍历所有的占据态，而$v^j$就是占据态能带对应的Wannier center，因此有多少个占据态就会对应多少个Wannier center，而原胞中体态的极化通常是对所有的占据态进行的，即
+
 $$p=\sum_jv^j$$
+
+
 将其用Wilson loop表示出来即
+
 	$$P=-\frac{i}{2\pi}\log\det[\mathcal{W}_{k+2\pi\leftarrow k}]$$
+
 	此时来考虑前面提到的矩阵$[G_k]^{mn}=\langle u^m_{k+\Delta_k}\rvert u^n_k\rangle$，这里$\Delta_k=(k_f-k_i)/N$，在热力学极限下$N\rightarrow\infty$，可以将本征态进行展开
+
 	$$\langle u^m_{k+\Delta_k}\rvert=\langle u^m_k\rvert+\Delta_k\partial_k\langle u^m_k\rvert+\cdots$$
+
 	此时可以将矩阵中元素表示为
+
 	$$[G_k]^{mn}=\langle u_k^m\rvert u_k^n\rangle+\Delta_k\langle \partial_k u_k^m\rvert u_k^n\rangle+\cdots$$
+
 利用本征态之间的正交关系
 
 $$\langle u_k^m\rvert u_k^n\rangle=\delta^{mn}\qquad \langle\partial_k u^m_k\rvert u_k^n\rangle=-\langle u^m_k\rvert \partial_k u_k^n\rangle$$
+
 此时可以将其重新表示
+
 $$[G_k]^{mn}=\delta^{mn}-\Delta_k\langle u^m_k\rvert\partial_k u_k^n\rangle=\delta^{mn}-i\Delta_k[\mathcal{A}_k]^{mn}$$
+
 这里Berry联络定义为
 
 $$[\mathcal{A}_k]^{mn}=-i\langle u^m_k\rvert\partial_k\rvert u_k^n\rangle$$
+
 它是一个纯实数量，因此在热力学极限下，可以将Wilson loop表示为
+
 $$\mathcal{W}_{k_f\leftarrow k_i}=\lim_{N\rightarrow\infty}\Pi_{n=1}^N[I-i\Delta_k\mathcal{A}_{k+n\Delta_k}]=\exp[-i\int_{k_i}^{k_f}\mathcal{A}_kdk]$$
+
 此时极化就可以重新表示为
+
 $$p=-\frac{i}{2\pi}\log\det[e^{-i\int_k^{k+2\pi}\mathcal{A}_kdk}]=-\frac{1}{2\pi}\int_k^{k+2\pi}\text{Tr}[\mathcal{A}_k]dk\quad\text{mod}\quad 1$$
+
+
 所以电子的极化性质就是有占据态空间的Berry位相决定的。
 
 
