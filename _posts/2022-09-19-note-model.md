@@ -30,13 +30,12 @@ show_author_profile: true
 # 高亮块
 想要将一些文字高亮起来,这里使用了一个`note`环境来实现
 ```latex
-\begin{note}{这里写title}{blue!50}
-	
+\begin{note}{这里写title}{blue!50}	
 \end{note}
+```
 
-
+```latex
 \begin{note}{Question}{red}
-	
 \end{note}
 ```
 在使用`note`环境的时候，第一个参数`title`就是用来设置高亮标题的,第二个参数则是控制高亮块的颜色。可以将重要的结论或者要注意的一些内容通过设置不同的颜色来进行标记。
