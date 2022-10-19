@@ -41,11 +41,11 @@ show_author_profile: true
 ```
 在使用`note`环境的时候，第一个参数`title`就是用来设置高亮标题的,第二个参数则是控制高亮块的颜色。可以将重要的结论或者要注意的一些内容通过设置不同的颜色来进行标记。
 
-![png](../assets/images/latex/note-1.png)
+![png](/assets/images/latex/note-1.png)
 
 想要设置不同的颜色，可以通过修改颜色`blue!50`产生不同的颜色块,从而来对不同的内容进行高亮标记。下面给一个我整理的笔记示例。
 
-![png](../assets/images/latex/note-2.png)
+![png](/assets/images/latex/note-2.png)
 
 除此之外，还可以考虑给自己的笔记增加水印，可以在导言区加入下面的命令，这是用来加入一个图片水印，可以自己设计一个专属图片
 ```latex
@@ -59,7 +59,7 @@ show_author_profile: true
 不过我尝试了一下，加入图片水印会使得产生的PDF有点大，如果是笔记的最终版，可以考虑加图片背景。效果如下图
 
 
-![png](../assets/images/latex/note-3.png)
+![png](/assets/images/latex/note-3.png)
 
 在平时整理笔记的时候，可以选择加入文字水印
 ```latex
@@ -72,7 +72,7 @@ show_author_profile: true
 ```
 同样可以在导言区进行设置即可，效果如下图所示
 
-![png](../assets/images/latex/note-4.png)
+![png](/assets/images/latex/note-4.png)
 
 # 下载
-暂时先将模板整理到这里，我觉得我的需求是满足了，感兴趣的可以[点击这里下载](../assets/data/note-model.zip)
+暂时先将模板整理到这里，我觉得我的需求是满足了，感兴趣的可以[点击这里下载](/assets/data/note-model.zip)
