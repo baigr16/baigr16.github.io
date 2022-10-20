@@ -68,19 +68,52 @@ $$\begin{align}
 此时虽然沿着$y$方向是开放边界, 但是$k_x$还是好量子数, 所以还是可以沿着$k_x$方向计算Wilson loop的, 只不过此时占据态的数量为为$N_y\times N_{\rm orb}$, 而且对应的可以得到此时的Hybird Wannier function
 
 $$\begin{align}
-\ket{\Psi^j_{R_x}} = \frac{1}{\sqrt{N_x}} \sum_{n=1}^{N_{occ} \times N_y}\sum_{k_x} \left[ \nu^j_{k_x} \right]^n e^{-i k_x R_x} \gamma^\dagger_{n,k_x}\ket{0},
+\rvert \Psi^j_{R_x}\rangle = \frac{1}{\sqrt{N_x}} \sum_{n=1}^{N_{occ} \times N_y}\sum_{k_x} \left[ \nu^j_{k_x} \right]^n e^{-i k_x R_x} \gamma^\dagger_{n,k_x}\rvert 0\rangle,
 \label{eq3}
 \end{align}$$
 
 这里$j\in 1\cdots N_{\rm occ}\times N_y, R_x\in 1\cdots N_x$, $[v_{k_x}^j]^n$是第$j$个Wilson loop本征态$\rvert v_{k_x}^j\rangle$的第$n$个分量, $\gamma^\dagger_{n,k_x}$如公式\eqref{eq4}所示. 在得到了Hybrid Wannier函数之后, 就可以得到其对应的几率密度
 
 $$\begin{align}
-\rho^{j,R_x}(R_y) &= \sum_{R'_x,\alpha} \braket{\Psi^j_{R_x}}{\phi^{R_y, \alpha}_{R'_x}}\braket{\phi^{R_y, \alpha}_{R'_x}}{\Psi^j_{R_x}}\nonumber\\
-&=\frac{1}{N_x} \sum_{k_x, \alpha} \left| [u^n_{k_x}]^{R_y, \alpha}[\nu^j_{k_x}]^n\right|^2
+\rho^{j,R_x}(R_y) &= \sum_{R'_x,\alpha} \langle \Psi^j_{R_x}\rvert \phi^{R_y, \alpha}_{R'_x}\rangle \langle\phi^{R_y, \alpha}_{R'_x}\rvert\Psi^j_{R_x}\rangle\nonumber\\
+&=\frac{1}{N_x} \sum_{k_x, \alpha} \left| [u^n_{k_x}]^{R_y, \alpha}[\nu^j_{k_x}]^n\right|^2\label{eqq}
 \end{align}$$
 
-通过$\rho^{j,R_x}(R_y)$就可以进一步在$y$方向的格点上解析出极化在$x$方向的分量.
-
+通过$\rho^{j,R_x}(R_y)$就可以进一步在$y$方向的格点上解析出极化在$x$方向的分量. 公式\eqref{eqq}中的符号含义可能需要搞清楚，其中$[u_{k_x}^n]^{R_y,\alpha}$表示的是沿着$y$方向开边界之后，哈密顿量本征态，$n$表示的是第$n$个占据态，而在$[v_{k_x}^j]^n$这里的$n$表示的则是第$j$个Wilson loop本征态的第$n$个分量，所以这里的符号就有点让人迷茫。程序计算的话就是
+```julia
+@everywhere function rho(yn::Int64,h0::Float64,dir::Int64)
+    # 计算所有格点上的极化分布
+    # yn 开边界方向原胞数. h0 层间耦合强度
+    hn::Int64 = 8
+    N::Int64 = yn*hn
+    Nocc::Int64 = Int(N/2)
+    kn::Int64 = 50
+    re1 = zeros(Float64,yn)
+    # re1 = SharedArray(zeros(Float64,yn))
+    ham_wan = Wannier(h0,yn,dir) # 得到Wannier哈密顿量
+    val2,vec2 = eigen(ham_wan)
+    val2 = map(real,val2)/(2*pi)
+    for ik = -kn:kn
+        kx = ik*pi/kn
+        if dir == 0
+            ham = openx(h0,yn,kx)
+        else
+            ham = openy(h0,yn,kx)
+        end
+        val1,vec1 = eigen(ham)
+        for j1 = 1:Nocc # Wannier哈密顿量要对所有本征矢量求和
+            for n1 = 1:Nocc # 哈密顿量要对所有占据态求和
+                for ibeta = 1:hn # 对一个格点上的本征矢量所有分量求和
+                    for iy = 1:yn # 计算每个格点上的边界极化
+                        re1[iy] = re1[iy] + abs(vec1[(iy - 1)*hn + ibeta,n1]*vec2[n1,j1])^2*val2[j1]
+                    end
+                end
+            end 
+        end 
+    end
+    return re1/(2*kn + 1)
+end
+```
 特别有用的一点就是可以得到在边界上$R_y=1,N_y$,是否存在具有的Hybrid Wannier函数. 通过几率密度$\rho^{j,R_x}(R_y)$可以计算极化在$x$方向的分量
 
 $$\begin{align}
