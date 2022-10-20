@@ -27,6 +27,7 @@ show_author_profile: true
 <!--more-->
 
 # Nested Wilson loop
+
 在计算高阶拓扑绝缘体的时候，其边界态被打开了能隙，那么此时通过Wilson loop就不再能鉴别体系的拓扑性质了。但是此时Wilson loop也会打开gap，因为文献中已经证明了体系的边界态和Wilson loop其实是等价的，所以这个时候可以对Wilson loop重新建立一个关于Wilson loop的体边对应关系，这也就关系着这里想要讨论的**Nested Wilson loop**。
 
 仍然先考虑一个2D系统，其动量分别为$k_x,k_y$，而且其对应的Wilson loop都是有gap的，如下图所示

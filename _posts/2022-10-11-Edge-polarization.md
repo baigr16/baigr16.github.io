@@ -1,6 +1,6 @@
 ---
 title: 边界极化
-tags:  Latex
+tags:  Topology
 layout: article
 license: true
 toc: true
