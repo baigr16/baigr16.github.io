@@ -36,8 +36,8 @@ show_author_profile: true
 因为此时在$v_x=\frac{1}{2}$处存在Wannier gap，那么就可以将Wannier能带分成两个sector
 
 $$\begin{align}
-\nu^-_x &= \{\nu^j_x(k_y), \mbox{ s.t. } \nu^j_x(k_y) \mbox{ is below the Wannier gap} \}\nonumber \\
-\nu^+_x &= \{\nu^j_x(k_y), \mbox{ s.t. } \nu^j_x(k_y) \mbox{ is above the Wannier gap} \}.\nonumber
+\nu^-_x &= \{\nu^j_x(k_y), \text{ s.t. } \nu^j_x(k_y) \text{ is below the Wannier gap} \}\nonumber \\
+\nu^+_x &= \{\nu^j_x(k_y), \text{ s.t. } \nu^j_x(k_y) \text{ is above the Wannier gap} \}.\nonumber
 \end{align}$$
 
 在之前的Blog中提到过，因为在求解Wilson loop时的矩阵$G$是幺正的，所以它的本征值只有mod 1才是well defined，所以可以将这里通过gap分开的两个能带分别进行标记$\nu^-_x \in [0,1/2)$ and  $\nu^+_x \in [1/2,1)$，那么就可以利用这些孤立的Wannier能带来分别构建其对应的投影算符
@@ -126,7 +126,7 @@ $$\begin{align}
 这里$j\in 1\cdots N_W$表示的仍然是Wannier sector中Wannier能带的指标，此时可以得到在$k_x$位置处，在Wannier sector $v_x$中对应的极化就是将所有$N_W$个Wannier能带贡献的位相$v_y^{v_x}(k_x)$进行求和
 
 $$\begin{align}
-p^{\nu_x}_y(k_x) = \sum_{j=1}^{N_{\nu_x}} \nu^{\nu_x,j}_y(k_x) \;\;\mbox{mod 1}.
+p^{\nu_x}_y(k_x) = \sum_{j=1}^{N_{\nu_x}} \nu^{\nu_x,j}_y(k_x) \;\;\text{mod 1}.
 \end{align}$$
 
  同样可以将其表示为
