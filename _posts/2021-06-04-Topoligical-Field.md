@@ -101,7 +101,7 @@ $$C_1=\left\{\begin{array}{c}1\qquad\text{for $0<m<2$}\\-1\qquad\text{for $-2<m<
 
 在$m\rightarrow 2$的连续极限下,模型可以约化为(2+1)-D的有质量Dirac哈密顿量
 
-${\bf h(k)}=k_x\sigma_x+k_y\sigma_y+(m+2)\sigma_z=\left(\begin{array}{cc}m+2&k_x-ik_y\\ k_x+ik_y&-m-2\end{array}\right)$
+$${\bf h(k)}=k_x\sigma_x+k_y\sigma_y+(m+2)\sigma_z=\left(\begin{array}{cc}m+2&k_x-ik_y\\ k_x+ik_y&-m-2\end{array}\right)$$
 
 在实空间中的紧束缚形式为
 
@@ -229,13 +229,19 @@ $$\rvert k,\theta;\alpha\rangle^{*}=\sum_\beta(\langle m,\beta\rvert k,\theta;\a
 
 这里$m,\beta$分别是未知空间格点和轨道索引。因此$C\rvert k,\theta;\alpha\rangle^*\equiv\rvert -k,2\pi-\theta;\bar{\alpha}\rangle$是$h(-k,2\pi-\theta)$的本征态,对应的本征值为$E_{\bar{\alpha}}(k,2\pi-\theta)=-E_\alpha(k,\theta)$。哈密顿量$h(k,\theta)$与$h(-k,2\pi-\theta)$的本征态是一一对应的,从而可以得到
 
-$$P(\theta)=\int\frac{dk}{2\pi}\sum_{E_\alpha(k)<0}(-i)\langle k,\theta;\alpha\rvert\partial_k\rvert k,\theta;\alpha\rangle=\int\frac{dk}{2\pi}\sum_{E_{\bar{\alpha}(-k)}>0}(-i)(\langle -k,2\pi-\theta;\bar{\alpha}\rvert)^*\cdot\partial_k\rvert -k,2\pi-\theta;\bar{\alpha}\rangle^*=-P(2\pi-\theta)\label{ha7}$$
+$$\begin{align}
+P(\theta)&=\int\frac{dk}{2\pi}\sum_{E_\alpha(k)<0}(-i)\langle k,\theta;\alpha\rvert\partial_k\rvert k,\theta;\alpha\rangle\nonumber\\
+&=\int\frac{dk}{2\pi}\sum_{E_{\bar{\alpha}(-k)}>0}(-i)(\langle -k,2\pi-\theta;\bar{\alpha}\rvert)^*\cdot\partial_k\rvert -k,2\pi-\theta;\bar{\alpha}\rangle^*\nonumber\\
+&=-P(2\pi-\theta)\label{ha7}
+\end{align}$$
 
 因此$P(\theta)\quad\text{mod}\quad1$是well defined,(\ref{ha7})表明$P(\theta)+P(2\pi-\theta)=0\quad\text{mod}\quad 1$。对于$\theta=0$或者$\theta=\pi$有$2\pi-\theta=0\quad\text{mod}\quad 2\pi$,从而得到$P(\theta)=0\quad or\quad1/2$。也就是说极化取值为$1$或者$1/2$对任何满足粒子空穴对称的绝缘体。**如果两个系统具有不同的极化P,在不破坏粒子空穴对称情况下,是不能通过绝热演化相互转换的,因为在绝热演化过程中P是个连续函数,当它不是0或者1/2时就破坏了粒子空穴对称。**这也就解释了为什么在存在粒子空穴对称的情况下系统是$Z_2$分类的。有前面的定义可知极化$P(\theta)=\int dk a_k/2\pi$是规范依赖的,下面就来定义一个更加普遍的$Z_2$表达式,它仅包含规范不变量$\partial P(\theta)/\partial\theta$和Chern数$C_1$。
 
 由对称性(\ref{ha7})可得
 
-$$\int^{\pi}_0dP(\theta)=\int_{\pi}^{2\pi}dP(\theta)\label{ha8}$$
+$$\begin{equation}
+\int^{\pi}_0dP(\theta)=\int_{\pi}^{2\pi}dP(\theta)\label{ha8}
+\end{equation}$$
 
 它是规范独立的,因为只包含了极化$P(\theta)$的变化。这个方程表明在闭合路径的前半部分与后半部分极化的变化都是相同的。考虑两个不同的参数化过程$h(k,\theta),h^{'}(k,\theta)$满足$h(k,0)=h^{'}(k,0)=h_1(k),h(k,\pi)=h^{'}(k,\pi)=h_2(k)$。这里$h(k,\theta),h^{'}(k,\theta)$对应的极化分别为$P(\theta),P^{'}(\theta)$,二者对应的Chern数之差为
 
@@ -251,7 +257,7 @@ $$g_1(k,\theta)=\left\{\begin{array}{c}h(k,\theta),\quad\theta\in[0,\pi]\\h^{'}(
 
 从$g_1,g_2$的构建路径可以直接得到
 
-$C[g_1]=\int_0^\pi d\theta(\frac{\partial P(\theta)}{\partial \theta}-\frac{\partial P^{'}(\theta)}{\partial\theta})\\ C[g_2]=\int^{2\pi}_\pi d\theta(\frac{\partial P(\theta)}{\partial\theta}-\frac{\partial P^{'}(\theta)}{\partial\theta})$
+$$C[g_1]=\int_0^\pi d\theta(\frac{\partial P(\theta)}{\partial \theta}-\frac{\partial P^{'}(\theta)}{\partial\theta})\\ C[g_2]=\int^{2\pi}_\pi d\theta(\frac{\partial P(\theta)}{\partial\theta}-\frac{\partial P^{'}(\theta)}{\partial\theta})$$
 
 因此可以得到$C[h]-C[h^{'}]=C[g_1]+C[g_2]$,由(\ref{ha8})可以得到$C[g_1]=C[g_2]$,从而$C[h]-C[h^{'}]=2C[g_1]$。由于$C[g_1]\in Z$我们可以得到$C[h]-C[h^{'}]$的取值是偶数。Chern数$C[h],C[h^{'}]$的不同是因为它们对应的路径之间存在奇异点,而且由于粒子空穴对称性的存在,这个奇异点的位置也是对称的。基于上面的讨论,可以定义一个相对Chern宇称
 
@@ -259,7 +265,9 @@ $$N_1[h_1(k),h_2(k)]=(-1)^{C[h(k,\theta)]}$$
 
 它与$h(k,\theta)$的选取无关,只决定于哈密顿量$h_1(k),h_2(k)$。而且对于任意三个粒子空穴对称的哈密顿量$h_1(k),h_2(k),h_3(k)$总是满足
 
-$N_1[h_1(k),h_2(k)]N_1[h_2(k),h_3(k)]=N_1[h_1(k),h_3(k)]$
+$$
+N_1[h_1(k),h_2(k)]N_1[h_2(k),h_3(k)]=N_1[h_1(k),h_3(k)]
+$$
 
 由$N_1[h_1(k),h_2(k)]=1$在任意两个粒子空穴对称哈密顿量之间定义了一个等价关系,因此可以将所有满足粒子空穴对称的哈密顿量分成两类。定义一个真空态$h_0(k)\equiv h_0$,这里$h_0$是任意一个不依赖于动量$k$的矩阵且满足粒子空穴对称$C^\dagger h_0C=-h_0^T$,可以认为$h_0$描述的是一个没有hopping完全局域的系统,将它作为一个平庸的参考态可以得到$N_1[h_0(k),h_1(k)]\equiv N_1[h(k)]$作为哈密顿量$h(k)$的$Z_2$拓扑不变量。所有满足$N_1[h_0(k),h(k)]=1$的哈密顿量$h(k)$都是$Z_2$平庸的,满足$N_1[h_0(k),h(k)]=-1$的都是$Z_2$非平庸的。
 
@@ -303,13 +311,24 @@ $$C^\dagger hC=-h^T$$
 
 $$h(0)=h_1,\quad h(\pi)=h_2,\quad C^\dagger h(\theta)C=-h(2\pi-\theta)^T\label{ha9}$$
 
-对所有的$\theta$而言$h(\theta)$都是有能隙的，哈密顿量$h(\theta)$是$(1+1)$维哈密顿量$h(k)$进行维度约化后的结果，此时波矢$k$被$\theta$代替。限制条件(\ref{ha9})正是粒子空穴对称性，所以$h(\theta)$就对应着满足粒子空穴对称的$(1+1)$维绝缘体，可以通过Chern宇称$N_1[h(\theta)]$来进行分类。如果$N_1[h(\theta)]=-1$，在哈密顿量$h(\theta)$与真空哈密顿量$h(\theta)=h_0,\theta\in[0,2\pi]$之间没有满足粒子空穴对称的连续插值存在。在$h_1,h_2$之间考虑两个不同的插值$h(\theta),h^{'}(\theta)$，通过结合律$N_1[h(\theta)]N_1[h^{'}(\theta)]=N_1[h(\theta),h^{'}(\theta)]$，它是两个插值路径的相对Chern宇称。因为$N_1[h(\theta)]$与$h_1,h_2$之间的插值是不相关的，所以$N_0[h_1,h_2]\equiv N_1[h(\theta)]$可以被定义为$h_1,h_2$的函数。此时$(0+1)维Z_2$量$N_0$与$(1+1)$维时候的$N_1[h(k),h^{'}(\theta)]$扮演者相同的角色。
+对所有的$\theta$而言$h(\theta)$都是有能隙的，哈密顿量$h(\theta)$是$(1+1)$维哈密顿量$h(k)$进行维度约化后的结果，此时波矢$k$被$\theta$代替。限制条件(\ref{ha9})正是粒子空穴对称性，所以$h(\theta)$就对应着满足粒子空穴对称的$(1+1)$维绝缘体，可以通过Chern宇称$N_1[h(\theta)]$来进行分类。如果$N_1[h(\theta)]=-1$，在哈密顿量$h(\theta)$与真空哈密顿量$h(\theta)=h_0,\theta\in[0,2\pi]$之间没有满足粒子空穴对称的连续插值存在。在$h_1,h_2$之间考虑两个不同的插值$h(\theta),h^{'}(\theta)$，通过结合律
+
+$$N_1[h(\theta)]N_1[h^{'}(\theta)]=N_1[h(\theta),h^{'}(\theta)]$$
+
+它是两个插值路径的相对Chern宇称。因为$N_1[h(\theta)]$与$h_1,h_2$之间的插值是不相关的，所以$N_0[h_1,h_2]\equiv N_1[h(\theta)]$可以被定义为$h_1,h_2$的函数。此时$(0+1)维Z_2$量$N_0$与$(1+1)$维时候的$N_1[h(k),h^{'}(\theta)]$扮演者相同的角色。
 
 在$h(\theta),h^{'}(\theta)$之间定义连续插值$g(\theta,\varphi)$，它满足
 
-$$g(\theta,\varphi=0)=h(\theta),\quad g(\theta,\varphi=\pi),h^{'}(\theta),\quad g(0,\varphi)=h_1,\quad g(\pi,\varphi)=h_2,\quad C^\dagger g(\theta,\varphi)C=-g(2\pi-\theta,2\pi-\varphi)^T$$
+$$
+\begin{align}
+&g(\theta,\varphi=0)=h(\theta),\quad g(\theta,\varphi=\pi),h^{'}(\theta),\quad g(0,\varphi)=h_1,\\ 
+&g(\pi,\varphi)=h_2,\quad C^\dagger g(\theta,\varphi)C=-g(2\pi-\theta,2\pi-\varphi)^T
+\end{align}
+$$
 
-根据上一节的讨论可以简单的得到这样的连续插值总是可以存在的，对于所有的$\theta,\varphi$，函数$g(\theta,\varphi)$都是有能隙的。在两维参数空间$(\theta,\varphi)$中总是可以定义Berry位相和第一Chern数$C_1[g(\theta,\varphi)]$。通过定义Chern宇称可以得到$N_1[h(\theta),h^{'}(\theta)]=(-1)^{C_1[g(\theta,\varphi)]}$。参数化的哈密顿量可以从两个视角来看：不仅在$h(\theta),h^{'}(\theta)$间定义了插值，同样在$g(0,\varphi)=h_1,g(\pi,\varphi)=h_2$之间也定义了插值。无论$\varphi$去任何值，$g(0,\varphi),g(\pi,\varphi)$都是真空态哈密顿量，它们都有相对平庸的Chern宇称$N_1[h(\theta),h^{'}(\theta)]=N_1[g(0,\varphi),g(\pi,\varphi)]=N_1[h_1,h_2]=1$。
+根据上一节的讨论可以简单的得到这样的连续插值总是可以存在的，对于所有的$\theta,\varphi$，函数$g(\theta,\varphi)$都是有能隙的。在两维参数空间$(\theta,\varphi)$中总是可以定义Berry位相和第一Chern数$C_1[g(\theta,\varphi)]$。通过定义Chern宇称可以得到$N_1[h(\theta),h^{'}(\theta)]=(-1)^{C_1[g(\theta,\varphi)]}$。参数化的哈密顿量可以从两个视角来看：不仅在$h(\theta),h^{'}(\theta)$间定义了插值，同样在$g(0,\varphi)=h_1,g(\pi,\varphi)=h_2$之间也定义了插值。无论$\varphi$去任何值，$g(0,\varphi),g(\pi,\varphi)$都是真空态哈密顿量，它们都有相对平庸的Chern宇称
+
+$$N_1[h(\theta),h^{'}(\theta)]=N_1[g(0,\varphi),g(\pi,\varphi)]=N_1[h_1,h_2]=1$$
 
 从上面的分析可以得到,任何两个属于相同$Z_2$类的$h(\theta)$与$h^{'}(\theta)$,他们的Chern宇称$N_1[h(\theta)]$仅仅依赖于终点的$h_1,h_2$。也就是说$N_0[h_1,h_2]\equiv N_1[h(\theta)]$定义了一对粒子空穴对称哈密顿量$h_1,h_2$之间的关系。之后选择任意一个参考哈密顿量$h_0$,总是可以定义所有哈密顿量满足$N_0[h_0,h]=1$是平庸的$N_0[h_0,h]=-1$是非平庸的。此时与$(1+1)$维情况有所不同的是参考哈密顿量$h_0$的选择不是自然的。总而言之,平庸与非平庸仅仅在$(0+1)$维具有意义。但是分类仍然是有意义的,任意两个哈密顿量满足$N_0[h_1,h_2]=-1$都不能在不破坏粒子空穴对称的情况下绝热转换。**单格点粒子空穴对称哈密顿量的流形是不连通的,起码会存在两个连接的片段。**
 {:.success}
@@ -374,7 +393,7 @@ $$j^\mu=\frac{C_2}{8\pi^2}\epsilon^{\mu\nu\rho\sigma\tau}\partial_\nu A_\rho\par
 
 这是对外场$A_\mu$的非线性响应。当考虑下面的场时
 
-$A_x=0,A_y=B_zx,A_z=-E_zt,A_w=A_t=0\label{ha16}$
+$$A_x=0,A_y=B_zx,A_z=-E_zt,A_w=A_t=0\label{ha16}$$
 
 这里$x,y,z,w$表示空间维度,$t$代表时间。非零分量的的场强度为$F_{xy}=B_z,F_{zt}=-E_z$,有(\ref{ha12})得到的电流为
 
@@ -434,7 +453,9 @@ $$C_2(m)=\left\{\begin{array}{c}0,\quad m<-4c\quad\text{or}\quad m>4c\\ 1,\quad 
 
 在得到了第二Chern数之后,就可以通过拓扑非平庸的表面态来研究这个模型,与前面的研究方法相同,沿某一个方向取开边界,比如取$w$方向,其余的维度都是周期边界条件,哈密顿量可以转换成一个1D紧束缚模型的求和
 
-$$H=\sum_{\vec{k},w}[\psi^\dagger_\vec{k}(w)(\frac{c\Gamma^0-i\Gamma^4}{2})\psi_\vec{k}(w+1)+\text{H.c}]+\sum_{\vec{k},w}\psi^\dagger_\vec{k}(w)[\sin k_i\Gamma^i+(m+c\sum_i\cos k_i)\Gamma^0]\psi_\vec{k}(w),$$
+$$
+H=\sum_{\vec{k},w}[\psi^\dagger_{\vec{k}}(w)(\frac{c\Gamma^0-i\Gamma^4}{2})\psi_{\vec{k}}(w+1)+\text{H.c}]+\sum_{\vec{k},w}\psi^\dagger_{\vec{k}}(w)[\sin k_i\Gamma^i+(m+c\sum_i\cos k_i)\Gamma^0]\psi_\vec{k}(w)
+$$
 
 $C_2\neq 0$的能隙间表面态如下图所示
 
@@ -442,7 +463,7 @@ $C_2\neq 0$的能隙间表面态如下图所示
 
 当Chern数是$C_2$时,这里会有$C_2$支线性色散无能隙的表面态,其低能有效理论可以通过有$\rvert C_2\rvert$个手性费米子
 
-$H=\text{sgn}(C_2)\int\frac{d^3 p}{(2\pi)^3}\sum_{i=1}^{\rvert C_2\rvert}v_i\psi^\dagger_i(\vec{p})\vec{\sigma}\cdot\vec{\mathbf{p}}\psi_i(\vec{p})$
+$$H=\text{sgn}(C_2)\int\frac{d^3 p}{(2\pi)^3}\sum_{i=1}^{\rvert C_2\rvert}v_i\psi^\dagger_i(\vec{p})\vec{\sigma}\cdot\vec{\mathbf{p}}\psi_i(\vec{p})$$
 
 前面的因子$\text{sgn}(C_2)$保证了表面态的手性,是由Chern数的符号决定的。从表面理论可以从更加物理的角度来理解外场$U(1)$规范场与非线性响应之间的关联。k考虑与(\ref{ha16})相同的规范场构型,则非零的场曲率为$F_{xy}=b_z,F_{zt}=-E_z$。最终一个$(3+1)$维表面态耦合磁场$\mathbf{B}=B_z\hat{\mathbf{z}}$和电场$\mathbf{E}=E_z\hat{\mathbf{z}}$,此时考虑$-4c<m<-2c$这个参数区间,对应的$cC_2=1$,此时的表面理论是手性费米子的单粒子哈密顿量
 
@@ -477,9 +498,9 @@ $$H[A]=\sum_{n,i}[\psi^\dagger_n(\frac{c\Gamma^0-i\Gamma^i}{2})e^{iA_{n,n+\hat{i
 
 现在考虑一个特殊的朗道规范$A_{n,n+\hat{i}}=A_{n+\hat{w},n+\hat{w}+\hat{i}}$,它沿着$w$方向是平移不变的,因此在周期边界条件下$w$方向的动量$k_w$是个好量子数,哈密顿量可以写为
 
-$$H[A]=\sum_{k_w,\vec{x},s}[\psi^\dagger_{\vec{x},k_w}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\vec{x},\vec{x}+\hat{s}}}\psi_{\vec{x}+\hat{s},k_w}+\text{H.c}]+\sum_{k_w,\vec{x},s}\psi^\dagger_{\vec{x},k_w}\{\sin(k_w+A_{\vec{x}4})\Gamma^4+[m+c\cos(k_w+A_{\vec{x}4})]\Gamma^0\}\psi_{\vec{x},k_w}$$
+$$\begin{align}H[A]&=\sum_{k_w,\vec{x},s}[\psi^\dagger_{\vec{x},k_w}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\vec{x},\vec{x}+\hat{s}}}\psi_{\vec{x}+\hat{s},k_w}+\text{H.c}]\\ &+\sum_{k_w,\vec{x},s}\psi^\dagger_{\vec{x},k_w}\{\sin(k_w+A_{\vec{x}4})\Gamma^4\\ &+[m+c\cos(k_w+A_{\vec{x}4})]\Gamma^0\}\psi_{\vec{x},k_w}\end{align}$$
 
-这里的$\vec{x}$代表三维坐标,$A_{\vec{x}4}\equiv A_{\vec{x},\vec{x}+\hat{w}},s=1,2,3$表示$x,y,z$方向。在这个表达式中,不同$k_w$态是无耦合的,此时就可以将$(4+1)$的$H[A]$约化为一系列$(3+1)$维固定$k_w$的哈密顿量,重新改写$k_w+A_{\vec{x}4}=\theta_\vec{x}$约化到$(3+1)$维的模型为
+这里的$\vec{x}$代表三维坐标,$A_{\vec{x}4}\equiv A_{\vec{x},\vec{x}+\hat{w}},s=1,2,3$表示$x,y,z$方向。在这个表达式中,不同$k_w$态是无耦合的,此时就可以将$(4+1)$的$H[A]$约化为一系列$(3+1)$维固定$k_w$的哈密顿量,重新改写$k_w + A_{\vec{x}4 =\theta_\vec{x}$约化到$(3+1)$维的模型为
 
 $$H_{3D}[A,\theta]=\sum_{\vec{x},s}[\psi^\dagger_\vec{x}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\vec{x},\vec{x}+\hat{s}}}+\text{H.c}]+\sum_{\vec{x},s}\psi^\dagger_\vec{x}[\sin \theta_\vec{x}\Gamma^4+(m+c\cos \theta_\vec{x})\Gamma^0]\psi_\vec{x}\label{ha20}$$
 
@@ -818,11 +839,15 @@ $$H[A]=\sum_{n,i}[\psi^\dagger_n(\frac{c\Gamma^0-i\Gamma^i}{2})e^{iA_{n,n+\hat{i
 
 出发并选择一个特殊的规范$A_{n+\hat{w},n+\hat{w}+\hat{i}}=A_{n+\hat{z},n+\hat{z}+\hat{i}}$得到哈密顿量
 
-$$\begin{equation}\begin{aligned}H[A]&=\sum_{k_z,k_w,\mathbf{x}}\sum_{s=1,2}[\psi^\dagger_{\mathbf{x};k_z,k_w}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\mathbf{x},\mathbf{x}+\hat{s}}}\psi_{\mathbf{x}+\hat{s};k_z,k_w}+\text{H.c}]+\sum_{k_z.k_w.\mathbf{x}}\sum_{s=1,2}\psi^\dagger_{\mathbf{x};k_z,k_w}\cdot\{ \sin(k_z+A_{\mathbf{x}3})\Gamma^3+\sin(k_w+A_{\mathbf{x}4})\Gamma^4\\ &+ [m+c\cos(k_z+A_{\mathbf{x}3})+c\cos(k_w+A_{\mathbf{x}4})\Gamma^0]\psi^\dagger_{\mathbf{x};k_z,k_w} \},\quad \mathbf{x}=(x,y)\end{aligned}\end{equation}$$
+$$\begin{equation}\begin{aligned}H[A]&=\sum_{k_z,k_w,\mathbf{x}}\sum_{s=1,2}[\psi^\dagger_{\mathbf{x};k_z,k_w}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\mathbf{x},\mathbf{x}+\hat{s}}}\psi_{\mathbf{x}+\hat{s};k_z,k_w}+\text{H.c}]\\ &+\sum_{k_z.k_w.\mathbf{x}}\sum_{s=1,2}\psi^\dagger_{\mathbf{x};k_z,k_w}\cdot\{ \sin(k_z+A_{\mathbf{x}3})\Gamma^3+\sin(k_w+A_{\mathbf{x}4})\Gamma^4\\ &+ [m+c\cos(k_z+A_{\mathbf{x}3})+c\cos(k_w+A_{\mathbf{x}4})\Gamma^0]\psi^\dagger_{\mathbf{x};k_z,k_w} \},\quad \mathbf{x}=(x,y)\end{aligned}\end{equation}$$
 
 与$(3+1)$维情况相同,在$z,w$方向的规范场可以通过参数场来代替$(k_z+A_{\mathbf{x}3})\rightarrow \theta_\mathbf{x},(k_w+A_{\mathbf{x}4})\rightarrow \varphi_\mathbf{x}$, 则参数化之后的$(2+1)$维哈密顿量为
 
-$$H_{2D}[A,\theta,\varphi]=\sum_{\mathbf{x},s}[\psi^\dagger_\mathbf{x}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\vec{x},\vec{x}+\hat{x}}}\psi_{\mathbf{x}+\hat{s}}+\text{H.c}]+\sum_{\mathbf{x},s}\psi^\dagger_\mathbf{x}[\sin\theta_\mathbf{x}\Gamma^3+\sin\varphi_\mathbf{x}\Gamma^4+(m+c\cos\theta_\mathbf{x}+c\cos\varphi_\mathbf{x})\Gamma^0]\psi_\mathbf{x}\label{ha38}$$
+$$
+\begin{align}
+H_{2D}[A,\theta,\varphi]&=\sum_{\mathbf{x},s}[\psi^\dagger_\mathbf{x}(\frac{c\Gamma^0-i\Gamma^s}{2})e^{iA_{\vec{x},\vec{x}+\hat{x}}}\psi_{\mathbf{x}+\hat{s}}+\text{H.c}]\\ &+\sum_{\mathbf{x},s}\psi^\dagger_\mathbf{x}[\sin\theta_\mathbf{x}\Gamma^3+\sin\varphi_\mathbf{x}\Gamma^4+(m+c\cos\theta_\mathbf{x}+c\cos\varphi_\mathbf{x})\Gamma^0]\psi_\mathbf{x}\label{ha38}
+\end{align}
+$$
 
 通过将费米子场积分而后将得到的有效作用量在$A_s=0,\theta=\theta_0,\varphi=\varphi_0$处进行展开,相同的非线性项与图7费曼图相同对应的拓扑项为
 
@@ -1066,7 +1091,11 @@ $$S_{3+1}=\frac{3}{96\pi^3}\int d^7q\epsilon^{\mu\nu\sigma\tau}\epsilon^{ijk}A_\
 
 $\mu,\nu,\cdots=0,1,2,3; i,j,k=1,2,3$分别是$(3+1)$维中的时空和动量指标,cycl.带脖啊的是$\theta,ij,k$对应的轮换项.积分$\int dk_wdw/2\pi$已经被移除,前面的因子3来源于这里由三个$A_A$.同样的在$(2+1)$维向$(1+1)$维进行时,$\partial_\mu\theta D_\theta$被替换为$D_\mu$,最终可以得到$(3+1)$维绝缘体的结果
 
-$$S_{3+1}=\int\frac{d^7q}{32\pi^3}\epsilon^{AB\cdots G}A_A\partial_BA_c\text{Tr}[D_Da_ED_Fa_G]\label{ha45}$$
+$$
+\begin{align}
+S_{3+1}=\int\frac{d^7q}{32\pi^3}\epsilon^{AB\cdots G}A_A\partial_BA_c\text{Tr}[D_Da_ED_Fa_G]\label{ha45}
+\end{align}
+$$
 
 根据$P_3$的定义
 
