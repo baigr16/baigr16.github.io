@@ -50,7 +50,7 @@ $$
 Q(\beta)=|\tilde{u}_R(\beta)\rangle\langle\tilde{u}_L(\beta)|-|u_R(\beta)\rangle\langle u_L(\beta)|
 $$
 
-这里$\tilde{u_R}=\sigma_z|u_R\rangle$,最后得到的$Q$是off-diagonal的形式
+这里$\tilde{u_R}=\sigma_z\rvert u_R\rangle$,最后得到的$Q$是off-diagonal的形式
 
 $$
 Q=

@@ -109,9 +109,9 @@ $$\mathcal{H}(\mathbf{k})=h_0(\mathbf{k})\sigma_0+{\bf h(k)\cdot\sigma},\quad h_
 
 $$\text{Disc}_E[\mathcal{H}](\mathbf{k})=\Pi_{i<j}[E_i(\mathbf{k})-E_j(\mathbf{k})]^2$$
 
-一定会在$\mathbf{k}_D$处消失,当DP出现在$\mathbf{k}_D$处,一定会有$\text{Disc}_E\[\mathcal{H}\](\mathbf{k}_D)=0$.从判别式来计算DPs相比于求解多项式$f_E(\mathbf{k})$的根要更有效率.判别式可以通过计算$f_E(\mathbf{k})$和$\partial_Ef_E(\mathbf{k})$的Sylvester矩阵的行列式得到,因此利用判别式$\text{Disc}_E\[\mathcal{H}\](\mathbf{k})$的零值来寻找整个布里渊区中所有的DPs是最有效的方法.
+一定会在$\mathbf{k}_D$处消失,当DP出现在$\mathbf{k}_D$处,一定会有$\text{Disc}_E[\mathcal{H}](\mathbf{k}_D)=0$.从判别式来计算DPs相比于求解多项式$f_E(\mathbf{k})$的根要更有效率.判别式可以通过计算$f_E(\mathbf{k})$和$\partial_Ef_E(\mathbf{k})$的Sylvester矩阵的行列式得到,因此利用判别式$\text{Disc}_[\mathcal{H}](\mathbf{k})$的零值来寻找整个布里渊区中所有的DPs是最有效的方法.
 
-判别式还有一个额外的优点,它是单值的,因为多项式$f_E(\mathbf{k})$的系数都是单只的,这个性质在根据$\text{Disc}_E\[\mathcal{H}\](\mathbf{k})$定义量子化不变量的时候很重要,对证明doubling theorem也同样重要.首先来给出说明性的一个解释为什么DPs一定会满足doubling theorme.可以发现判别式的零点一定会满足两个限制$\text{Re}\[\text{Disc}_E\[\mathcal{H})\](\mathbf{k})\]=0,\text{Im}\[\text{Disc}_E\[\mathcal{H}\](\mathbf{k})\]=0$.通过这两个等式可以在布里渊区中确定两个闭合的线,他们的交点就是DPs的位置,而布里渊区是具有周期性的,那么这两条线的交点数目也一定会是偶数次,因此DPs一定也是成对出现的,从而满足doubling theorem.
+判别式还有一个额外的优点,它是单值的,因为多项式$f_E(\mathbf{k})$的系数都是单只的,这个性质在根据$\text{Disc}_E[\mathcal{H}](\mathbf{k})$定义量子化不变量的时候很重要,对证明doubling theorem也同样重要.首先来给出说明性的一个解释为什么DPs一定会满足doubling theorme.可以发现判别式的零点一定会满足两个限制$\text{Re}[\text{Disc}_E[\mathcal{H})](\mathbf{k})]=0,\text{Im}[\text{Disc}_E[\mathcal{H}](\mathbf{k})]=0$.通过这两个等式可以在布里渊区中确定两个闭合的线,他们的交点就是DPs的位置,而布里渊区是具有周期性的,那么这两条线的交点数目也一定会是偶数次,因此DPs一定也是成对出现的,从而满足doubling theorem.
 
 在不存在额外对称性的时候,DPs一般只存在两重简并,热河一个具有高简并度的DPs可以通过加入一个微扰,是的分开成多对具有双重简并的DPs.
 {:.warning}
@@ -124,7 +124,7 @@ $$\nu(\mathbf{k}_D^l)=\frac{i}{2\pi}\oint_{\Gamma(\mathbf{k}_D^l)}d\mathbf{k}\cd
 这里$\Gamma(\mathbf{k}_D^l)$是包含在$\mathbf{k}_D^l$处DP的一个顺时针路径,因为$\text{Disc}_E[\mathcal{H}](\mathbf{k})$是单值的,这个不变量是量子化的,叫做判别式数.它的数学结构与FPs的winding number是相同的,唯一的区别就是在积分中将$\text{det}[\mu-\mathcal{H}(\mathbf{k})]$替换成了$\text{Disc}_E[\mathcal{H}](\mathbf{k})$.非零的$\nu$值保证了DPs对于能隙的打开具有稳定性，利用方程
 $$\nu(\mathbf{k}_D^l)=\frac{i}{2\pi}\oint_{\Gamma(\mathbf{k}_D^l)}d\mathbf{k}\cdot\nabla_\mathbf{k}\ln\text{Disc}_E[\mathcal{H}](\mathbf{k})\label{a5}$$
 
-这里$\Gamma(\mathbf{k}_D^l)$是包含在$\mathbf{k}_D^l$处DP的一个顺时针路径,因为$\text{Disc}_E\[\mathcal{H}\](\mathbf{k})$是单值的,这个不变量是量子化的,叫做**判别式数**.它的数学结构与FPs的winding number是相同的,唯一的区别就是在积分中将$\text{det}[\mu-\mathcal{H}(\mathbf{k})]$替换成了$\text{Disc}_E\[\mathcal{H}\](\mathbf{k})$.为了得到DPs的doublin theorem,对所有在BZ中的DPs的**判别式数进行求和**.
+这里$\Gamma(\mathbf{k}_D^l)$是包含在$\mathbf{k}_D^l$处DP的一个顺时针路径,因为$\text{Disc}_E[\mathcal{H}](\mathbf{k})$是单值的,这个不变量是量子化的,叫做**判别式数**.它的数学结构与FPs的winding number是相同的,唯一的区别就是在积分中将$\text{det}[\mu-\mathcal{H}(\mathbf{k})]$替换成了$\text{Disc}_E[\mathcal{H}](\mathbf{k})$.为了得到DPs的doublin theorem,对所有在BZ中的DPs的**判别式数进行求和**.
 
 $$\sum_{\mathbf{k}_D^l\in BZ}\nu(\mathbf{k}_D^l)=\frac{i}{2\pi}\oint_{\partial BZ}d\mathbf{k}\cdot\nabla_\mathbf{k}\ln\text{Disc}_E[\mathcal{H}](\mathbf{k})$$
 
@@ -156,7 +156,7 @@ $$\nu(\mathbf{k}_D^l)=\sum_{i\neq j}\nu_{ij}(\mathbf{k}_D^l)$$
 
 $$\mathcal{H}=\left(\begin{array}{c}0&F(\mathbf{k})\\ G(\mathbf{k})&0\end{array}\right)\\ F(\mathbf{k})=\sin^2k_x-\frac{1}{2}\sin^2k_y+2i\sin k_x\sin k_y+\cos k_y-1,G(\mathbf{k})=\sin k_x-i\sin k-Y+\cos k_y-1$$
 
-对应的本征能谱为$E_\pm=\pm\sqrt{F(\mathbf{k})G(\mathbf{k})}$,对应的特征多项式为$f_E(\mathbf{k})=E^2-F(\mathbf{k})G(\mathbf{k})$,d对应的判别式$\text{Disc}_E\[\mathcal{H}\](\mathbf{k})=4F(\mathbf{k})G(\mathbf{k})$,存在两个NDPs分别位于$(0,0),(0,\pi)$.利用(\ref{a5})可以得到对应的判别式数为$\pm 1$,因此满足doubling theorem.这两个DPs都是branch cut的终点,所以复能带的branch cut不必要一定就终结在EPs点,如下图所示
+对应的本征能谱为$E_\pm=\pm\sqrt{F(\mathbf{k})G(\mathbf{k})}$,对应的特征多项式为$f_E(\mathbf{k})=E^2-F(\mathbf{k})G(\mathbf{k})$,d对应的判别式$\text{Disc}_E[\mathcal{H}](\mathbf{k})=4F(\mathbf{k})G(\mathbf{k})$,存在两个NDPs分别位于$(0,0),(0,\pi)$.利用(\ref{a5})可以得到对应的判别式数为$\pm 1$,因此满足doubling theorem.这两个DPs都是branch cut的终点,所以复能带的branch cut不必要一定就终结在EPs点,如下图所示
 
 ![png](/assets/images/Non-Hermitian/fd3.png)
 
