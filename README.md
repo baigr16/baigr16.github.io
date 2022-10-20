@@ -15,7 +15,7 @@
 
 ![png](screenshots/b3.png)
 
-# [拓展](https://yxli8023.github.io/samples.html)
-这部分内容正在进行拓展
+# [收藏](https://yxli8023.github.io/samples.html)
+这里整理了一些我觉的比较好的网站，也包括其他人的一些Blog。
 
 ![png](screenshots/b4.png)
