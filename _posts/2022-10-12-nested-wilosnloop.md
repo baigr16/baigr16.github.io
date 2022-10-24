@@ -112,7 +112,7 @@ $$\begin{align}
 
 $$\begin{align}
 [\tilde{\mathcal{W}}^{\nu_x}_{y,\mathbf{k}}]^{j,j'} =& \langle w^j_{x,\mathbf{k}+N_y{\mathbf{\Delta_{k_y}}}}\rvert w^{r}_{x,\mathbf{k}+(N_y-1) {\mathbf{\Delta_{k_y}}}}\rangle \times \nonumber\\
-&\bra{w^{r}_{x,\mathbf{k}+(N_y-1) {\mathbf{\Delta_{k_y}}}}} \ldots \nonumber\\
+&\langle w^{r}_{x,\mathbf{k}+(N_y-1) {\mathbf{\Delta_{k_y}}}}\rvert \ldots \nonumber\\
 &\dots \rvert w^{s}_{x,\mathbf{k}+{\mathbf{\Delta_{k_y}}}}\rangle \langle w^s_{x,\mathbf{k}+{\mathbf{\Delta_{k_y}}}}\rvert w^{j'}_{x,\mathbf{k}}\rangle.
 \end{align}$$
 

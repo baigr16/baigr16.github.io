@@ -15,7 +15,7 @@
 
 ![png](screenshots/b3.png)
 
-# [收藏](https://yxli8023.github.io/samples.html)
+# [收藏](https://yxli8023.github.io/webCollect.html)
 这里整理了一些我觉的比较好的网站，也包括其他人的一些Blog。
 
 ![png](screenshots/b4.png)
