@@ -68,10 +68,14 @@ p^{\nu^\pm_x}_y, p^{\nu^\pm_y}_x \stackrel{M_x,M_y}{=} 0 \text{ or } 1/2.
 此时可以通过对称操作在高对称点的本征值来计算Wannier sector的极化(参考[Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115))，此时Wannier band basis(参考[Nested Wilson loop](https://yxli8023.github.io/2022/10/12/nested-wilosnloop.html))满足
 
 $$\begin{align}
-\hat{M}_y \ket{w^\pm_{x,(k_x,k_y)}}=\alpha^{\pm}_{M_y}(k_x,k_y)\ket{w^\pm_{x,(k_x,-k_y)}} 
+\hat{M}_y \rvert w^\pm_{x,(k_x,k_y)}\rangle=\alpha^{\pm}_{M_y}(k_x,k_y)\rvert w^\pm_{x,(k_x,-k_y)}\rangle 
 \end{align}$$
 
-这里$\alpha^{\pm}_{M_y}(k_x,k_y)$是$U(1)$的位相。在reflection不变动量点$k_{*y}=0 \text{ 和 }\pi$上，$\alpha^{\pm}_{M_y}(k_x, k_{*y})$是$\ket{w^\pm_{x,\bf k}}$ 在 $(k_x,k_{*y})$reflection表示的本征值，对spinless的系统它的取值为$\pm 1$，对于spinfull的系统，取值为$\pm i$。所以如果在 $k_{*y} = 0$ 和 $k_{*y} = \pi$表示有相同的本征值，那么Wannier sector就是平庸的，如果具有不同的值，那么Wannier sector就是非平庸的。所以在一个reflection对称的绝缘体中，Wannier sector极化可以通过下面的表达式计算
+这里$\alpha^{\pm}_{M_y}(k_x,k_y)$是$U(1)$的位相。
+
+在reflection不变动量点$k_{*y}=0 \text{ 和 }\pi$上，$\alpha^{\pm}_{M_y}(k_x, k_{*y})$ 是 $\rvert w^\pm_{x,\bf k}\rangle$ 在 $(k_x,k_{*y})$reflection表示的本征值，对spinless的系统它的取值为$\pm 1$，对于spinfull的系统，取值为$\pm i$。
+
+所以如果在 $k_{*y} = 0$ 和 $k_{*y} = \pi$表示有相同的本征值，那么Wannier sector就是平庸的，如果具有不同的值，那么Wannier sector就是非平庸的。所以在一个reflection对称的绝缘体中，Wannier sector极化可以通过下面的表达式计算
 
 $$\begin{align}
 \text{exp}\left\{i2\pi p^{\nu^\pm_x}_y\right\} = \alpha^{\pm}_{M_y}(k_x,0) \alpha^{\pm\ast}_{M_y}(k_x,\pi),
@@ -532,7 +536,7 @@ $$\begin{align}
 \end{align}
 $$
 
-就可以确定对应的Wannier sector极化，然后通过两个不同方向的Wannier sector得到体系的电四极矩，计算结果与我们对正常态的分析是符合的。
+就可以确定对应的Wannier sector极化，然后通过两个不同方向的Wannier sector得到体系的电四极矩，计算结果与我们对正常态的分析是符合的。完整的代码和计算结果可以[点击这里下载](/assets/data/qxy-symmetry.zip)
 
 # 参数
 - [Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115)
