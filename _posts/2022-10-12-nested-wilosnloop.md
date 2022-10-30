@@ -13,8 +13,8 @@ header:
 article_header:
   type: overlay
   theme: dark
-  background_color: '#123'
-  background_image: true
+  background_color: '#95F2EB'
+  background_image: false
 aside:
     toc: true
 sitemap: true
