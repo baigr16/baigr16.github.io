@@ -35,7 +35,7 @@ timezone: Asia/Shanghai # see https://en.wikipedia.org/wiki/List_of_tz_database_
 ##############################
 author:
   type      : person # "person" (default), "organization"
-  name      : YuXuan Li
+  name      : YuXuan
   url       :
   avatar    : # path or url of avatar image (square)
   bio       : 凝聚态物理在读研究生，喜欢打篮球和捣鼓电脑。
