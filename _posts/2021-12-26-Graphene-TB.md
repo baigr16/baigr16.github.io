@@ -6,7 +6,7 @@ license: true
 toc: true
 key: a20211226
 pageview: true
-# cover: /assets/images/GroupTheory/cube_symmetry.jpg
+cover: /assets/images/research/lattice.png
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'

@@ -310,13 +310,13 @@ end
 main()
 ```
 ## 数据格式化
-```Fortran
+```python
     implicit none
     integer m1,m2,m3
     call main1()
     stop
     end program 
-!=======================================================    
+ !=======================================================    
     subroutine main1()
     ! 读取不明行数的文件
     implicit none

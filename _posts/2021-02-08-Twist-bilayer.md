@@ -6,6 +6,7 @@ license: true
 toc: true
 key: a20210208a
 pageview: true
+cover: /assets/images/Mma/moire-1.png
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'

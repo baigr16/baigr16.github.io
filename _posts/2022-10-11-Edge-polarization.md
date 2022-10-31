@@ -6,7 +6,7 @@ license: true
 toc: true
 key: a20221011
 pageview: true
-# cover: /assets/images/GroupTheory/cube_symmetry.jpg
+cover: /assets/images/topology/edge-pora.png
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
@@ -125,7 +125,9 @@ p_x(R_y) = \sum_j \rho^j(R_y) \nu_x^j
 
 $$p_x^{\rm edge, y}=\sum_{i=1}^{N_y/2}p_x(i_y)$$
 
-从而就可以得到边界极化. 上面的这些过程同样也可以是沿着$y$方向开边界进行计算的
+从而就可以得到边界极化. 上面的这些过程同样也可以是沿着$y$方向开边界进行计算的。
+
+![png](/assets/images/topology/edge-pora.png)
 
 # 参考
 - [Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115)
