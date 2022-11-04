@@ -5,6 +5,7 @@ layout: article
 license: true
 toc: true
 key: a20200919a
+cover: /assets/images/Julia/j1.png
 header:
   theme: dark
   background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'

@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 有时候在文章中经常看到一些结果，会计算wave function profile，其实对应的也可以计算局域电子态密度。
+{:.success}
 <!--more-->
 # 局域电子态密度
 关于局域电子态密度在可以自行去查看其含义和计算方法，这里的计算公式来自[这里](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.80.224515)，文章中有具体的计算公式，但是其中牵扯到了BdG方程，这个不是我项讨论的东西，暂时先略过，想看BdG可以参考[  Bogoliubovde Gennes Method and Its Applications]( https://www.springer.com/gp/book/9783319313122 )，只要清楚它是怎么计算的。直接上代码进行演示。

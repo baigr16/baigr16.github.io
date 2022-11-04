@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 在看文献的过程中通常都会遇到哈密顿量由Pauli矩阵来写出，而哈密顿量的对称操作同样可以通过Pauli矩阵来写出，这样可以直观的看出哈密顿量的对称性到底是什么样的，同时还可以根据对称性，利用Pauli矩阵之间的关系，搞清楚那些项是可以存在的，哪些项是不被对称性所允许的。
+{:.success}
 <!--more-->
 # 基本关系
 首先将[Pauli矩阵](https://en.wikipedia.org/wiki/Pauli_matrices)的基本关系罗列一下

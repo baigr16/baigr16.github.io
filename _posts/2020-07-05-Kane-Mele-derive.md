@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 之前在实空间在未考虑[Rashba自旋轨道耦合]( https://en.wikipedia.org/wiki/Rashba_effect )的情况下计算了[Kane-Mele](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.95.226801)的边界态，在这里详细的推导一下它动量空间和实空间之间是怎么变换的，由于它是在六角点阵上，所以和四方点阵相比就有一定的复杂性，在这里一边学习如何在六角点阵上进行正倒空间的变换，同时考虑[Rashba自旋轨道耦合]( https://en.wikipedia.org/wiki/Rashba_effect )，完全重复一下文章结果。
+{:.success}
 <!--more-->
 
 # 基本定义

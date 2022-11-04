@@ -23,6 +23,7 @@ show_author_profile: true
 ---
 
 计算[Chern数]( https://en.wikipedia.org/wiki/Berry_connection_and_curvature )是最初学习拓扑物理都会遇到的问题，正好在假期空闲的时候自己学习了一下Chern数的数值计算方法，在博客上记录一下希望可以帮助到别人。
+{:.info}
 <!--more-->
 具体的计算方法和细节就不在这里说明了，只要是想学习计算Chern数的肯定了解它在凝聚态物理中的角色，而计算的细节也会在后面的参考文献中给出，只是展示一下结果。
 # Julia语言计算Chern number

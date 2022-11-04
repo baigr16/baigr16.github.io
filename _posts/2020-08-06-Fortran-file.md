@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 Fortran属于比较古老的语言，自然不如现在大火的python等语言那么灵活，但是fortran的计算速度一直是其的优势，有时候再使用的过程中又会遇到要对不同的数据分开输出，这个时候就要利用Fortran的文件批量处理了，不过也是通过数据类型的转换，从而实现的。
+{:.success}
 <!--more-->
 # 代码展示
 ```fortran

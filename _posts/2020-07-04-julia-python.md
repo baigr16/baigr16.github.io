@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 julia在计算速度方面要比python快很多，但是在画图方面由于是诞生不久，所以可用的库函数还是比较少，但是可以通过调用python的库函数进行绘图，取长补短。
+{:.success}
 <!--more-->
 # 安装流程
 - 安装julia

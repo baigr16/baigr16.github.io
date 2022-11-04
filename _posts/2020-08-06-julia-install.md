@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 Jupyter在数据科学方面用起来还是很方便，而且在里面可以同时运行多种变成语言，正好最近换了电脑需要重新安装julia，也就正好记录一下安装过程。
+{:.success}
 <!--more-->
 Jupyter是在Ananconda的组件，所以只要先下载安装[Ananconda](https://www.anaconda.com/)，那么自然就可以看到jupyter，且在安装过程中会自动安装好python，就不用再单独安装python了，而且此时的jupyter中是自带python的，接下来就是安装julia了。
 

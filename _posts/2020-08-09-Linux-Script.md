@@ -22,6 +22,7 @@ author: YuXuan
 show_author_profile: true
 ---
 最近因为要大量重复的跑一些程序，而且只是参数的小修，所以干脆花点时间整理一个界几个shell脚本，来自动的完成程序的编译及执行。
+{:.info}
 <!--more-->
 # 批量编译Fortran并运行
 ```shell

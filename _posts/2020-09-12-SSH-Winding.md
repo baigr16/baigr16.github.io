@@ -21,6 +21,9 @@ show_author_profile: true
 ---
 在这篇博客中通过简单的SSH模型，来计算一下[Winding Number](https://en.wikipedia.org/wiki/Winding_number)这一拓扑不变量。虽然这个模型很简单，但是最近在学习Non-Hermitian的文章中，很多都是以这个模型为基础，研究非厄米体系的一些基本性质，其中也有通过计算非厄米系统的Winding Number来联系体系的拓扑性质。这里我就暂时不涉及非厄米的内容，因为我也只是对这个课题了解一点点内容，这里主要计算厄密SSH模型的Winding Number。
 {:.info}
+
+![png](/assets/images/research/w2.gif)
+
 <!--more-->
 # Winding Number
 ## 直观描述
@@ -28,7 +31,6 @@ Winding number是指平面一条闭合的曲线以逆时针方向绕一点所转
 
 ![png](/assets/images/research/w1.png)
 
-![png](/assets/images/research/w2.gif)
 
 ## 数学表达
 平面上的曲线可以通过参数方程来表示 
