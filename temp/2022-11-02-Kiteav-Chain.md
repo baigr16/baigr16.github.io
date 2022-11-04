@@ -50,9 +50,8 @@ $$
 在Majorana算符表示下，哈密顿量为
 
 $$
-\begin{aligned}
-H=&-\frac{\mu}{2} \sum_{x=1}^{N}\left(1+\mathrm{i} \gamma_{B, x} \gamma_{A, x}\right) \\
-&-\frac{\mathrm{i}}{4} \sum^{N-1}\left[(\Delta+t) \gamma_{B, x} \gamma_{A, x+1}+(\Delta-t) \gamma_{A, x} \gamma_{B, x+1}\right]\label{q1}
+
+H=-\frac{\mu}{2} \sum_{x=1}^{N}\left(1+\mathrm{i} \gamma_{B, x} \gamma_{A, x}\right)-\frac{\mathrm{i}}{4} \sum^{N-1}\left[(\Delta+t) \gamma_{B, x} \gamma_{A, x+1}+(\Delta-t) \gamma_{A, x} \gamma_{B, x+1}\right]\label{q1}
 \end{aligned}
 $$
 
@@ -273,9 +272,9 @@ if __name__=="__main__":
 
 其动量空间和实空间的结果分别为
 
-![png](../assets/images/Majorana/band-1.00.png)
+![png](/assets/images/Majorana/band-1.00.png)
 
-![png](../assets/images/Majorana/real-vals.png)
+![png](/assets/images/Majorana/real-vals.png)
 
 
 # 参考
