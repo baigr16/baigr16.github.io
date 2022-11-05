@@ -27,6 +27,7 @@ show_author_profile: true
 
 # 个人介绍
 ![Image](/assets/images/20180419/huizhou6.png){:.circle.border.shadow,:width="330px",:height="495px"}
+
 凝聚态物理研究生在读，方向主要是做拓扑超导，偏爱计算机，却也不偏科数学。平时能用电脑解决的绝不会自己动手，导致手算能力有所下降。
 # 联系方式
 

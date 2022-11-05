@@ -49,11 +49,7 @@ $$
 
 在Majorana算符表示下，哈密顿量为
 
-$$
-
-H=-\frac{\mu}{2} \sum_{x=1}^{N}\left(1+\mathrm{i} \gamma_{B, x} \gamma_{A, x}\right)-\frac{\mathrm{i}}{4} \sum^{N-1}\left[(\Delta+t) \gamma_{B, x} \gamma_{A, x+1}+(\Delta-t) \gamma_{A, x} \gamma_{B, x+1}\right]\label{q1}
-\end{aligned}
-$$
+$$H=-\frac{\mu}{2} \sum_{x=1}^{N}\left(1+\mathrm{i} \gamma_{B, x} \gamma_{A, x}\right)-\frac{\mathrm{i}}{4} \sum^{N-1}\left[(\Delta+t) \gamma_{B, x} \gamma_{A, x+1}+(\Delta-t) \gamma_{A, x} \gamma_{B, x+1}\right]\label{q1}\end{aligned}$$
 
 这个时候就可以像分析SSH模型一样来分析Kitaev chain。首先取$\mu<0,t=\Delta=0$，此时系统处于平庸项，将这个参数代入哈密顿量\eqref{q1}中发现，原胞中的两个Majorana算符是相互绑定的，如上图所示
 
