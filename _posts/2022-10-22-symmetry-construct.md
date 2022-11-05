@@ -13,10 +13,9 @@ header:
 article_header:
   type: overlay
   theme: dark
-  background_color: '#123'
-  background_image: false
-sidebar:
-  nav: layouts
+  background_color: '#203028'
+  background_image:
+    gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'
 aside:
   toc: true
 sitemap: true
@@ -57,9 +56,7 @@ $$\begin{align}&\sin(k_x)\rightarrow\sin(-k_x)\rightarrow -\sin(k_x)\quad \mathc
 通过上面的这些对易以及反对易关系，就可以确定$\mathcal{M}_x$的具体形式，但是需要注意的是，因为我们可能处理的是spinless或者spinfull的体系，所以到底镜面对称操作中是否存在虚数$i$就要根据具体情况来选择了。我这里给出的程序同时包含了这两种情况，所以对于具体问题的分析，还是需要具体对待，这里也就是给了一点分析的方法。
 
 # 代码
-因为无法在Blog中粘贴Mathematica的代码，所以截图示意一下，完整的代码[点击这里下载](/assets/data/symmetry.nb)
-<a class="button button--success button--rounded button--lg" href="/assets/data/symmetry.nb">
-<i class="fas fa-download"></i> 点击这里下载</a>
+因为无法在Blog中粘贴Mathematica的代码，所以截图示意一下，完整的代码<a class="button button--success button--rounded button--lg" href="/assets/data/symmetry.nb"><i class="fas fa-download"></i> 点击这里下载</a>
 
 
 ![png](/assets/images/Mma/symmetry.png)
