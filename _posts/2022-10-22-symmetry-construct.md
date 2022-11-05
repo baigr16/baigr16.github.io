@@ -15,8 +15,8 @@ article_header:
   theme: dark
   background_color: '#123'
   background_image: false
-aside:
-    toc: true
+sidebar:
+  nav: layouts
 sitemap: true
 mathjax: true
 author: YuXuan
