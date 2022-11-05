@@ -56,6 +56,9 @@ $$\begin{align}&\sin(k_x)\rightarrow\sin(-k_x)\rightarrow -\sin(k_x)\quad \mathc
 
 # 代码
 因为无法在Blog中粘贴Mathematica的代码，所以截图示意一下，完整的代码[点击这里下载](/assets/data/symmetry.nb)
+<a class="button button--success button--rounded button--lg" href="/assets/data/symmetry.nb">
+<i class="fas fa-download"></i> 点击这里下载</a>
+
 
 ![png](/assets/images/Mma/symmetry.png)
 
