@@ -15,6 +15,7 @@ author: YuXuan
 show_author_profile: true
 ---
 最近重学拓扑超导的过程中, 找到了一些很好的学术视频,这里顺便也就整理一下相关的内容,方便自己随时再看.
+**大部分视频都是YouTube**上面的.
 {:.success}
 # Vortex Majorana
 
