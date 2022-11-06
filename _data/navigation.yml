@@ -39,5 +39,5 @@ header:
     key: webCollect-page
 
   - title: 学术视频整理
-  url:   /VideoCollect.html
-  key: VideoCollect-page
+    url:   /VideoCollect.html
+    key: VideoCollect-page
