@@ -1,11 +1,10 @@
 ---
 layout: article
 titles:
-key: page-about
 license: true
 show_title: false
 toc: true
-key: page-about
+key: VideoCollect-page
 pageview: true
 aside:
     toc: true
