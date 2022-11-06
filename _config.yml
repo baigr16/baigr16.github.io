@@ -20,7 +20,7 @@ text_skin: ocean # "default" (default), "dark", "forest", "ocean", "chocolate", 
 highlight_theme: tomorrow # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : https://yxli8023.github.io/ # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : 主页
+title   : YuXuan's Blog
 description: > # this means to ignore newlines until "Language & timezone"
   整理平时学习到的方法和代码实现。
 
@@ -37,8 +37,8 @@ author:
   type      : person # "person" (default), "organization"
   name      : YuXuan
   url       :
-  avatar    : # path or url of avatar image (square)
-  bio       : 凝聚态物理在读研究生，喜欢打篮球和捣鼓电脑。
+  avatar    : /assets/images/20180419/huizhou6.png # path or url of avatar image (square)
+  bio       : 凝聚态物理在读研究生，目前研究方向是拓扑超导，喜欢打篮球和捣鼓电脑。
   email     : yxli406@gmail.com
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
@@ -140,7 +140,7 @@ comments:
     app_id      : qJyudIL9jSK9p4tB3oImt8eO-gzGzoHsz # LeanCloud App id
     app_key     : nIxxT4qRnTzWl4nPGTuAyjBB # LeanCloud App key
     placeholder : Comment # Prompt information
-    visitor     : # false (default)
+    visitor     : true # false (default)
     meta        : mail # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
 
 
@@ -157,11 +157,11 @@ pageview:
 ## => Search
 ##############################
 search:
-  provider: default # "default" (default), false, "google", "custom"
+  provider: google # "default" (default), false, "google", "custom"
 
   ## Google Custom Search Engine
   google:
-    custom_search_engine_id: # Google Custom Search Engine ID
+    custom_search_engine_id: 1707831bee12a4d57 # Google Custom Search Engine ID
 
 
 ## => Analytics
