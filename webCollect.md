@@ -127,6 +127,10 @@ show_author_profile: true
 - [Matplotlib](https://matplotlib.org/stable/index.html):Matplotlib官网，上面有很多例子可以进行参考
 
 
+# Vortex Majorana
+
+<iframe width="1920" height="1080" src="https://www.youtube.com/embed/6GubevjWzXI" title="Ziqiang Wang - Quantum Anomalous Vortex and Vortex Majorana Zero Mode in FeSC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 <!-- <div>{%- include extensions/netease-cloud-music.html id='413812448' -%}</div>
