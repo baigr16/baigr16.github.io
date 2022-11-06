@@ -129,7 +129,7 @@ show_author_profile: true
 
 # Vortex Majorana
 
-<iframe width="1920" height="1080" src="https://www.youtube.com/embed/6GubevjWzXI" title="Ziqiang Wang - Quantum Anomalous Vortex and Vortex Majorana Zero Mode in FeSC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="500" height="400" src="https://www.youtube.com/embed/6GubevjWzXI" title="Ziqiang Wang - Quantum Anomalous Vortex and Vortex Majorana Zero Mode in FeSC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
