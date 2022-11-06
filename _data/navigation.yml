@@ -38,6 +38,6 @@ header:
     url:   /webCollect.html
     key: webCollect-page
 
-  - title: 学术视频整理
+  - title: 学术视频
     url:   /VideoCollect.html
     key: VideoCollect-page
