@@ -20,7 +20,9 @@ $main-color-theme-light: rgba(#000, .9);
 $main-color-theme-dark:  rgba(#fff, .9);
 
 // page background
-$background-color: #feffff;
+// $background-color: #feffff;
+
+$background-color: linear-gradient(#fbeddc, #c5fafd)
 
 // text colors
 $text-color-theme-light-d: rgba(#000, .95);
