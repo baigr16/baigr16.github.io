@@ -37,3 +37,7 @@ header:
   - title: 网站收藏
     url:   /webCollect.html
     key: webCollect-page
+
+  - title: 学术视频
+    url:   /VideoCollect.html
+    key: VideoCollect-page
