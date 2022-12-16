@@ -92,5 +92,7 @@ if __name__=="__main__":
 
 虽然这里的环境块为`\python`，在我实际的测试中插入`Julia`的代码也是没有问题的。
 
+![png](/assets/images/latex/latex-code.png)
+
 
 
