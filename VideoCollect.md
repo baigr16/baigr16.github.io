@@ -23,4 +23,11 @@ show_author_profile: true
 
 # 转角石墨烯(TBG)
 
+- Pablo Jarillo-Herrero 2018年物理学会议将TBG实验工作
+<iframe width="800" height="500" src="https://www.youtube.com/embed/O2HVCjhuJlE" title="Magic-Angle Graphene Superlattices: Pablo Jarillo-Herrero" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- TBG的简单介绍
 <iframe width="800" height="500" src="https://www.youtube.com/embed/LB11-exGvBQ" title="TWISTED BILAYER GRAPHENE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
