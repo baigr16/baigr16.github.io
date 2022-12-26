@@ -22,8 +22,9 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-Andreev反射作为超导独特的性质，在很多方面都有独特的现象，最近学习相关方面的知识，这里就先整理了一下。
 ![png](/assets/images/Fortran/Pasted image 20221226121317.png)
+
+Andreev反射作为超导独特的性质，在很多方面都有独特的现象，最近学习相关方面的知识，这里就先整理了一下。
 {:.info}
 <!--more-->
 
