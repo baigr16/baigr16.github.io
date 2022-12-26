@@ -128,5 +128,6 @@ show_author_profile: true
 ![png](/assets/images/ref.png)
 
 # 文章发表
-1.[Rotational symmetry breaking and partial Majorana corner states in a heterostructure based on high-
+- [Rotational symmetry breaking and partial Majorana corner states in a heterostructure based on high-
 $T_c$ superconductors](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.103.024517)
+- [Higher-order topological state induced by $d$-wave competing orders in high-$T_c$ superconductor based heterostructures](https://link.aps.org/doi/10.1103/PhysRevB.106.205128)
