@@ -41,3 +41,5 @@ show_author_profile: true
 ![png](/assets/images/20230505/quantum%20metric_page-0009.jpg)
 
 
+接下来可能所有的笔记都会是以图片形式整理了，因为考虑到要在公众号上同步，而且公众号里面不能出现公式引用的链接(目前我还没解决这个问题，最近有点忙，后面会尝试解决)，所以所有的笔记都是用`Latex`模板整理的，然后在公众号和Blog上同步。
+{:.warning}
