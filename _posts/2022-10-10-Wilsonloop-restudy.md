@@ -210,3 +210,8 @@ $$p=-\frac{i}{2\pi}\log\det[e^{-i\int_k^{k+2\pi}\mathcal{A}_kdk}]=-\frac{1}{2\pi
 所以电子的极化性质就是有占据态空间的Berry位相决定的。
 
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

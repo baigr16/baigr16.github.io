@@ -99,3 +99,9 @@ $$\langle\mathcal{O}\rangle=\frac{1}{N} \sum_{n \mathbf{k}}\left\langle\psi_{n \
 # 参考
 - 1.固体物理(黄昆)
 - 2.[Berry Phases in Electronic Structure Theory](https://books.google.com/books/about/Berry_Phases_in_Electronic_Structure_The.html?id=485FtgEACAAJ)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

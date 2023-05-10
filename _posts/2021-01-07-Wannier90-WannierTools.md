@@ -146,3 +146,9 @@ end kpoints
 ![png](/assets/images/wannierTools/W90_3.png)
 
 得到了`lead_hr.dat`这个文件数据之后,就可以利用WannierTools来计算其相关的性质了.
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

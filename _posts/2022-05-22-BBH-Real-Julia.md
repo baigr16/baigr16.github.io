@@ -346,3 +346,9 @@ if __name__=="__main__":
 ![eigval](/assets/images/Julia/bbh-1.png){:height="50%" width="50%"}
 ![ldos](/assets/images/Julia/bbh-2.png){:height="50%" width="50%"}
 ![charge](/assets/images/Julia/bbh-3.png){:height="50%" width="50%"}
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

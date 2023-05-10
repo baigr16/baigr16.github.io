@@ -397,3 +397,9 @@ end
 # 参考文献
 - [Chern Numbers in Discretized Brillouin Zone](https://journals.jps.jp/doi/abs/10.1143/JPSJ.74.1674)
 - [Numerical determination of Chern numbers and critical exponents for Anderson localization in tight-binding and related models](https://www.semanticscholar.org/paper/%E2%80%9CNumerical-determination-of-Chern-numbers-and-for-Talkington/77f87a883c13e6047559f9a1132ff7f3dcfab84b)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

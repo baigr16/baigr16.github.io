@@ -130,3 +130,9 @@ vasprun.xml文件的打开操作和DOS中的操作时相同的,这里有一些�
 
 # 参考
 - 1.[VASP wiki](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

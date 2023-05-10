@@ -739,3 +739,8 @@ if __name__ == '__main__':
 # 参考
 - 1. Berry Phases in Electronic Structure Theory Electric Polarization, Orbital Magnetization and Topological Insulators
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

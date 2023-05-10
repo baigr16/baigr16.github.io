@@ -141,3 +141,9 @@ $$H(\mathbf{k})=\sqrt{2B}\left(\begin{array}{cc}-\frac{k_x}{\sqrt{2B}}&\sqrt{n}\
 2. Topological insulator and topological superconductor
 
 3.[Dirac Quantum Wells at Domain Walls in Antiferromagnetic Topological Insulators](https://arxiv.org/pdf/2104.00690.pdf)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

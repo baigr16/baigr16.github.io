@@ -144,3 +144,9 @@ $$
 
 # 参考
 1.[Boundary Criticality of PT-Invariant Topology and Second-OrderNodal-Line Semimetals](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.126403)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

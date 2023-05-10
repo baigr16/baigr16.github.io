@@ -157,3 +157,9 @@ srun vasp_std
 
 # 参考
 - 1.[vasp tutorial: 12. graphene band structure (with projection on atomic orbitals)](https://www.youtube.com/watch?v=I9uB-px_YUY&ab_channel=QuantumNerd)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

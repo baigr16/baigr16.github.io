@@ -176,3 +176,9 @@ plt.show()
 - 2.[How to visualiza Riemann Surface](https://mathematica.stackexchange.com/questions/31904/how-to-visualize-riemann-surfaces)
 - 3.[Riemann surface plot using Python](https://stackoverflow.com/questions/63078039/riemann-surface-plot-using-python)
 - 4.[How can I create a 4D complex surface plot?](https://stackoverflow.com/questions/63144394/how-can-i-create-a-4d-complex-surface-plot)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

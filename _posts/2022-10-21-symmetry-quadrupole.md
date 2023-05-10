@@ -544,3 +544,9 @@ $$
 - [Nested Wilson loop](https://yxli8023.github.io/2022/10/12/nested-wilosnloop.html)
 
 - [Detection of second-order topological superconductors by Josephson junctions](https://link.aps.org/doi/10.1103/PhysRevResearch.2.012018)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

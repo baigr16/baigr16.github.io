@@ -137,3 +137,9 @@ G
 mpirun -np 24 vasp_std &
 ```
 此时的计算相比于前一步自洽需要更长的时间.
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

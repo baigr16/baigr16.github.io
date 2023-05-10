@@ -41,3 +41,9 @@ show_author_profile: true
 1.[Majorana Corner Modes in a High-Temperature Platform](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.096803)
 
 2.[Rotational symmetry breaking and partial Majorana corner states in a heterostructure based on high-$T_c$ superconductors](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.103.024517)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

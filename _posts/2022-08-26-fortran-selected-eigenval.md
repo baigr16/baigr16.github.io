@@ -343,3 +343,9 @@ show_author_profile: true
 # 参考
 - [CHEEVD函数文档](https://netlib.org/lapack/explore-html/d9/de3/group__complex_h_eeigen_ga9f7c713a0119e777afe726e54feb6ef7.html)
 - [CHEEVD实例](https://www.intel.com/content/www/us/en/develop/documentation/onemkl-lapack-examples/top/least-squares-and-eigenvalue-problems/symmetric-eigenproblems/heevx-function/cheevx-example/cheevx-example-fortran.html)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -375,3 +375,9 @@ bands_plot_project = 6,7
 
 前半部分的学习先告一段路,后面的实例学习需要用到Wannier90的另外一个工具,先要熟悉一下对应的理论知识.
 {:.success}
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

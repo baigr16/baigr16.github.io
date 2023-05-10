@@ -342,3 +342,9 @@ def main():
 这里将输入的参量进行了格式化，和文件名匹配，再进行绘图。
 
 ![png](/assets/images/python/fig5.png)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -108,3 +108,9 @@ $$2\times\frac{L^2}{(2\pi)^2}\times\pi K_F^2=N$$
 
 # 参考
 - 1.固体物理(黄昆)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

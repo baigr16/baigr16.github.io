@@ -52,3 +52,9 @@ export PATH=$PATH:/home/yxli/opt/wannier_tools-master/bin
 ```
 
 将这个执行文件的路径追加到`PATH`中即可,然后就可以完整的使用这个工具了.关于这个工具的使用手册和一些技术细节,可以参考`doc`这个文件夹中的内容.以上就是`wannierTools`安装的全部过程了.
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

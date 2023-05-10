@@ -77,3 +77,9 @@ Eprint = {arXiv:1903.01144},
 ```
 
 在导言区加入这句话之后，你之后的所有公式都以S开头的。这里要注意，这个和附录不要同时使用，不然的话附录中的每个section中的公式编号会是独立的，每个section的公式编号会以S开头，但是都会重新以1为起始重新编号。上面的设置参考了[这里]( https://tex.stackexchange.com/questions/164640/customize-equation-numbering-for-equation-environment ).
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

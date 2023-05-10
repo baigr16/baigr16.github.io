@@ -131,3 +131,9 @@ $$p_x^{\rm edge, y}=\sum_{i=1}^{N_y/2}p_x(i_y)$$
 
 # 参考
 - [Electric multipole moments, topological multipole moment pumping, and chiral hinge states in crystalline insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.96.245115)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

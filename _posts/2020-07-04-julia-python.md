@@ -41,3 +41,9 @@ ENV["PYTHON"] = "D:\\anaconda3\\python.exe"
 anaconda中给python安装包的方式如下，首先在系统中找到你anaconda的命令行，然后进入命令行执行**pip install package-name**，这样你就可以成功的为anaconda中的python安装外部库了。
 ![png](/assets/images/20200704/anaconda.png)
 在确定了python的绘图库以及julia的环境变量中python的位置也设置成功的画，可以进行PyPlot的安装，在Julia中执行**pkg.add("PyPlot")**，在使用Pkg的时候，记得先导入(import Pkg)，之后就可以进行安装了，不过可能还会遇到问题，不过这时候可以执行**Pkg.build("PyCall")**，重新编译一下调用python的这个包，然后再安装PyPlot，应该就可以完整安装了，想在程序中使用的话，调用**using PyPlot**即可。如果是再using过程中出现错误的话，同样可以使用上面提到的重新编译库函数的方式来修复错误，这个信息你也可能会在错误信息提示中看到，可以自己摸索。差不多上面就是我在安装过程中遇到和解决问题的方式。
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

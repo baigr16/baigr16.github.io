@@ -40,3 +40,9 @@ using IJulia
  
 以此执行上面的三个命令之后，即可成功在Jupyter中安装Julia，接下来打开Jupyter进行新建文件是，就可以看到Julia的命令了
 ![png](/assets/images/Julia/julia2.png)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

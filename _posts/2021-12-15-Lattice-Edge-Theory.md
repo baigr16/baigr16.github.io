@@ -206,3 +206,8 @@ $$
 # 参考
 - 1.[Majorana Corner Modes in a High-Temperature Platform](https://arxiv.org/abs/1803.08545)
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -81,3 +81,9 @@ PPT使用Latex制作的,源代码可以[点击这里下载](/assets/pdf/Non-Herm
 2.[Non-Hermitian Chern Bands](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.136802)
 
 3.[Non-Hermitian Physics](https://www.tandfonline.com/doi/abs/10.1080/00018732.2021.1876991?journalCode=tadp20)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

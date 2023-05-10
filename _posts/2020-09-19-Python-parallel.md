@@ -59,3 +59,9 @@ print(pa.cpu_count())
 
 这里去掉闭包装饰器`@jit`是因为加上它之后,python在计算循环的时候会非常快,从而看不到上面的多进程执行的过程,这里为了展示一下并行的效果,所以注释掉该语句,关于python循环加速可以参考[Julia,Python,Fortran,Mathematica循环计算速度比较](https://yxli8023.github.io/2020/09/14/Loop-speed.html)这篇博客的内容.
 {:.success}
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

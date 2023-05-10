@@ -553,3 +553,9 @@ show_author_profile: true
 这就是通过Fortran实现的wave function profile 计算，结果如下：
 ![png](/assets/images/research/wave.png)
 这里计算的模型来自于这篇文章[Majorana Corner Modes in a High-Temperature Platform](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.096803)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

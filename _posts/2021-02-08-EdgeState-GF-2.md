@@ -674,3 +674,9 @@ splot 'openy-bhz.dat' u 1:2:3 w pm3d
 1. [Highly convergent schemes for the calculation of bulk and surface Green functions](https://iopscience.iop.org/article/10.1088/0305-4608/15/4/009)
 
 2. [参考资料](/assets/pdf/sg8_6.pdf)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

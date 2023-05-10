@@ -53,3 +53,9 @@ echo "export PATH=\$PATH:$TORQUE/bin:$TORQUE/sbin" >> /etc/profile
 source /etc/profile
 # Ref
 [Blog](https://blog.csdn.net/zhaosongbin/article/details/87914746)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -102,3 +102,9 @@ $$A_x\sin(k_x)\sigma_x*s_ys_zs_y=A_x\sin(k_x)\sigma_x*is_xs_y=A_x\sin(k_x)\sigma
 这一项在等式的右边为$A_x\sin(-k_x)\sigma_xs_z=-A_x\sin(k_x)\sigma_xs_z$，结果和上面完全符合。
 
 剩余的内容就不逐一验证了，类似的操作都是一样的。
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

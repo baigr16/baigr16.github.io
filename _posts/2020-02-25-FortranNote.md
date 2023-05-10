@@ -568,3 +568,8 @@ selected_char_kind(name)	该函数作用于字符串上，给它输入一个字�
 >
 > end interface
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

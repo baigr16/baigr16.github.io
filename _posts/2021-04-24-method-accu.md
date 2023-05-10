@@ -175,3 +175,9 @@ $$i\sigma_y\phi_1(x)+\sigma_z\phi_1(x)=0\rightarrow \sigma_x\phi_1(x)=-\phi_1(x)
 $$i\partial_x\xi(x)=E\xi(x)$$
 
 解$\xi(x)=e^{ik_xx}$是一个在$x$边界上以能量$E=k_x$传播的手性模.
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -592,3 +592,9 @@ H^{\mathrm{BdG}}(\mathbf{k})&=(\xi_{\bf k}\sigma_z-\mu +{\bf h\cdot s})\tau_z+2\
 4.[Majorana Corner Modes in a High-Temperature Platform](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.121.096803)
 
 5.[n-Plane Zeeman-Field-Induced Majorana Corner and Hinge Modes in an s-Wave Superconductor Heterostructure](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.124.227001)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

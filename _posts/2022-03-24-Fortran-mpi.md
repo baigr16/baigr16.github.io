@@ -315,3 +315,9 @@ Process 2 received: 42
 
 # 参考
 - 1.[Using MPI with Fortran](https://curc.readthedocs.io/en/latest/programming/MPI-Fortran.html)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

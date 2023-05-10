@@ -157,3 +157,9 @@ $$\begin{align}
 这里$j,j'\in 1,\cdots N_W$要遍历Wannier sector中所有的Wannier能带。其实也就是要计算Wannier能带上的Berry位相，最终就可以得到电四极矩。
 
 所以通常所研究的Nested Wilson loop，其实也就是要在新的Wannier basis下面再计算Berry位相。
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

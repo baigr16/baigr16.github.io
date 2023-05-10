@@ -264,3 +264,9 @@ $$
 - 1.固体理论(李正中)
 - 2.[Majorana quasiparticles in condensed matter](https://arxiv.org/pdf/1711.00011.pdf)
 - 3.[Topological Superconductivity ](https://www.manep.ch/saasfee15/pdf/Black-Schaffer-1-2x2.pdf)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

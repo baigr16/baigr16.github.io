@@ -67,3 +67,9 @@ $$\begin{align}&\sin(k_x)\rightarrow\sin(-k_x)\rightarrow -\sin(k_x)\quad \mathc
 $$\mathcal{M}_i^2=-1$$
 
 而且通过计算电四极矩也发现，它文章中给出的镜面对称算符根本得到不$Q_{xy}$的量子化值，得到的始终是零。
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

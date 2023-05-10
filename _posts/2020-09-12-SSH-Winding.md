@@ -114,3 +114,9 @@ end
 1.[A Short Course On Topological Insulator](https://arxiv.org/pdf/1509.02295.pdf)
 
 2.[SSH模型的哈密顿量、能带图和卷绕数](http://www.guanjihuan.com/archives/5025)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

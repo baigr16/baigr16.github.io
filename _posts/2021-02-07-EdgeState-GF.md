@@ -164,3 +164,9 @@ main()
 
 # 参考
 1. [Helical edge and surface states in HgTe quantum wells and bulk insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.77.125319)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

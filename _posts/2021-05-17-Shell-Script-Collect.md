@@ -247,3 +247,9 @@ alias dir='sh dir-trans.sh'
 dir file
 ```
 就可以直接通过命令行这种方式来实现和服务器之间的文件传输了.
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

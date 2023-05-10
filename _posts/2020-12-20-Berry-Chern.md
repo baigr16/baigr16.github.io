@@ -48,3 +48,9 @@ show_author_profile: true
 ![png](/assets/images/20201220/Berry_Page12.png)
 
 至于PPT的源代码,可以在[这里下载](/assets/pdf/BerryPhase.7z)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

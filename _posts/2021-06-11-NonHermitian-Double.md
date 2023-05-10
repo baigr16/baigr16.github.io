@@ -205,3 +205,8 @@ $$H_{3D}(\mathbf{k})=(m(\mathbf{k})+\cos k_z)\Gamma_0+\sqrt{2}\sin (k_x+\pi/4)\G
 - 4.[Chiral Anomalies and the Nielsen - Ninomiya No-Go Theorem](https://mcgreevy.physics.ucsd.edu/s13/final-papers/2013S-215C-Kadakia-Nirag.pdf)
 
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

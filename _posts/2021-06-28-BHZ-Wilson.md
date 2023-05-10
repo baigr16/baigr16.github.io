@@ -190,3 +190,8 @@ plot for [i=2:3] 'test-format.dat' u 1:i w p  pt 7  ps 1.1 lc 'red' # 绘制多�
 2.[An equivalent expression of $Z_2$ Topological Invariant for band insulators using Non-Abelian Berry's connection](https://arxiv.org/abs/1101.2011)
 
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

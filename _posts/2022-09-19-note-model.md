@@ -75,3 +75,9 @@ show_author_profile: true
 
 # 下载
 暂时先将模板整理到这里，我觉得我的需求是满足了，感兴趣的可以[点击这里下载](/assets/data/note-model.zip)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -328,3 +328,8 @@ gnuplot slabek.gnu
 
 所以这里的方法是完全正确的.
 
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

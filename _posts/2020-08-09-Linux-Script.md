@@ -71,3 +71,9 @@ getdir $root_dir
 alias ps='ps -u yxli'   # 查看自己所有进程
 alias proid='ps|grep *.out'  #查看以out结尾的进程(正好可以配合前面批量编译Fortran来使用)
 ```
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

@@ -74,3 +74,9 @@ $$S=-\frac{1}{\beta}\sum_m\frac{2\omega_q}{\omega_m^2+\omega_q^2}\frac{1}{ip_n+i
 1.[数学物理方法(吴崇试)](https://book.douban.com/subject/1154867/)
 
 2.[Many-Particle Physics(Third Edition)](https://www.springer.com/gp/book/9780306463389)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

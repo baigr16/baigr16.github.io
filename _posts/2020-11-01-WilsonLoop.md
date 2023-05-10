@@ -97,3 +97,9 @@ plot(k,ang)
 - 1.[Berry Phases in Electronic Structure Theory](https://books.google.com/books/about/Berry_Phases_in_Electronic_Structure_The.html?id=485FtgEACAAJ)
 - 2.[Equivalent expression of Z2 topological invariant for band insulators using the non-Abelian Berry connection](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.84.075119)
 - 3.[Higher-Order Weyl Semimetals](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.146401)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

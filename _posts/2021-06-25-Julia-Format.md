@@ -259,3 +259,9 @@ splot 'test-format.dat' u 1:2:3 w pm3d
 
 # 代码下载
 这些程序的源代码,可以[点击这里下载](/assets/data/jf.zip)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)

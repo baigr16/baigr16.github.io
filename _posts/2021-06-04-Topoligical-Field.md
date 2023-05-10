@@ -1248,10 +1248,12 @@ T^\dagger H_{2n-1}(\mathbf{p})T=H_{2n-1}(-\mathbf{p}),\quad T^*T=-\mathbb{I},\qu
 
 
 
-
-
-
-
 # 参考
 
 - 1.[Topological field theory of time-reversal invariant insulators](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.78.195424)
+
+# 公众号
+相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
+{:.info}
+
+![png](/assets/images/qrcode.jpg)
