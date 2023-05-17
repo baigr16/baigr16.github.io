@@ -23,6 +23,7 @@ author: YuXuan
 show_author_profile: true
 ---
 解析求解拓扑绝缘体边界态
+{:.info}
 <!--more-->
 
 # 前言

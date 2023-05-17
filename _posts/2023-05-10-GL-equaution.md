@@ -23,6 +23,7 @@ author: YuXuan
 show_author_profile: true
 ---
 在理解超导体的基本物理现象时，通过唯象的金兹堡-朗道理论(GL theory)是个不错的出发点，通过GL理论与电动力学中的麦克斯韦方程可以描述超导体的许多性质，其中之一就是超导完全抗磁性(Meissner 效应)。
+{:.info}
 <!--more-->
 
 # 前言
