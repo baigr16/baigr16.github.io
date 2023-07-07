@@ -23,6 +23,7 @@ author: YuXuan
 show_author_profile: true
 ---
 关于超导约瑟夫森效应的笔记。
+{:.info}
 <!--more-->
 
 # 前言

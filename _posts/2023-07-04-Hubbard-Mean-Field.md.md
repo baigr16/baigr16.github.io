@@ -23,6 +23,7 @@ author: YuXuan
 show_author_profile: true
 ---
 简单先整理一下Hubbard模型平均场处理的方法。
+{:.info}
 <!--more-->
 
 # 前言
