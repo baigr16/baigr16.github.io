@@ -30,7 +30,7 @@ show_author_profile: true
 
 
 # 量子几何
-<iframe width="800" height="500" src="https://www.youtube.com/watch?v=f3njwqG4l28&list=PLCrLq3QTRtn_sJ3CfCaTdteGPusGzwUmy&index=6" title="Quantum Geometry in flat-band superconductivity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="800" height="500" src="https://www.youtube.com/embed/f3njwqG4l28" title="Quantum Geometry in flat-band superconductivity" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
