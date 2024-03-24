@@ -9,7 +9,7 @@ pageview: true
 # cover: /assets/images/GroupTheory/cube_symmetry.jpg
 header:
   theme: dark
-  background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
+  background: 'linear-gradient(to right, rgb(101, 78, 163), rgb(234, 175, 200))'
 article_header:
   type: overlay
   theme: dark
