@@ -9,11 +9,11 @@ pageview: true
 # cover: /assets/images/GroupTheory/cube_symmetry.jpg
 header:
   theme: dark
-  background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))'
+  background: 'linear-gradient(135deg, rgb(34, 139, 87), rgb(139, 34, 139))' # 顶部标签背景色
 article_header:
   type: overlay
   theme: dark
-  background_color: '#123'
+  background_color: '#123'   # 设置文章头部背景颜色
   background_image: false
 aside:
     toc: true
