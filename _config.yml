@@ -127,8 +127,8 @@ comments:
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
   gitalk:
-    clientID    : cad4631757a6cb6cb8f7 # GitHub Application Client ID
-    clientSecret: 88e8853619cf8e8dfba279c8d3330e1c80c6de67 # GitHub Application Client Secret
+    clientID    : ebdc5be4758a00b807ac # GitHub Application Client ID
+    clientSecret: 9f449f8a8e2d50f2e29ab5ee4875ee9fe3bb8c59 # GitHub Application Client Secret
     repository  : yxli8023.github.io # GitHub repo
     owner       : yxli8023 # GitHub repo owner
     admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
@@ -171,7 +171,7 @@ analytics:
 
   ## Google Analytics
   google:
-    tracking_id : UA-171059666-1 # Google Analytics id for the site
+    tracking_id : 171059666 # Google Analytics id for the site
     anonymize_ip: true # Anonymize IP tracking for Analytics
 
 
