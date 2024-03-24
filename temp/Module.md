@@ -14,7 +14,9 @@ article_header:
   type: overlay
   theme: dark
   background_color: '#123'   # 设置文章头部背景颜色
-  background_image: false
+  background_image: 
+    gradient: 'linear-gradient(135deg, rgba(34, 139, 87 , .4), rgba(139, 34, 139, .4))'  # 设置渐变色
+    src: /docs/assets/images/cover3.jpg  # 配置图片
 aside:
     toc: true
 sitemap: true
