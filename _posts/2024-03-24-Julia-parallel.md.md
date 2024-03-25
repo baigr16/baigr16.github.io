@@ -298,8 +298,8 @@ echo "======== Job ends at `date +'%Y-%m-%d %T'` on `hostname` ======== "
 <div class="card">
   <div class="card__content">
     <div class="card__header">
-      <h4>Photograph</h4>
+      <h4>Email</h4>
     </div>
-    <p>这里是Card中的内容</p>
+    <p>yxli406@gmail.com</p>
   </div>
 </div>

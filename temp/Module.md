@@ -46,3 +46,11 @@ show_author_profile: true
 
 
 
+<div class="card">
+  <div class="card__content">
+    <div class="card__header">
+      <h4>Photograph</h4>
+    </div>
+    <p>这里是Card中的内容</p>
+  </div>
+</div>
