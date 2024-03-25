@@ -295,3 +295,11 @@ echo "======== Job ends at `date +'%Y-%m-%d %T'` on `hostname` ======== "
 {:.info}
 
 ![png](/assets/images/qrcode.jpg){:.border.rounded}{:width="300px" height="300px"}
+<div class="card">
+  <div class="card__content">
+    <div class="card__header">
+      <h4>Photograph</h4>
+    </div>
+    <p>这里是Card中的内容</p>
+  </div>
+</div>
