@@ -13,8 +13,10 @@ header:
 article_header:
   type: overlay
   theme: dark
-  background_color: 
-    gradient: 'linear-gradient(to right, #d3cce3, #e9e4f0)'
+  background_color: false
+  background_image: 
+    gradient: 'linear-gradient(to right, #d3cce3, #e9e4f0)'4
+    image: false
 aside:
     toc: true
 sitemap: true
