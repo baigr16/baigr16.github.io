@@ -34,4 +34,15 @@ show_author_profile: true
 
 ![png](../assets/images/qrcode.jpg){:width="128px" height="128px"}   #控制图片宽高比
 
+![Image](path-to-image){:.border.rounded}
+
+![Image](path-to-image){:.circle.shadow}
+
+![Image](path-to-image){:.circle.border.shadow}
+
+![Image](path-to-image){:.rounded}
+
+![Image](path-to-image){:.shadow}
+
+
 
