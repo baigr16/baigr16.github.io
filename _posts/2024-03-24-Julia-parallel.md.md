@@ -294,4 +294,4 @@ echo "======== Job ends at `date +'%Y-%m-%d %T'` on `hostname` ======== "
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
 {:.info}
 
-![png](/assets/images/qrcode.jpg)
+![png](/assets/images/qrcode.jpg){:.border.rounded}{:width="128px" height="128px"}

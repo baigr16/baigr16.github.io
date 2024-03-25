@@ -32,6 +32,6 @@ show_author_profile: true
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
 {:.info}
 
-![png](../assets/images/qrcode.jpg)
+![png](../assets/images/qrcode.jpg){:width="128px" height="128px"}   #控制图片宽高比
 
 
