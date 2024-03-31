@@ -15,7 +15,7 @@ article_header:
   theme: dark
   background_color: false
   background_image: 
-    gradient: 'linear-gradient(to right, #d3cce3, #e9e4f0)'
+    gradient: 'linear-gradient(to right, rgb(101, 78, 163), rgb(234, 175, 200))'
     image: false
 aside:
     toc: true
