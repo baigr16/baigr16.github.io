@@ -39,15 +39,15 @@ latexdiff file-1.tex file-2.tex > diff.tex
 
 - 原版(file-1.tex)
 
-![](https://files.mdnice.com/user/42079/f69d4bd5-3486-469f-8b3d-87a04371db49.png)
+![png](assets/images/latex/f-1.png)
 
 - 修改版(file-1.tex)
 
-![](https://files.mdnice.com/user/42079/f79e6f35-40a1-4f91-becd-ae76fda7b221.png)
+![png](assets/images/latex/f-2.png)
 
 - 对比版(diff.tex)
   
-![](https://files.mdnice.com/user/42079/b69df5af-5ecb-47a2-bf9f-afbd760fdba3.png)
+![png](assets/images/latex/f-3.png)
 
 这样就可以让审稿人一目了然的看清楚我们对正文的修改以及修改程度，对文章审稿意见的仔细回复也能体现出对审稿人的尊重
 {:.info}
