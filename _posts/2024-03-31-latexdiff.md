@@ -39,15 +39,15 @@ latexdiff file-1.tex file-2.tex > diff.tex
 
 - 原版(file-1.tex)
 
-![png](assets/images/latex/f-1.png)
+![png](/assets/images/latex/f-1.png)
 
 - 修改版(file-1.tex)
 
-![png](assets/images/latex/f-2.png)
+![png](/assets/images/latex/f-2.png)
 
 - 对比版(diff.tex)
   
-![png](assets/images/latex/f-3.png)
+![png](/assets/images/latex/f-3.png)
 
 这样就可以让审稿人一目了然的看清楚我们对正文的修改以及修改程度，对文章审稿意见的仔细回复也能体现出对审稿人的尊重
 {:.info}
