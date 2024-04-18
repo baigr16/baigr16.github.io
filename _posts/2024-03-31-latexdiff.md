@@ -41,7 +41,7 @@ latexdiff file-1.tex file-2.tex > diff.tex
 
 ![png](/assets/images/latex/f-1.png)
 
-- 修改版(file-1.tex)
+- 修改版(file-2.tex)
 
 ![png](/assets/images/latex/f-2.png)
 
