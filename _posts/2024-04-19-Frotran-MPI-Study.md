@@ -1,10 +1,10 @@
 ---
-title: Fortran结合MPI并行计算自旋极化率
-tags:  Fortran Code MPI Superconductor Python
+title: Fortran结合MPI并行
+tags:  Fortran Code MPI 
 layout: article
 license: true
 toc: true
-key: a20240419b
+key: a20240419c
 pageview: true
 # cover: /assets/images/Julia/julia-logo.png
 header:
@@ -24,25 +24,12 @@ mathjax: true
 author: YuXuan
 show_author_profile: true
 ---
-在之前的博客[Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure)](https://yxli8023.github.io/2024/03/24/chi0-mpi.md.html)利用`Julia`计算了一个模型的极化率，但是在撒点数量增加的时候计算速度还是堪忧。这里就返祖利用`Fortran`语言再结合`MPI`并行来重写code。根据测试发现计算速度显著提升。
+该Bolg整理在`Fortran`用`MPI`编写并行程序，用在科学计算中速度提升肉眼可见，
 {:.info}
 <!--more-->
-# 前言
-虽然使用`Julia`在计算的时候速度已经相当快了，但是如果涉及到计算极化率这种需要在布里渊区撒点很多才能精确计算的量，`Julia`在计算的时候需要的时间还是有点久。况且想要速度更快，就需要仔细的去对代码进行优化，想想还是挺复杂的。最后考虑直接返祖，就用`Fortran`(公式翻译器)来计算极化率。
+# 代码解析
+先给一个完整的代码，是用来计算自旋极化率的，实际上在[Fortran结合MPI并行计算自旋极化率](https://yxli8023.github.io/2024/04/19/Frotran-MPI.html)中已经出现过了，这里就是解读一下其中的并行部分是如何用`MPI`写的。
 
-关于公式具体的内容可以参考[Julia的MPI并行计算极化率(重复Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure)](https://yxli8023.github.io/2024/03/24/chi0-mpi.md.html)这篇Blog，或者去查看原文[Bilayer Two-Orbital Model of La$_3$Ni$_2$O$_7$ under Pressure](https://link.aps.org/doi/10.1103/PhysRevLett.131.126001)，下面直接上代码。
-
-# 代码
-这里在写的时候偷懒了，将哈密顿量设置为全局变量了，而且对角化厄米矩阵的函数并没有进行封装，调用之后就是直接对角化哈密顿量。实际上正确且安全的写法就是通过子过程返回哈密顿量，并将其传递给对角化函数计算本征值和本征矢量，这样才能让程序具有通用性。不过事情我是知道的，但这个程序很简单，就先不做这样做了，后续写大程序的时候就会规范了。
-
-- 计算耗时
-这里撒点数量为 256 * 256，调用了64个核，计算时间如下
-```shell
-======== Job starts at 2024-04-15 15:25:16 on n26 ======== 
-Start Fortran code
-======== Job ends at 2024-04-15 15:25:37 on n26 ======== 
-```
-下面就是完整的代码了
 ```fortran
 module param
     implicit none
@@ -79,7 +66,7 @@ program main
     real qx,qy,local_rechi(-kn:kn-1,-kn:kn-1,4),rechi(-kn:kn-1,-kn:kn-1,4)
     !---------------------------------
     integer  numcore,indcore,ierr
-    character(len=20)::filename,char1,char2
+    character(len = 20)::filename,char1,char2
     !---------------------------------
     external::cheevd
     allocate(val(hn))
@@ -113,14 +100,14 @@ program main
     call MPI_Reduce(local_rechi, rechi, (2 * kn)**2 * 4, MPI_REAL, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
     if (indcore .eq. 0) then
         char1 = "fortran-chi-"
-        write(char2,"(I3.3)")kn
+        write(char2,"(I3.3)")2 * kn
         filename = trim(char1)//trim(char2)
         char1 = ".dat"
         filename = trim(filename)//trim(char1)
         open(12,file = filename)
         do iky = -kn,kn - 1
             do ikx = -kn,kn - 1
-                write(12,"(4F5.3)")rechi(iky,ikx,1),rechi(iky,ikx,2),abs(rechi(iky,ikx,3)),abs(rechi(iky,ikx,4))
+                write(12,"(4F8.3)")rechi(iky,ikx,1),rechi(iky,ikx,2),rechi(iky,ikx,3),rechi(iky,ikx,4)
             end do
         end do
         close(12)
@@ -287,51 +274,72 @@ subroutine inv(matin,matout)
     end subroutine inv
 !================================================================================================================================================================================================
 ```
-计算结果
+# MPI并行解读
+首先是要在程序中调用MPI的参数库
+```shell
+use mpi
+```
+我在代码中的并行思想就是将一个$[-kn,kn-1)$，长度为$2*kn$的循环进行分拆。首先是MPI环境的初始化
+```shell
+    call MPI_INIT(ierr)     ! 初始化进程
+    call MPI_COMM_RANK(MPI_COMM_WORLD, indcore, ierr) ! 得到本进程在通信空间中的rank值,即在组中的逻辑编号(该 rank值为0到p-1间的整数,相当于进程的ID。)
+    call MPI_COMM_SIZE(MPI_COMM_WORLD, numcore, ierr) !获得进程个数 size, 这里用变量p保存
+    call MPI_Barrier(MPI_COMM_WORLD,ierr)
+    nki = floor(indcore * (2.0 * kn)/numcore) - kn
+    nkf = floor((indcore + 1) * (2.0 * kn)/numcore) - kn - 1 
+```
+{:.success}
 
-![png](/assets/images/Fortran/fortran-chi-128.png)
+并行会同时调用多个CPU进行计算，在调用MPI的时候，每个CPU都会有自己单独的编号，也就是上面的`indcore`这个参数来进行标识，而`numcore`就是在程序执行的时候调用CPU的总数量。此时可以看到对于每个CPU而言，`nki`和`nkf`都是不同的，这样就可以在不同的CPU上面执行$[-kn,kn-1)$这个区间的不同子区间。
 
-# 绘图程序
-```python
-def plotchi(numk):
-    dataname = "chi-nk-" + str(format(numk,".2f")) + ".dat"
-    dataname = "julia-chi-nk-" + str(format(numk,".2f")) + ".dat"
-    dataname = "fortran-chi-" + str(format(numk,"0>3d")) + ".dat"  # 补足整数
-    picname = os.path.splitext(dataname)[0] + ".png"
-    da = np.loadtxt(dataname) 
-    x0 = da[:,0]
-    z0 = np.array(da[:,2])
-    xn = int(np.sqrt(len(x0)))
-    z0 = z0.reshape(xn,xn)
-    plt.figure(figsize = (10,10))
-    # sc = plt.imshow(z0,interpolation='bilinear', cmap = cm.RdYlGn,origin='lower',vmax = abs(z0).max(), vmin = 0)
-    # sc = plt.imshow(z0,interpolation='bilinear', cmap = "jet",origin='lower', extent=[1, 30, 1, 30],vmax = abs(z0).max(), vmin = 0)
-    sc = plt.imshow(z0,interpolation='bilinear', cmap = "jet_r",origin='lower')
-    cb = plt.colorbar(sc,fraction = 0.045)  # 调整colorbar的大小和图之间的间距
-    cb.ax.tick_params(labelsize=20)
-    font2 = {'family': 'Times New Roman','weight': 'normal','size': 40}
-    # cb.set_label('ldos',fontdict=font2) #设置colorbar的标签字体及其大小
-    # plt.scatter(x0, y0, s = 5, color='blue',edgecolor="blue")
-    plt.axis('scaled')
-    plt.xlabel(r"$q_x$",font2)
-    plt.ylabel(r"$q_y$",font2)
-    # tit = "$J_x= " + str(cont) + "$"
-    # plt.title(tit,font2)
-    plt.yticks([],fontproperties='Times New Roman', size = 40)
-    plt.xticks([],fontproperties='Times New Roman', size = 40)
-    # plt.tick_params(axis='x',width = 2,length = 10)
-    # plt.tick_params(axis='y',width = 2,length = 10)
-    ax = plt.gca()
-    ax.spines["bottom"].set_linewidth(1.5)
-    ax.spines["left"].set_linewidth(1.5) 
-    ax.spines["right"].set_linewidth(1.5)
-    ax.spines["top"].set_linewidth(1.5)
-    # plt.show()
-    plt.savefig(picname, dpi = 300,bbox_inches = 'tight')
-    plt.close()
-#------------------------------------------------------------
-if __name__=="__main__":
-    plotchi(128)
+这里为了保证并行的效率，需要做到不同的区间之间是没有交叠的，因为后续我们要对不同CPU中计算结果的收集，用的是一个求和的方式，所以如果此时计算区间是有重叠的，那么计算的结果中就会有一部分是重复叠加的，所以一定要保证并行区间是没有重叠，且它们的并集等于$[-kn,kn-1)$.
+{:.warning}
+
+下面就是分拆之后的循环在不同的CPU上计算不同的区间
+```shell
+    do iky = nki,nkf
+        qy = pi * iky/kn
+        do ikx = -kn,kn - 1
+            qx = pi * ikx/kn
+            call chi0cal(qx,qy,chi0(iky,ikx,:,:))  ! 得到裸极化率
+            call inv(ones - matmul(chi0(iky,ikx,:,:),Umat),temp2)  ! 矩阵求逆
+            chi(iky,ikx,:,:) = matmul(temp2,chi0(iky,ikx,:,:))
+            temp3 = sum(chi(iky,ikx,:,:))
+            local_rechi(iky,ikx,1) = qx
+            local_rechi(iky,ikx,2) = qy
+            local_rechi(iky,ikx,3) = real(temp3)
+            local_rechi(iky,ikx,4) = aimag(temp3)
+        end do
+    end do
+```
+每个CPU上都会有自己独立的`local_rechi`变量，下面就是要等所有的CPU计算结束，将结果收集起来
+```shell
+    call MPI_Barrier(MPI_COMM_WORLD,ierr)
+    call MPI_Reduce(local_rechi, rechi, (2 * kn)**2 * 4, MPI_REAL, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
+```
+这里调用`call MPI_Barrier(MPI_COMM_WORLD,ierr)`的目的就是等所有的CPU都计算结束，如果有一些CPU已经计算完循环了，而有一些并没有计算结束，这个时候就让程序在这里等候所有的CPU计算都接受，然后调用`call MPI_Reduce(local_rechi, rechi, (2 * kn)**2 * 4, MPI_REAL, MPI_SUM, 0, MPI_COMM_WORLD,ierr)`来收集数据。其中其中的`rechi`是一个维度和`local_rechi`都完全相同的变量，第三个参数`(2 * kn)**2 * 4`表示要收集的数据量大小。举个例子，你有一个矩阵$A(10,10)$，它一共有100个元素，那么此时需要收集的数据量就是100。第四个参数`MPI_REAL`则用来声明收集数据的类型，还有整型`MPI_INTEGER`和复数型`MPI_COMPLEX`。第五个参数`MPI_SUM`就是数据收集的方式。我这里就需要用求和即可，因为程序在设计的时候不同的CPU计算的结果实际上是存储在矩阵不同位置，没有存储的位置自然就是0，所以用求和就能达到收集数据的目的。第六个参数则是申明在哪个CPU核心上来执行数据收集这个操作，我这里就选择了`root`核心。剩下的就是一些公共参数了，没什么好解释的了。
+
+
+计算结束之后总是要进行数据存储的，这个操作需要在一个特定的核心上进行
+```shell
+    if (indcore .eq. 0) then
+        char1 = "fortran-chi-"
+        write(char2,"(I3.3)")2 * kn
+        filename = trim(char1)//trim(char2)
+        char1 = ".dat"
+        filename = trim(filename)//trim(char1)
+        open(12,file = filename)
+        do iky = -kn,kn - 1
+            do ikx = -kn,kn - 1
+                write(12,"(4F8.3)")rechi(iky,ikx,1),rechi(iky,ikx,2),rechi(iky,ikx,3),rechi(iky,ikx,4)
+            end do
+        end do
+        close(12)
+    end if
+```
+程序执行结束之后还申明结束`MPI`并行
+```shell
+    call MPI_Finalize(ierr)
 ```
 
 # 公众号
