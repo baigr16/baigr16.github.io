@@ -31,7 +31,36 @@ show_author_profile: true
 最近因为遇到了计算瓶颈，需要用`Fortran`来重写代码，其中就遇到了对矩阵的一些操作，虽然[lapack](https://www.netlib.org/lapack/)已经提供了很好的函数，但是在实际程序编写中还是有些麻烦，这里就对目前我用到的函数进行了一些封装，方便调用。
 
 
-# 复数矩阵对角化
+## 一般方矩阵对角化
+```fortran
+subroutine diagonalize_general_matrix(matdim,matin,matout,mateigval)
+    use param,only:dp,im
+    implicit none
+    integer matdim, LDA, LDVL, LDVR, LWMAX, INFO, LWORK
+    complex(dp) mateigval(matdim),matin(matdim,matdim),matout(matdim,matdim)
+    real,allocatable::VL(:,:),VR(:,:),WR(:),WI(:),WORK(:)
+    LDA = matdim
+    LDVL = matdim
+    LDVR = matdim
+    LWMAX = 2 * matdim + matdim**2
+    allocate(VL( LDVL, matdim), VR(LDVL,matdim),  WR(matdim), WI(matdim), WORK(LWMAX))
+    LWORK = -1
+    CALL SGEEV( 'V', 'V', matdim, matin, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
+    LWORK = MIN( LWMAX, INT( WORK( 1 ) ) )
+    CALL SGEEV( 'V', 'V', matdim, matin, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
+    IF( INFO.GT.0 ) THEN
+        WRITE(*,*)'The algorithm failed to compute eigenvalues.'
+        STOP
+     END IF
+     do info = 1,matdim
+        mateigval(info) = WR(info) + im * WI(info)
+    end do
+    
+    return
+end subroutine
+```
+
+## 复数矩阵对角化
 ```fortran
 subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
     ! 对角化一般复数矩阵,这里的本征值是个复数
@@ -66,7 +95,7 @@ subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
 end subroutine diagonalize_complex_matrix
 ```
 
-# 矩阵求逆
+## 矩阵求逆
 ```fortran
 subroutine Matrix_Inv(matdim,matin,matout)
     ! 矩阵求逆 
@@ -93,7 +122,7 @@ subroutine Matrix_Inv(matdim,matin,matout)
 end subroutine Matrix_Inv
 ```
 
-# 厄米矩阵对角化
+## 厄米矩阵对角化
 ```fortran
 subroutine diagonalize_Hermitian_matrix(matdim,matin,matout,mateigval)
     !  厄米矩阵对角化
@@ -130,7 +159,7 @@ end subroutine diagonalize_Hermitian_matrix
 ```
 
 
-# 实数矩阵对角化
+## 实数矩阵对角化
 ```fortran
 subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
     ! 对角化一般复数矩阵,这里的本征值是个复数
