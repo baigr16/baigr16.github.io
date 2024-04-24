@@ -4,7 +4,7 @@ tags:  Fortran Code
 layout: article
 license: true
 toc: true
-key: a20240419a
+key: a20240420
 pageview: true
 # cover: /assets/images/Julia/julia-logo.png
 header:
@@ -45,9 +45,10 @@ subroutine diagonalize_general_matrix(matdim,matin,matout,mateigval)
     LWMAX = 2 * matdim + matdim**2
     allocate(VL( LDVL, matdim), VR(LDVL,matdim),  WR(matdim), WI(matdim), WORK(LWMAX))
     LWORK = -1
-    CALL SGEEV( 'V', 'V', matdim, matin, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
+    matout = matin
+    CALL SGEEV( 'V', 'V', matdim, matout, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
     LWORK = MIN( LWMAX, INT( WORK( 1 ) ) )
-    CALL SGEEV( 'V', 'V', matdim, matin, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
+    CALL SGEEV( 'V', 'V', matdim, matout, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
     IF( INFO.GT.0 ) THEN
         WRITE(*,*)'The algorithm failed to compute eigenvalues.'
         STOP
