@@ -56,7 +56,7 @@ subroutine diagonalize_general_matrix(matdim,matin,matout,mateigval)
      do info = 1,matdim
         mateigval(info) = WR(info) + im * WI(info)
     end do
-    
+    matout = VL  ! 将左矢量输出
     return
 end subroutine
 ```
@@ -93,6 +93,8 @@ subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
        WRITE(*,*)'The algorithm failed to compute eigenvalues.'
     !    STOP
     END IF
+    matout = VL  ! 将左矢量输出
+    return
 end subroutine diagonalize_complex_matrix
 ```
 
@@ -194,6 +196,8 @@ subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
     do info = 1,matdim
         mateigval(info) = valre(info) + im * valim(info)
     end do
+    matout = VL  ! 将左矢量输出
+    return
 end subroutine diagonalize_real_matrix
 ```
 
@@ -332,6 +336,8 @@ subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
        WRITE(*,*)'The algorithm failed to compute eigenvalues.'
     !    STOP
     END IF
+    matout = VL  ! 将左矢量输出
+    return
 end subroutine diagonalize_complex_matrix
 !================================================================================================================================================================================================
 subroutine Matrix_Inv(matdim,matin,matout)
