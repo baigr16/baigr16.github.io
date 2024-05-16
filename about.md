@@ -130,3 +130,4 @@ $T_c$ superconductors](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.10
 - [Higher-order topological state induced by $d$-wave competing orders in high-$T_c$ superconductor based heterostructures](https://link.aps.org/doi/10.1103/PhysRevB.106.205128)
 - [High-temperature Majorana corner modes in a d+id' superconductor heterostructure: Application to twisted bilayer cuprate superconductors](https://link.aps.org/doi/10.1103/PhysRevB.107.235125)
 - [Majorana corner modes and tunable patterns in an altermagnet heterostructure](https://link.aps.org/doi/10.1103/PhysRevB.108.205410)
+- [Creation and manipulation of higher-order topological states by altermagnets](https://link.aps.org/doi/10.1103/PhysRevB.109.L201109)
