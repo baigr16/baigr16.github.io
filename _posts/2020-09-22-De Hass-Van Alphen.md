@@ -130,8 +130,8 @@ $$
 可以看到在不同的$n_e$下电子振荡频率之间存在倍数关系，从而在不同填充$n_e$的时候，它们费米面的简并度或者截面面积$S_F$之间也必然存在倍数关系(图片来源文章中研究的是费米面的简并度)。
 
 # 参考
-- 1.固体物理(黄昆)
-- 2.[Half- and quarter-metals in rhombohedral trilayer graphene](https://doi.org/10.1038/s41586-021-03938-w)
+- 固体物理(黄昆)
+- [Half- and quarter-metals in rhombohedral trilayer graphene](https://doi.org/10.1038/s41586-021-03938-w)
 
 # 公众号
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
