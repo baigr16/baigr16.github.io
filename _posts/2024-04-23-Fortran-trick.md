@@ -88,6 +88,47 @@ end do
 
 ```
 
+- 并行可变大小数组声明以及初始化
+
+在并行计算的时候，声明一个可变大小的数组，在确定其矩阵维度之后要对这个矩阵进行初始化，不然在每个进程中，不计算的部分都具有不同的初始值，最后在收集数据的时候就可能得到错误的数据结果
+```fortran
+real(dp),allocatable::Veff_vec(:,:)
+complex(dp),allocatable::Veff_val(:)
+real(dp),allocatable::Veff(:,:)  ! 存储费米面上的相互作用,其维度由费米点的数量决定
+real(dp),allocatable::Veff_mpi(:,:)  ! 存储费米面上的相互作用,其维度由费米点的数量决定
+
+if(numk_FS.eq.0)then
+    write(*,*)"The Number of Fermi surface points = ",numk_FS
+    write(*,*)"----------------------------------------------"
+    write(*,*)"                    Error                     "
+    write(*,*)"----------------------------------------------"
+else
+    ! write(*,"(A30,10F20.8)")"Number of Fermi surface points = ",numk_FS
+
+    allocate(Veff_mpi(numk_FS,numk_FS))
+    allocate(Veff(numk_FS,numk_FS))
+    allocate(Veff_vec(numk_FS,numk_FS))  
+    allocate(Veff_val(numk_FS))
+    Veff_mpi = 0.0    ! 一定要对这些数据进行初始化
+    Veff = 0.0
+    Veff_vec = 0.0
+    Veff_val = 0.0
+end if
+
+nki = floor(indcore * (2.0 * kn + 1)/numcore) - kn
+nkf = floor((indcore + 1) * (2.0 * kn + 1)/numcore) - kn - 1
+do ikx = nki,nkf
+do iky = -kn,kn
+!   中间是具体计算过程
+enddo
+end do
+
+call MPI_Barrier(MPI_COMM_WORLD,ierr)   
+call MPI_Reduce(Veff_mpi, Veff, numk_FS**2, MPI_REAL, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
+call MPI_BCAST(Veff, numk_FS**2, MPI_REAL, 0, MPI_COMM_WORLD, ierr) 
+```
+
+
 
 
 
