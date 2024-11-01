@@ -30,7 +30,6 @@ show_author_profile: true
 # 前言
 最近因为遇到了计算瓶颈，需要用`Fortran`来重写代码，其中就遇到了对矩阵的一些操作，虽然[lapack](https://www.netlib.org/lapack/)已经提供了很好的函数，但是在实际程序编写中还是有些麻烦，这里就对目前我用到的函数进行了一些封装，方便调用。
 
-
 ## 一般方矩阵对角化
 ```fortran
 subroutine diagonalize_general_matrix(matdim,matin,matout,mateigval)
@@ -60,8 +59,51 @@ subroutine diagonalize_general_matrix(matdim,matin,matout,mateigval)
     return
 end subroutine
 ```
+## 一般方矩阵对角化(双精度)
+```fortran
+subroutine diagonalize_general_matrix(matdim, matin, matout, mateigval)
+    implicit none
+    integer, parameter :: dp = kind(1.0d0)
+    integer, intent(in) :: matdim
+    integer :: LDA, LDVL, LDVR, LWMAX, INFO, LWORK
+    complex(dp), intent(out) :: mateigval(matdim), matout(matdim, matdim)
+    complex(dp), intent(in) :: matin(matdim, matdim)
+    real(dp), allocatable :: VL(:,:), VR(:,:), WR(:), WI(:), WORK(:)
+    ! 矩阵维度参数设置
+    LDA = matdim
+    LDVL = matdim
+    LDVR = matdim
+    LWMAX = 2 * matdim + matdim**2
+    matout = matin
+    ! 分配工作空间
+    allocate(VL(LDVL, matdim), VR(LDVR, matdim), WR(matdim), WI(matdim), WORK(LWMAX))
+    ! 初次调用 DGEEV 获取最佳工作空间大小
+    LWORK = -1
+    CALL DGEEV('V', 'V', matdim, matout, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO)
+    ! 根据第一次调用的返回值重新调整工作空间大小
+    LWORK = MIN(LWMAX, INT(WORK(1)))
+    deallocate(WORK)
+    allocate(WORK(LWORK))
+    ! 第二次调用 DGEEV 计算特征值和特征向量
+    CALL DGEEV('V', 'V', matdim, matout, LDA, WR, WI, VL, LDVL, VR, LDVR, WORK, LWORK, INFO)
+    ! 检查对角化是否成功
+    IF (INFO > 0) THEN
+        WRITE(*,*) 'The algorithm failed to compute eigenvalues.'
+        STOP
+    END IF
+    ! 将实部和虚部合成为复数本征值
+    do info = 1, matdim
+        mateigval(info) = WR(info) + (0.0, 1.0) * WI(info)
+    end do
+    ! 将右特征向量存储在 matout 中
+    matout = VR
+    ! 释放工作空间
+    deallocate(VL, VR, WR, WI, WORK)
+    return
+end subroutine diagonalize_general_matrix
+```
 
-## 复数矩阵对角化
+## 复数矩阵对角化(单精度)
 ```fortran
 subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
     ! 对角化一般复数矩阵,这里的本征值是个复数
@@ -98,7 +140,60 @@ subroutine diagonalize_complex_matrix(matdim,matin,matout,mateigval)
 end subroutine diagonalize_complex_matrix
 ```
 
-## 矩阵求逆
+## 复数矩阵对角化(双精度)
+```fortran
+subroutine diagonalize_complex_matrix(matdim, matin, matout, mateigval)
+    ! 对角化一般复数矩阵，这里的本征值是复数(双精度)
+    ! matin 输入矩阵, matout 本征矢量, mateigval 本征值
+    implicit none
+    integer, intent(in) :: matdim
+    integer :: LDA, LDVL, LDVR, LWMAX, INFO, LWORK
+    integer, parameter :: dp = kind(1.0d0)
+    complex(dp), intent(in) :: matin(matdim, matdim)
+    complex(dp), intent(out) :: matout(matdim, matdim)
+    complex(dp), intent(out) :: mateigval(matdim)
+    real(dp), allocatable :: RWORK(:)
+    complex(dp), allocatable :: WORK(:)
+    complex(dp), allocatable :: VL(:,:)
+    complex(dp), allocatable :: VR(:,:)
+    ! 设置矩阵维度参数
+    LDA = matdim
+    LDVL = matdim
+    LDVR = matdim
+    LWMAX = 2 * matdim + matdim**2
+    ! 分配工作空间
+    allocate(RWORK(2 * matdim))
+    allocate(VL(LDVL, matdim))
+    allocate(VR(LDVR, matdim))
+    allocate(WORK(LWMAX))
+    ! 将输入矩阵赋值给 matout
+    matout = matin
+    ! 初次调用 ZGEEV 获取最佳工作空间大小
+    LWORK = -1
+    call ZGEEV('V', 'V', matdim, matout, LDA, mateigval, VL, LDVL, VR, LDVR, WORK, LWORK, RWORK, INFO)
+    ! 根据第一次调用的返回值重新调整工作空间大小
+    LWORK = min(LWMAX, int(WORK(1)))
+    deallocate(WORK)
+    allocate(WORK(LWORK))
+    ! 第二次调用 ZGEEV 计算本征值和本征矢量
+    call ZGEEV('V', 'V', matdim, matout, LDA, mateigval, VL, LDVL, VR, LDVR, WORK, LWORK, RWORK, INFO)
+    ! 检查对角化是否成功
+    if (INFO > 0) then
+        write(*, *) 'The algorithm failed to compute eigenvalues.'
+    end if
+    ! 将右特征向量存储在 matout 中
+    matout = VR
+    ! 释放工作空间
+    deallocate(WORK)
+    deallocate(RWORK)
+    deallocate(VL)
+    deallocate(VR)
+    return
+end subroutine diagonalize_complex_matrix
+```
+
+
+## 矩阵求逆(单精度)
 ```fortran
 subroutine Matrix_Inv(matdim,matin,matout)
     ! 矩阵求逆 
@@ -124,8 +219,42 @@ subroutine Matrix_Inv(matdim,matin,matout)
     return
 end subroutine Matrix_Inv
 ```
+## 矩阵求逆(双精度)
+```fortran
+subroutine Matrix_Inv(matdim, matin, matout)
+    ! 矩阵求逆(双精度)
+    implicit none
+    integer, intent(in) :: matdim
+    integer :: info
+    integer, parameter :: dp = kind(1.0d0)
+    complex(dp), intent(in) :: matin(matdim, matdim)
+    complex(dp) :: matout(matdim, matdim)
+    complex(dp), allocatable :: work2(:)       ! 工作空间数组
+    integer :: ipiv(matdim)                     ! pivot indices
+    ! 将输入矩阵 matin 复制到 matout，防止 LAPACK 函数覆盖 matin
+    matout = matin
+    ! 确定工作空间大小
+    allocate(work2(matdim))
+    ! ZGETRF 用于矩阵 LU 分解
+    call ZGETRF(matdim, matdim, matout, matdim, ipiv, info)
+    if (info /= 0) then
+        write(*, *) 'Matrix is numerically singular!'
+        return
+    end if
+    ! ZGETRI 用于求解逆矩阵
+    call ZGETRI(matdim, matout, matdim, ipiv, work2, matdim, info)
+    if (info /= 0) then
+        write(*, *) 'Matrix inversion failed!'
+        return
+    end if
+    ! 释放工作空间
+    deallocate(work2)
+    return
+end subroutine Matrix_Inv
+```
 
-## 厄米矩阵对角化
+
+## 厄米矩阵对角化(单精度)
 ```fortran
 subroutine diagonalize_Hermitian_matrix(matdim,matin,matout,mateigval)
     !  厄米矩阵对角化
@@ -218,9 +347,10 @@ subroutine diagonalize_Hermitian_matrix(matdim, matin, matout, mateigval)
     return
 end subroutine diagonalize_Hermitian_matrix
 ```
-提示
-{:.info}
+**提示**
+
 如果使用了双精度，那么在MPI并行的时候，数据收集也需要对应的修改为双精度
+{:.info}
 ```shell
     call MPI_Barrier(MPI_COMM_WORLD,ierr)   ! 等所有核心都计算完成
     call MPI_Reduce(U0_mpi, U0_list, Un, MPI_DOUBLE_PRECISION, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
@@ -228,7 +358,7 @@ end subroutine diagonalize_Hermitian_matrix
     call MPI_Reduce(Ds_con_mpi, Ds_con_list, 4 * Un, MPI_DOUBLE_PRECISION, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
 ```
 
-## 实数矩阵对角化
+## 实数矩阵对角化(单精度)
 ```fortran
 subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
     ! 对角化一般复数矩阵,这里的本征值是个复数
@@ -266,6 +396,7 @@ subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
     return
 end subroutine diagonalize_real_matrix
 ```
+实数矩阵的双精度版本实际上就是一般矩阵对角化
 
 # 完整代码&测试
 ```fortran
@@ -496,7 +627,6 @@ subroutine diagonalize_real_matrix(matdim,matin,matout,mateigval)
         mateigval(info) = valre(info) + im * valim(info)
     end do
 end subroutine diagonalize_real_matrix
-!============================================================================================================================
 ```
 
 # 公众号
