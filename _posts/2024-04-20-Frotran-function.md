@@ -161,6 +161,72 @@ subroutine diagonalize_Hermitian_matrix(matdim,matin,matout,mateigval)
 end subroutine diagonalize_Hermitian_matrix
 ```
 
+## 厄米矩阵对角化(双精度)
+```fortran
+subroutine diagonalize_Hermitian_matrix(matdim, matin, matout, mateigval)
+    ! 厄米矩阵对角化
+    ! matin 输入矩阵, matout 本征矢量, mateigval 本征值
+    implicit none
+    integer, parameter :: dp = kind(1.0d0)  ! 双精度
+    integer, intent(in) :: matdim
+    integer :: lda0, lwmax0, lwork, lrwork, liwork, info
+    complex(dp), intent(in) :: matin(matdim, matdim)
+    complex(dp), intent(out) :: matout(matdim, matdim)
+    real(dp), intent(out) :: mateigval(matdim)
+    complex(dp), allocatable :: work(:)
+    real(dp), allocatable :: rwork(:)
+    integer, allocatable :: iwork(:)
+
+    !-----------------
+    lda0 = matdim
+    lwmax0 = 2 * matdim + matdim**2
+    allocate(work(lwmax0))
+    allocate(rwork(1 + 5 * matdim + 2 * matdim**2))
+    allocate(iwork(3 + 5 * matdim))
+
+    matout = matin
+    lwork = -1
+    liwork = -1
+    lrwork = -1
+
+    ! 初次调用 zheevd 获取最佳工作空间大小
+    call zheevd('V', 'U', matdim, matout, lda0, mateigval, work, lwork, rwork, lrwork, iwork, liwork, info)
+
+    ! 根据第一次调用的返回值重新调整工作空间大小
+    lwork = min(2 * matdim + matdim**2, int(work(1)))
+    lrwork = min(1 + 5 * matdim + 2 * matdim**2, int(rwork(1)))
+    liwork = min(3 + 5 * matdim, iwork(1))
+
+    ! 重新分配工作空间
+    deallocate(work)
+    allocate(work(lwork))
+    deallocate(rwork)
+    allocate(rwork(lrwork))
+    deallocate(iwork)
+    allocate(iwork(liwork))
+
+    ! 第二次调用 zheevd 计算本征值和本征矢量
+    call zheevd('V', 'U', matdim, matout, lda0, mateigval, work, lwork, rwork, lrwork, iwork, liwork, info)
+
+    ! 错误处理
+    if (info > 0) then
+        open(11, file = "mes.dat", status = "unknown")
+        write(11, *) 'The algorithm failed to compute eigenvalues.'
+        close(11)
+    end if
+
+    return
+end subroutine diagonalize_Hermitian_matrix
+```
+提示
+{:.info}
+如果使用了双精度，那么在MPI并行的时候，数据收集也需要对应的修改为双精度
+```shell
+    call MPI_Barrier(MPI_COMM_WORLD,ierr)   ! 等所有核心都计算完成
+    call MPI_Reduce(U0_mpi, U0_list, Un, MPI_DOUBLE_PRECISION, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
+    call MPI_Reduce(da_mpi, da_list, Un, MPI_DOUBLE_COMPLEX, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
+    call MPI_Reduce(Ds_con_mpi, Ds_con_list, 4 * Un, MPI_DOUBLE_PRECISION, MPI_SUM, 0, MPI_COMM_WORLD,ierr)
+```
 
 ## 实数矩阵对角化
 ```fortran
