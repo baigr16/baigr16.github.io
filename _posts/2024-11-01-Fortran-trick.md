@@ -4,7 +4,7 @@ tags:  Fortran Code
 layout: article
 license: true
 toc: true
-key: a20240921
+key: a20241101
 pageview: true
 # cover: /assets/images/Julia/julia-logo.png
 header:
@@ -30,7 +30,7 @@ show_author_profile: true
 # 前言
 用`Fortran`写程序主打一个方便，只要把公式翻译成代码就行了，但是在码代码的时候还是遇到了一些意想不到的问题，这里整理一下，方便自己查阅闭坑。
 
-- 费米分布函数
+## 费米分布函数
 
 在把费米分布转成代码为
 ```fortran
@@ -58,8 +58,73 @@ function fermi(ek)
     return
 end 
 ```
+除了上面的截断方式，还可以在能量大于零和小于零的情形下，对费米分布函数做一下变形处理，在数值上避免发散
 
-- 动态数组赋值
+$$
+f(E) = 
+\begin{cases}
+    \frac{e^{-E/(k_B T)}}{1 + e^{-E/(k_B T)}}, & E > 0 \\
+    \frac{1}{1 + e^{E/(k_B T)}}, & E \leq 0
+\end{cases}
+$$
+
+```fortran
+real(dp) function fermi(ek)
+    use code_param
+    implicit none
+    real(dp), intent(in) :: ek
+    real(dp) :: beta
+    beta = 1.0 / kbt
+    if (ek .le. 0.0) then
+        fermi = 1.0 / (exp(beta * ek) + 1.0)
+    else
+        fermi = exp(-beta * ek) / (1.0 + exp(-beta * ek))
+    end if
+end function fermi
+```
+
+如果只是单纯的考虑零温情形，那么就可以使用阶跃函数来代替费米分布
+```fortran
+function fermi(ek)
+    real fermi,ek
+    if(ek) < 0 then
+      fermi = 1
+    else
+      fermi = 0
+    return
+end 
+```
+
+有限温度下，对费米分布的导数为
+
+$$
+f'(E)=-\frac{1}{4k_BT}\sech^2(\frac{E}{2k_BT})
+$$
+
+```fortran
+real(dp) function fermi_derivative(ek)
+    use code_param
+    implicit none
+    real(dp), intent(in) :: ek
+    real(dp) :: beta
+    beta = 1.0 / kbt
+    fermi_derivative = -0.25 * beta * (1.0 / cosh(0.5 * beta * ek))**2
+end function fermi_derivative
+```
+
+如果是零温极限，此时分布函数是阶跃函数，那么导数就是$\delta$函数的形式，此时在数值上可以利用高斯分布来代替
+```fortran
+real(dp) function fermi_derivative_low_temp(ek)
+    ! 极低温下费米分布的导数,这里使用高斯展宽代替
+    use code_param
+    implicit none
+    real(dp), intent(in) :: ek
+    fermi_derivative_low_temp = -1.0 / (sqrt(2.0 * pi) * sigma) * exp(-ek**2 / (2.0 * sigma**2))
+end function fermi_derivative_low_temp
+```
+其中的sigma就是展宽，具体这个值取多少需要根据程序计算的曲线平滑程度或者经验进行确定。
+
+## 动态数组赋值
 
 在`Fortran`中经常会用到可变大小的数组，通常会在程序执行过程中来确定数组的大小。但这个时候还是需要对数组进行初始化，但有时候会有错误的初始化，比如
 
