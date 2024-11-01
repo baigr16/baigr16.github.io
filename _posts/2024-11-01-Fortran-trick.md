@@ -199,12 +199,47 @@ call MPI_BCAST(Veff, numk_FS**2, MPI_REAL, 0, MPI_COMM_WORLD, ierr)
 ```
 
 
+# 函数声明
+一般Fortran默认的都是单精度，可以自行改变成双精度，比如对于零温费米分布函数
+```Fortran
+function fermi(ek)
+    ! 零温下的分布函数
+    implicit none
+    integer,parameter::dp = kind(1.0d0)   ! 双精度
+    real(dp), intent(in) :: ek
+    real(dp) fermi
+    if (ek < 0.0) then
+        fermi = 1.0
+    else
+        fermi = 0.0
+    end if
+end function fermi
+```
+在主程序或者其他子过程、函数中调用双精度的费米分布函数时，就需要明确声明精度
+```Fortran
+program main
+    implicit none
+    integer,parameter::dp = kind(1.0d0)   ! 双精度
+    real(dp),external::fermi
 
-
-
-
-
-
+    stop
+end program main
+```
+有时候也会习惯在函数声明的时候就直接确定精度
+```Fortran
+real(dp) function fermi(ek)
+    ! 零温下的分布函数
+    implicit none
+    integer,parameter::dp = kind(1.0d0)   ! 双精度
+    real(dp), intent(in) :: ek
+    if (ek < 0.0) then
+        fermi = 1.0
+    else
+        fermi = 0.0
+    end if
+end function fermi
+```
+需要说明的是，对于后面这种方式定义的费米分布，在双精度情形下使用时是**错误**的方式，因为此时在函数定义的时候声明，控制精度的dp是不明确的，为了保险起见还是采用第一种方式来声明函数精度。
 
 # 公众号
 相关内容均会在公众号进行同步，若对该Blog感兴趣，欢迎关注微信公众号。
