@@ -98,7 +98,7 @@ end
 有限温度下，对费米分布的导数为
 
 $$
-f'(E)=-\frac{1}{4k_BT}\sech^2(\frac{E}{2k_BT})
+f'(E)=-\frac{1}{4k_BT}sech^2(\frac{E}{2k_BT})
 $$
 
 ```fortran
@@ -113,6 +113,11 @@ end function fermi_derivative
 ```
 
 如果是零温极限，此时分布函数是阶跃函数，那么导数就是$\delta$函数的形式，此时在数值上可以利用高斯分布来代替
+
+$$
+f'(E)\approx-\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{E^2}{2\sigma^2}}
+$$
+
 ```fortran
 real(dp) function fermi_derivative_low_temp(ek)
     ! 极低温下费米分布的导数,这里使用高斯展宽代替
@@ -122,7 +127,7 @@ real(dp) function fermi_derivative_low_temp(ek)
     fermi_derivative_low_temp = -1.0 / (sqrt(2.0 * pi) * sigma) * exp(-ek**2 / (2.0 * sigma**2))
 end function fermi_derivative_low_temp
 ```
-其中的sigma就是展宽，具体这个值取多少需要根据程序计算的曲线平滑程度或者经验进行确定。
+其中的$\sigma$就是展宽，具体这个值取多少需要根据程序计算的曲线平滑程度或者经验进行确定。
 
 ## 动态数组赋值
 
