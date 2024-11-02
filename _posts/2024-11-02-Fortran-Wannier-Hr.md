@@ -75,13 +75,6 @@ program main
         write(*,*)"Number of CPU = ",numcore
         write(*,*)"Number of nk = ",2 * kn
     end if
-    ! 这些计算也不耗时,就直接在每个核心上都计算了,实际上可以在单一进程读取数据然后做广播
-    
-    
-
-    
-
-
     ! 输出程序的基本参数信息
     if(indcore.eq.0)then
         write(*,*)"Number of Fermi points = ",numk_FS
@@ -95,9 +88,7 @@ program main
         write(*,*)"Calcation finished",code_time_end
         write(*,*)"Code execution time:",abs(code_time_end - code_time_start),"second"
     end if
-
     call MPI_Finalize(ierr)
-    
     stop
 end program main
 !================================================================================================================================================================================================
@@ -371,7 +362,7 @@ subroutine diagonalize_Hermitian_matrix(matdim,matin,matout,mateigval)
 end subroutine diagonalize_Hermitian_matrix
 ```
 
-绘图程序
+## 绘图程序
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
