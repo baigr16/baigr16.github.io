@@ -515,14 +515,17 @@ plotfs(format(mu,".2f"),format(numk,".2f"))
 
 <table>
   <tr>
-    <td>
-      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px; border: 1px solid #ccc;">
+    <!-- 图片单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; border: 1px solid #ccc; border-radius: 8px;">
+      <img src="/assets/images/qrcode.jpg" alt="QR Code" width="300px" height="300px" style="border-radius: 8px;">
     </td>
-    <td>
-      <div style="margin-left: 20px;">
-        <h4>Email</h4>
-        <p>yxli406@gmail.com</p>
+    <!-- 文字单元格 -->
+    <td style="width: 300px; height: 300px; text-align: center; vertical-align: middle; padding-left: 20px; border: 1px solid #ccc; border-radius: 8px;">
+      <div>
+        <h4 style="margin: 0;">Email</h4>
+        <p style="margin: 5px 0;">yxli406@gmail.com</p>
       </div>
     </td>
   </tr>
 </table>
+
