@@ -31,7 +31,7 @@ show_author_profile: true
 这里使用的是最简单的QWZ模型，其哈密顿量为
 
 $$
-H = (m0 - tx cos(kx) - ty cos(ky))\sigma_z + ax sin(kx) \sigma_x + ay * sin(ky) * sigma_y
+H = (m_0 - t_x \cos(k_x) - t_y \cos(k_y))\sigma_z + a_x \sin(k_x) \sigma_x + a_y * \sin(k_y) * sigma_y
 $$
 
 程序实现上目前是分别计算每一条能带的Hall电导，而不是计算费米面以下电子贡献的电导。当化学势落在能隙中的时候，这里计算的Hall电导就是单独一条能带贡献，如果化学势与能带有交点，那么Hall电导的计算应该是考虑所有费米面以下的贡献，这里先不考虑这件事情。
