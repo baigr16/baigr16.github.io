@@ -6,7 +6,7 @@ mathjax: true
 
 # 严格物理常数单位换算器（含常数与公式显示）
 
-> 输入任意一项后按 **Enter** 键计算。  
+> 输入任意一项后按 **Enter** 或 **空格键**计算。  
 > 支持波长 λ (nm)、能量 E (eV / a.u.)、周期 T (fs)、频率 ν (THz)、波数 ν̃ (cm⁻¹) 之间的精确换算。  
 
 ---
@@ -16,17 +16,17 @@ mathjax: true
 <table>
 <tr><th>量</th><th>符号</th><th>输入 / 输出</th></tr>
 <tr><td>波长</td><td>λ (nm)</td>
-    <td><input id="lambda" onkeypress="if(event.key==='Enter') convertFrom('lambda')"></td></tr>
+    <td><input id="lambda" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('lambda')"></td></tr>
 <tr><td>能量</td><td>E (eV)</td>
-    <td><input id="energy" onkeypress="if(event.key==='Enter') convertFrom('energy')"></td></tr>
+    <td><input id="energy" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('energy')"></td></tr>
 <tr><td>周期</td><td>T (fs)</td>
-    <td><input id="period" onkeypress="if(event.key==='Enter') convertFrom('period')"></td></tr>
+    <td><input id="period" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('period')"></td></tr>
 <tr><td>频率</td><td>ν (THz)</td>
-    <td><input id="freq" onkeypress="if(event.key==='Enter') convertFrom('freq')"></td></tr>
+    <td><input id="freq" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('freq')"></td></tr>
 <tr><td>波数</td><td>ν̃ (cm⁻¹)</td>
-    <td><input id="wavenum" onkeypress="if(event.key==='Enter') convertFrom('wavenum')"></td></tr>
+    <td><input id="wavenum" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('wavenum')"></td></tr>
 <tr><td>能量</td><td>E (a.u.)</td>
-    <td><input id="eau" onkeypress="if(event.key==='Enter') convertFrom('eau')"></td></tr>
+    <td><input id="eau" onkeypress="if(event.key==='Enter'||event.key===' ') convertFrom('eau')"></td></tr>
 </table>
 
 ---
