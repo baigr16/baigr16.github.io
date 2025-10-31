@@ -1,21 +1,17 @@
-<!doctype html>
-<html lang="zh">
-<head>
-<meta charset="utf-8"/>
-<title>严格物理常数单位换算器（含常数与公式显示）</title>
-<style>
-body{font-family:"Consolas",Arial; margin:20px; line-height:1.6;}
-input{width:160px; text-align:right; font-family:inherit;}
-table{border-collapse:collapse; margin-top:12px;}
-th,td{border:1px solid #ddd; padding:6px 10px;}
-th{background:#f3f3f3;}
-pre{background:#fafafa; padding:10px; border:1px solid #ddd; border-radius:8px;}
-h3{margin-top:0.5em;}
-</style>
-</head>
-<body>
-<h2>严格物理常数单位换算器</h2>
-<p>输入任意一项后按 <b>Enter</b>（回车）计算。支持 λ, E, T, ν, ν̃, Eₐᵤ 六个物理量之间的精确换算。</p>
+---
+layout: article
+title: 严格物理常数单位换算器
+mathjax: true
+---
+
+# 严格物理常数单位换算器（含常数与公式显示）
+
+> 输入任意一项后按 **Enter** 键计算。  
+> 支持波长 λ (nm)、能量 E (eV / a.u.)、周期 T (fs)、频率 ν (THz)、波数 ν̃ (cm⁻¹) 之间的精确换算。  
+
+---
+
+## 输入与计算
 
 <table>
 <tr><th>量</th><th>符号</th><th>输入 / 输出</th></tr>
@@ -33,10 +29,16 @@ h3{margin-top:0.5em;}
     <td><input id="eau" onkeypress="if(event.key==='Enter') convertFrom('eau')"></td></tr>
 </table>
 
-<h3>常数与换算</h3>
+---
+
+## 常数与换算
+
 <pre id="constants"></pre>
 
-<h3>换算公式</h3>
+---
+
+## 换算公式
+
 <pre>
 E = hc / λ
 T = h / E
@@ -46,6 +48,8 @@ E(a.u.) = E(eV) / 27.211386
 1 eV = 8065.544 cm⁻¹ = 241.799 THz = 0.0367493 a.u.
 hc = 1239.841984 eV·nm
 </pre>
+
+---
 
 <script>
 // ======== 常数 ========
@@ -123,5 +127,3 @@ c  = ${fmt(_CLIGHT)} cm/s
 hc = ${hc_eV_nm.toFixed(6)} eV·nm
 h  = ${(h_eV_fs).toFixed(6)} eV·fs`;
 </script>
-</body>
-</html>
